@@ -1,0 +1,222 @@
+{
+  "positiveCases": {
+    "create1": {
+      "code": "SAVE1",
+      "unitName": "Save 1",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "create2": {
+      "code": "SAVE2",
+      "unitName": "Save 2",
+      "statusNo": 2,
+      "statusRemarks": "Status Remarks"
+    }
+  },
+
+  "updateCases": {
+    "initial": {
+      "code": "UP",
+      "unitName": "Save for Update",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "updated": {
+      "code": "UP1",
+      "unitName": "Update For Update",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "searchData": {
+      "unitName": "Save for Update"
+    }
+  },
+
+  "deleteCases": {
+    "record": {
+      "code": "DLT",
+      "unitName": "Save for Delete",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "searchData": {
+      "unitName": "Save for Delete"
+    }
+  },
+
+  "getCases": {
+    "record": {
+      "code": "GBI",
+      "unitName": "Save for Get",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "query": {
+      "unitName": "Save for Get"
+    }
+  },
+
+  "getBiIdCases": {
+    "record": {
+      "code": "GB2",
+      "unitName": "Save for Get by id",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "query": {
+      "unitName": "Save for Get by id"
+    }
+  },
+
+  "searchCases": {
+    "record": {
+      "code": "Serch",
+      "unitName": "Save for Search",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "query": {
+      "unitName": "Save for Search"
+    }
+  },
+
+  "duplicateCases": {
+    "record": {
+      "code": "DU1",
+      "unitName": "Save for Duplication",
+      "statusNo": 1,
+      "statusRemarks": ""
+    },
+    "expectedErrors": {
+      "Code": "Duplicate Code is not allowed.",
+      "UnitName": "Duplicate Unit Name is not allowed."
+    }
+  },
+
+  "validationCases": [
+    {
+      "id": 1,
+      "description": "❌ Blank Unit Name",
+      "input": {
+        "code": "M001",
+        "unitName": "",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "UnitName",
+        "ErrorMessage": "Unit Name is required."
+      }
+    },
+    {
+      "id": 2,
+      "description": "❌ Unit Name exceeds 25 characters",
+      "input": {
+        "code": "M002",
+        "unitName": "AAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "UnitName",
+        "ErrorMessage": "Unit Name must be between 1 and 25 characters."
+      }
+    },
+    {
+      "id": 3,
+      "description": "❌ Duplicate Unit Name",
+      "precondition": {
+        "code": "M003",
+        "unitName": "DuplicateUnit",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "M004",
+        "unitName": "DuplicateUnit",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "UnitName",
+        "ErrorMessage": "Duplicate Unit Name is not allowed."
+      }
+    },
+    {
+      "id": 4,
+      "description": "❌ Blank Code",
+      "input": {
+        "code": "",
+        "unitName": "Unit A",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code is required."
+      }
+    },
+    {
+      "id": 5,
+      "description": "❌ Code exceeds 6 characters",
+      "input": {
+        "code": "TOOLONG",
+        "unitName": "Unit B",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code must be between 1 and 6 characters."
+      }
+    },
+    {
+      "id": 6,
+      "description": "❌ Duplicate Code",
+      "precondition": {
+        "code": "M005",
+        "unitName": "Unit Unique",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "M005",
+        "unitName": "Unit Another",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Duplicate Code is not allowed."
+      }
+    },
+    {
+      "id": 7,
+      "description": "❌ Blank Status Remarks when statusNo = 2",
+      "input": {
+        "code": "M007",
+        "unitName": "Unit D",
+        "statusNo": 2,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "StatusRemarks",
+        "ErrorMessage": "Status Remarks is required."
+      }
+    },
+    {
+      "id": 8,
+      "description": "❌ Status Remarks exceeds 300 characters",
+      "input": {
+        "code": "M008",
+        "unitName": "Unit E",
+        "statusNo": 2,
+        "statusRemarks": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB1"
+      },
+      "expectedError": {
+        "PropertyName": "StatusRemarks",
+        "ErrorMessage": "Status Remarks must be between 1 and 300 characters."
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+    {
+        "testName" : "Valide Login",
+        "email" : "shekhar.sahu@arpaerp.com",
+        "password" : "QWer12!@",
+        "expected" : "success"
+    },
+    {
+        "testName" : "Invalid Login",
+        "email" : "shekhar@arpaerp.com",
+        "password" : "QWer12!2",
+        "expected" : "failure"
+    }
+]

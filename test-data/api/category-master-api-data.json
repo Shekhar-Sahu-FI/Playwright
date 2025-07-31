@@ -1,0 +1,209 @@
+{
+    "save": {
+        "code": "sa",
+        "itemCategoryName": "Save 1",
+        "statusNo": "1",
+        "statusRemarks": ""
+    },
+    "save2": {
+        "code": "s2",
+        "itemCategoryName": "Save 2",
+        "statusNo": "2",
+        "statusRemarks": "Status Remarks"
+    },
+    "update": {
+        "save": {
+            "code": "UP",
+            "itemCategoryName": "Save for Update",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "update": {
+            "code": "UP",
+            "itemCategoryName": "Update For Update",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "itemCategoryName": "Save For Update"
+        }
+    },
+    "delete": {
+        "save": {
+            "code": "DL",
+            "itemCategoryName": "Save for Delete",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "itemCategoryName": "Save for Delete"
+        }
+    },
+    "get": {
+        "save": {
+            "code": "SG",
+            "itemCategoryName": "Get Category",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "getQuery": {
+            "itemCategoryName": "Get Category"
+        }
+    },
+    "search": {
+        "save": {
+            "code": "SC",
+            "itemCategoryName": "Search Category",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "itemCategoryName": "Search Category"
+        }
+    },
+    "getById": {
+        "save": {
+            "code": "GB",
+            "itemCategoryName": "Save for Get by id",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "itemCategoryName": "Save for Get by id"
+        }
+    },
+    "duplicateValidation": {
+        "code": "DP",
+        "itemCategoryName": "Save for Duplication",
+        "statusNo": "1",
+        "statusRemarks": ""
+    },
+    
+  "validationTestCases": [
+    {
+      "id": 1,
+      "description": "❌ Blank Item Category Name",
+      "input": {
+        "code": "v1",
+        "itemCategoryName": "",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemCategoryName",
+        "ErrorMessage": "Item Category Name is required."
+      }
+    },
+    {
+      "id": 2,
+      "description": "❌ Item Category Name exceeds 100 characters",
+      "input": {
+        "code": "v2",
+        "itemCategoryName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemCategoryName",
+        "ErrorMessage": "Item Category Name must be between 1 and 100 characters."
+      }
+    },
+    {
+      "id": 3,
+      "description": "❌ Duplicate Item Category Name",
+      "precondition": {
+        "code": "v3",
+        "itemCategoryName": "DuplicateCategory",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "v3",
+        "itemCategoryName": "DuplicateCategory",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemCategoryName",
+        "ErrorMessage": "Duplicate Item Category Name is not allowed."
+      }
+    },
+    {
+      "id": 4,
+      "description": "❌ Blank Code",
+      "input": {
+        "code": "",
+        "itemCategoryName": "Valid Category",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code is required."
+      }
+    },
+    {
+      "id": 5,
+      "description": "❌ Code exceeds 2 characters",
+      "input": {
+        "code": "TOOLONG",
+        "itemCategoryName": "Valid Category",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code must be between 1 and 2 characters."
+      }
+    },
+    {
+      "id": 6,
+      "description": "❌ Duplicate Code",
+      "precondition": {
+        "code": "V6",
+        "itemCategoryName": "Unique Category",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "v6",
+        "itemCategoryName": "Another Category",
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Duplicate Code is not allowed."
+      }
+    },
+    {
+      "id": 7,
+      "description": "❌ Blank Status Remarks when statusNo = 2",
+      "input": {
+        "code": "v7",
+        "itemCategoryName": "Inactive Category",
+        "statusNo": 2,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "StatusRemarks",
+        "ErrorMessage": "Status Remarks is required."
+      }
+    },
+    {
+      "id": 8,
+      "description": "❌ Status Remarks exceeds 300 characters",
+      "input": {
+        "code": "V8",
+        "itemCategoryName": "Long Remark Category",
+        "statusNo": 2,
+        "statusRemarks": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "expectedError": {
+        "PropertyName": "StatusRemarks",
+        "ErrorMessage": "Status Remarks must be between 1 and 300 characters."
+      }
+    }
+  ]
+}
+

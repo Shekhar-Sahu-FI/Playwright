@@ -1,0 +1,38 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "Aps",
+    "name": "Apsara",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "aspUP",
+        "name": "Apsara @@011",
+        "status": "1"
+    }
+  },
+  "save1": {
+    "code": "Pl",
+    "name": "Parle",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+  "save2": {
+    "code": "MD",
+    "name": "Mercedecs"
+  },
+  "delete": {
+    "code": "TT",
+    "name": "Tata",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+
+  "duplicate": {
+   "code": "Make@9",
+    "name": "Make @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  }
+}

@@ -1,0 +1,285 @@
+{
+    "save": {
+        "category": {
+            "code": "sp",
+            "itemCategoryName": "Save 4",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "itemGroup": {
+            "itemGroupCode": "Gp",
+            "itemGroupName": "Save 9",
+            "statusNo": "1",
+            "statusRemarks": ""
+        }
+    },
+    "save2": {
+        "category": {
+            "code": "s1",
+            "itemCategoryName": "Save 2",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "itemGroup": {
+            "itemGroupCode": "G2",
+            "itemGroupName": "Save 2",
+            "statusNo": 2,
+            "statusRemarks": "Remark test"
+        }
+    },
+    "update": {
+        "save": {
+             "itemGroupCode": "GU",
+            "itemGroupName": "Group Update Save",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "update": {
+            "itemGroupCode": "GU",
+            "itemGroupName": "Group Update Update",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchQuery":{
+             "itemGroupName": "Group Update Save"
+        }
+    },
+    "delete": {
+        "save": {
+             "itemGroupCode": "GD",
+            "itemGroupName": "Group Delete Save",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchQuery":{
+             "itemGroupName": "Group Delete Save"
+        }
+    },
+    "get":{
+         "itemGroup": {
+            "itemGroupCode": "GG",
+            "itemGroupName": "Get Item Group",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "getQuery":{
+             "itemGroupName": "Get Item Group"
+        }
+    },
+    "search":{
+         "itemGroup": {
+            "itemGroupCode": "GS",
+            "itemGroupName": "Search Item Group",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery":{
+             "itemGroupName": "Search Item Group"
+        }
+    },
+    "getById": {
+        "itemGroup":{
+            "itemGroupCode": "G3",
+            "itemGroupName": "Save 2",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery":{
+             "itemGroupName": "Save 2"
+        }
+    },
+  "validationTestCases": [
+    {
+      "id": 1,
+      "description": "❌ Blank Item Group Name",
+      "input": {
+        "code": "IG01",
+        "itemGroupName": "",
+        "itemGroupCode": "IG",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupName",
+        "ErrorMessage": "Item Group Name is required."
+      }
+    },
+    {
+      "id": 2,
+      "description": "❌ Item Group Name exceeds 100 characters",
+      "input": {
+        "code": "IG00",
+        "itemGroupName": "Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "itemGroupCode": "00",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupName",
+        "ErrorMessage": "Item Group Name must be between 1 and 100 characters."
+      }
+    },
+    {
+      "id": 3,
+      "description": "❌ Duplicate Item Group Name in same category",
+      "precondition": {
+        "code": "IG00",
+        "itemGroupName": "DuplicateGroup",
+        "itemGroupCode": "IGCODE003",
+        "itemCategoryId": 2,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "IG004",
+        "itemGroupName": "DuplicateGroup",
+        "itemGroupCode": "IGCODE004",
+        "itemCategoryId": 2,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupName",
+        "ErrorMessage": "Duplicate Item Group Name is not allowed in selected Item Category."
+      }
+    },
+    {
+      "id": 4,
+      "description": "❌ Blank Item Group Code",
+      "input": {
+        "code": "IGsd",
+        "itemGroupName": "Group A",
+        "itemGroupCode": "",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupCode",
+        "ErrorMessage": "Item Group Code is required."
+      }
+    },
+    {
+      "id": 5,
+      "description": "❌ Item Group Code exceeds 2 characters",
+      "input": {
+        "code": "IG0s",
+        "itemGroupName": "Group B",
+        "itemGroupCode": "TOO_LONg",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupCode",
+        "ErrorMessage": "Item Group Code must be between 1 and 2 characters."
+      }
+    },
+    {
+      "id": 6,
+      "description": "❌ Duplicate Item Group Code in same category",
+      "precondition": {
+        "code": "IG007",
+        "itemGroupName": "Group C",
+        "itemGroupCode": "cd",
+        "itemCategoryId": 3,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "input": {
+        "code": "IG008",
+        "itemGroupName": "Group D",
+        "itemGroupCode": "DUPCODE",
+        "itemCategoryId": 3,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemGroupCode",
+        "ErrorMessage": "Duplicate Item Group Code is not allowed in selected Item Category."
+      }
+    },
+    {
+      "id": 7,
+      "description": "❌ Blank Code",
+      "input": {
+        "code": "",
+        "itemGroupName": "Group E",
+        "itemGroupCode": "IG009",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code is required."
+      }
+    },
+    {
+      "id": 8,
+      "description": "❌ Code exceeds 4 characters",
+      "input": {
+        "code": "TOOLONGCODE",
+        "itemGroupName": "Group F",
+        "itemGroupCode": "IG010",
+        "itemCategoryId": 1,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "Code",
+        "ErrorMessage": "Code must be between 1 and 4 characters."
+      }
+    },
+    {
+      "id": 9,
+      "description": "❌ Blank Item Category ID",
+      "input": {
+        "code": "IG01",
+        "itemGroupName": "Group G",
+        "itemGroupCode": "IG",
+        "itemCategoryId": 0,
+        "statusNo": 1,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "ItemCategoryId",
+        "ErrorMessage": "Select Item Category."
+      }
+    },
+    {
+      "id": 10,
+      "description": "❌ Invalid status number",
+      "input": {
+        "code": "IG012",
+        "itemGroupName": "Group H",
+        "itemGroupCode": "IG012",
+        "itemCategoryId": 1,
+        "statusNo": 0,
+        "statusRemarks": ""
+      },
+      "expectedError": {
+        "PropertyName": "StatusNo",
+        "ErrorMessage": "Status No is required."
+      }
+    },
+    {
+      "id": 11,
+      "description": "❌ Status Remarks exceeds 300 characters",
+      "input": {
+        "code": "IG01",
+        "itemGroupName": "Group I",
+        "itemGroupCode": "IG",
+        "itemCategoryId": 1,
+        "statusNo": 2,
+        "statusRemarks": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+      },
+      "expectedError": {
+        "PropertyName": "StatusRemarks",
+        "ErrorMessage": "Status Remarks must be between 1 and 300 characters."
+      }
+    }
+  ]
+}

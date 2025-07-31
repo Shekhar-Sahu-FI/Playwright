@@ -1,0 +1,44 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "DP1",
+    "name": "Depaertment 011",
+    "businessUnit1": ["Save2 BU Name", "parent Bu"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "DP@1",
+        "name": "Depaertment @@011",
+        "businessUnit1": ["Save2 BU Name","parent Bu"],
+        "status": "1"
+    }
+  },
+  "save1": {
+    "code": "DP2",
+    "name": "Depaertment 022",
+    "businessUnit2": [ "parent Bu", "Save2 BU Name"]
+  },
+  "save2": {
+    "code": "DPQW",
+    "name": "Depaertment QWE",
+    "businessUnit1": ["parent Bu"]
+  },
+  "delete": {
+    "code": "DP@3",
+    "name": "Depaertment @3",
+    "businessUnit1": ["parent Bu", "Save2 BU Name"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+
+  "duplicate": {
+   "code": "DP@4",
+    "name": "Depaertment @@4",
+    "businessUnit1": ["parent Bu"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  }
+
+
+}

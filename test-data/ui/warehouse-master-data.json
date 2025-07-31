@@ -1,0 +1,51 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "WH1",
+    "name": "Warehouse 011",
+    "businessUnit1": ["formula", "Crono"],
+    "businessUnit2": ["CIVIC", "Lexus"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "WH@1",
+        "name": "Warehouse @@1",
+        "businessUnit1": ["formula"],
+        "businessUnit2": ["GT", "Mustang"],
+        "status": "1"
+    }
+  },
+  "save1": {
+    "code": "WH2",
+    "name": "Wharehoue 022",
+    "businessUnit1": ["Supra"],
+    "businessUnit2": ["GT", "Mustang"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+  "save2": {
+    "code": "WHQW",
+    "name": "Warehouse QWE",
+    "businessUnit1": ["Supra"],
+    "businessUnit2": ["GT", "Mustang"]
+  },
+  "delete": {
+    "code": "WH@3",
+    "name": "Warehouse @3",
+    "businessUnit1": ["Supra"],
+    "businessUnit2": ["GT", "Mustang"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+
+  "duplicate": {
+   "code": "wh@4",
+    "name": "Warehouse @@4",
+    "businessUnit1": ["Supra"],
+    "businessUnit2": ["GT", "Mustang"],
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  }
+
+}

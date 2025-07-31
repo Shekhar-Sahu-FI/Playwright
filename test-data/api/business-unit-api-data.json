@@ -1,0 +1,381 @@
+{
+    "save": {
+        "id": 45,
+        "code": "Ford",
+        "businessUnitName": "Mustang",
+        "gstinNo": "123456789456123",
+        "address1": "Bhilai",
+        "address2": "CG",
+        "address3": "India",
+        "countryNo": 1,
+        "pincode": "321654",
+        "stateId": 9,
+        "cityName": "Bhilai",
+        "statusNo": 1,
+        "statusRemarks": "string"
+    },
+    "save2": {
+        "code": "AIML",
+        "businessUnitName": "Auto Matic",
+        "gstinNo": "784512369852147",
+        "address1": "Bhilai",
+        "address2": "CG",
+        "address3": "India",
+        "countryNo": 1,
+        "pincode": "321654",
+        "stateId": 9,
+        "cityName": "Bhilai",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
+    "getById": {
+        "code": "DSce",
+        "businessUnitName": "Data Science",
+        "gstinNo": "784512369852147",
+        "address1": "Bhilai",
+        "address2": "CG",
+        "address3": "India",
+        "countryNo": 1,
+        "pincode": "321654",
+        "stateId": 9,
+        "cityName": "Bhilai",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
+    "update": {
+        "save": {
+            "code": "AR",
+            "businessUnitName": "Alpha Romeo",
+            "gstinNo": "784512369852147",
+            "address1": "Bhilai",
+            "address2": "CG",
+            "address3": "India",
+            "countryNo": 1,
+            "pincode": "321654",
+            "stateId": 9,
+            "cityName": "Bhilai",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "update": {
+            "code": "AR2",
+            "businessUnitName": "Alpha Romeo",
+            "gstinNo": "745896321458745",
+            "address1": "France",
+            "address2": "FR",
+            "address3": "Peris",
+            "countryNo": 1,
+            "pincode": "321654",
+            "stateId": 9,
+            "cityName": "Bhilai",
+            "statusNo": 1,
+            "statusRemarks": ""
+        }
+    },
+    "validationTestCases": [
+        {
+            "id": 1,
+            "description": "❌ Blank Code",
+            "input": {
+                "code": "",
+                "businessUnitName": "Unit A",
+                "gstinNo": "29ABCDE1234F2Z5",
+                "address1": "Address Line 1",
+                "countryNo": 1,
+                "pincode": "560001",
+                "stateId": 9,
+                "cityName": "Bangalore",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Code is required."
+            }
+        },
+        {
+            "id": 2,
+            "description": "❌ Code exceeds 10 characters",
+            "input": {
+                "code": "TOOLONGCODE123",
+                "businessUnitName": "Unit B",
+                "gstinNo": "29ABCDE1234F2Z5",
+                "address1": "Address Line 2",
+                "countryNo": 1,
+                "pincode": "560002",
+                "stateId": 9,
+                "cityName": "Mumbai",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Code must be between 1 and 10 characters."
+            }
+        },
+        {
+            "id": 3,
+            "description": "❌ Duplicate Code",
+            "precondition": {
+                "code": "BU001",
+                "businessUnitName": "Existing Unit",
+                "gstinNo": "29ABCDE1234F2Z5",
+                "address1": "Existing Address",
+                "countryNo": 1,
+                "pincode": "560003",
+                "stateId": 9,
+                "cityName": "Chennai",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "input": {
+                "code": "BU001",
+                "businessUnitName": "New Unit",
+                "gstinNo": "29ABCDE1234F2Z6",
+                "address1": "New Address",
+                "countryNo": 1,
+                "pincode": "560004",
+                "stateId": 9,
+                "cityName": "Delhi",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Duplicate Code is not allowed."
+            }
+        },
+        {
+            "id": 4,
+            "description": "❌ Blank Business Unit Name",
+            "input": {
+                "code": "BU002",
+                "businessUnitName": "",
+                "gstinNo": "29ABCDE1234F2Z7",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560005",
+                "stateId": 9,
+                "cityName": "Kolkata",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "BusinessUnitName",
+                "ErrorMessage": "Business Unit Name is required."
+            }
+        },
+        {
+            "id": 5,
+            "description": "❌ Duplicate Business Unit Name",
+            "precondition": {
+                "code": "BU003",
+                "businessUnitName": "Duplicate Unit",
+                "gstinNo": "29ABCDE1234F2Z8",
+                "address1": "Old Address",
+                "countryNo": 1,
+                "pincode": "560006",
+                "stateId": 9,
+                "cityName": "Pune",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "input": {
+                "code": "BU004",
+                "businessUnitName": "Duplicate Unit",
+                "gstinNo": "29ABCDE1234F2Z9",
+                "address1": "Another Address",
+                "countryNo": 1,
+                "pincode": "560007",
+                "stateId": 9,
+                "cityName": "Hyderabad",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "BusinessUnitName",
+                "ErrorMessage": "Duplicate Business Unit Name not allowed."
+            }
+        },
+         {
+            "id": 6,
+            "description": "❌ Business Unit Name exceeds 100 characters",
+            "input": {
+                "code": "BU002",
+                "businessUnitName": "Testing Childqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+                "gstinNo": "29ABCDE1234F2Z7",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560005",
+                "stateId": 9,
+                "cityName": "Kolkata",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "BusinessUnitName",
+                "ErrorMessage": "Business Unit Name must be between 1 and 100 characters."
+            }
+        },
+        {
+            "id": 7,
+            "description": "❌ GSTIN No exceeds 15 characters",
+            "input": {
+                "code": "BU006",
+                "businessUnitName": "Long GST",
+                "gstinNo": "29ABCDE1234F2Z56789",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560009",
+                "stateId": 9,
+                "cityName": "Surat",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "GSTINNo",
+                "ErrorMessage": "GSTINNo must be between 0 and 15 characters."
+            }
+        },
+        {
+            "id": 8,
+            "description": "❌ Blank Address",
+            "input": {
+                "code": "BU007",
+                "businessUnitName": "No Address Unit",
+                "gstinNo": "29ABCDE1234F2Z0",
+                "address1": "",
+                "countryNo": 1,
+                "pincode": "560010",
+                "stateId": 9,
+                "cityName": "Jaipur",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Address1",
+                "ErrorMessage": "Address1 is required."
+            }
+        },
+        {
+            "id": 9,
+            "description": "❌ Country not selected",
+            "input": {
+                "code": "BU008",
+                "businessUnitName": "No Country",
+                "gstinNo": "29ABCDE1234F2Z1",
+                "address1": "Some Address",
+                "countryNo": 0,
+                "pincode": "560011",
+                "stateId": 9,
+                "cityName": "Indore",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "CountryNo",
+                "ErrorMessage": "Country No is required."
+            }
+        },
+        {
+            "id": 10,
+            "description": "❌ Blank Pincode",
+            "input": {
+                "code": "BU009",
+                "businessUnitName": "No Pincode",
+                "gstinNo": "29ABCDE1234F2Z2",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "",
+                "stateId": 9,
+                "cityName": "Lucknow",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Pincode",
+                "ErrorMessage": "Pincode is required."
+            }
+        },
+        {
+            "id": 11,
+            "description": "❌ Pincode exceeds 6 digits",
+            "input": {
+                "code": "BU010",
+                "businessUnitName": "Long Pincode",
+                "gstinNo": "29ABCDE1234F2Z3",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "1234567",
+                "stateId": 9,
+                "cityName": "Nagpur",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Pincode",
+                "ErrorMessage": "Pincode must be between 1 and 6 characters."
+            }
+        },
+        {
+            "id": 12,
+            "description": "❌ State not selected",
+            "input": {
+                "code": "BU011",
+                "businessUnitName": "No State",
+                "gstinNo": "29ABCDE1234F2Z4",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560012",
+                "stateId": 0,
+                "cityName": "Goa",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "StateId",
+                "ErrorMessage": "State Id is required."
+            }
+        },
+        {
+            "id": 13,
+            "description": "❌ Blank City Name",
+            "input": {
+                "code": "BU012",
+                "businessUnitName": "No City",
+                "gstinNo": "29ABCDE1234F2Z5",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560013",
+                "stateId": 9,
+                "cityName": "",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "CityName",
+                "ErrorMessage": "City Name is required."
+            }
+        },
+        {
+            "id": 14,
+            "description": "❌ City Name exceeds 50 characters",
+            "input": {
+                "code": "BU013",
+                "businessUnitName": "Long City",
+                "gstinNo": "29ABCDE1234F2Z6",
+                "address1": "Some Address",
+                "countryNo": 1,
+                "pincode": "560014",
+                "stateId": 9,
+                "cityName": "ThisCityNameIsWayTooLongAndExceedsFiftyCharactersWhichIsInvalid",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "CityName",
+                "ErrorMessage": "City Name must be between 1 and 50 characters."
+            }
+        }
+    ]
+}

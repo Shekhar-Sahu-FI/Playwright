@@ -1,0 +1,361 @@
+{
+    "save": {
+        "userTypeNo": 2,
+        "userProfileId": "UP001",
+        "userName": "John Doe",
+        "emailId": "john.doe@example.com",
+        "contactNo": "9876543210",
+        "employeeId": "EMP001",
+        "designation": "Software Engineer",
+        "reportingManagerName": "Jane Smith",
+        "statusNo": 1,
+        "statusRemarks": "",
+        "userMasterBusinessUnitDetail": [
+            {
+                "buId": 5,
+                "statusNo": 1,
+                "statusRemarks": "Assigned"
+            }
+        ]
+    },
+    "save2": {
+        "userTypeNo": 2,
+        "userProfileId": "UP002",
+        "userName": "Priya Sharma",
+        "emailId": "priya.sharma@example.com",
+        "contactNo": "9123456789",
+        "employeeId": "EMP002",
+        "designation": "QA Lead",
+        "reportingManagerName": "Raj Mehta",
+        "statusNo": 1,
+        "statusRemarks": "Newly onboarded",
+        "userMasterBusinessUnitDetail": [
+            {
+                "buId": 6,
+                "statusNo": 1,
+                "statusRemarks": "Onboarded"
+            }
+        ]
+    },
+    "update": {
+        "save": {
+            "userTypeNo": 3,
+            "userProfileId": "UP003",
+            "userName": "Mohammed Khan",
+            "emailId": "m.khan@example.com",
+            "contactNo": "9011122233",
+            "employeeId": "EMP003",
+            "designation": "Product Manager",
+            "reportingManagerName": "Nisha Jain",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 7,
+                    "statusNo": 2,
+                    "statusRemarks": "Transferred from BU4"
+                }
+            ]
+        },
+        "update": {
+            "userTypeNo": 3,
+            "userProfileId": "UP003",
+            "userName": "Mohammed Khan Updated",
+            "emailId": "m.khanUpdated@example.com",
+            "contactNo": "99999999999",
+            "employeeId": "EMP003",
+            "designation": "Product Manager Head Updated",
+            "reportingManagerName": "Nisha Jain Updated",
+            "statusNo": 2,
+            "statusRemarks": "Transferred",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 7,
+                    "statusNo": 2,
+                    "statusRemarks": "Transferred from BU4"
+                }
+            ]
+        },
+        "searchQuery": {
+            "userProfileId": "UP003"
+        }
+    },
+    "getById": {
+        "save": {
+            "userTypeNo": 3,
+            "userProfileId": "UP004",
+            "userName": "Emily Brown",
+            "emailId": "emily.b@example.com",
+            "contactNo": "9988776655",
+            "employeeId": "EMP004",
+            "designation": "HR Manager",
+            "reportingManagerName": "Suresh Iyer",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 3,
+                    "statusNo": 0,
+                    "statusRemarks": "Temporarily inactive"
+                }
+            ]
+        },
+        "searchQuery": {
+            "userProfileId": "UP004"
+        }
+    },
+    "delete": {
+        "save": {
+            "userTypeNo": 3,
+            "userProfileId": "UPem4",
+            "userName": "Brown",
+            "emailId": "emily@example.com",
+            "contactNo": "9988776655",
+            "employeeId": "EMP854",
+            "designation": "HR Manager",
+            "reportingManagerName": "Suresh Iyer",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 3,
+                    "statusNo": 0,
+                    "statusRemarks": "Temporarily inactive"
+                }
+            ]
+        },
+        "searchQuery": {
+            "userProfileId": "UPem4"
+        }
+    },
+    "duplicateValidation": {
+        "userTypeNo": 2,
+        "userProfileId": "UP005",
+        "userName": "Arjun Verma",
+        "emailId": "arjun.v@example.com",
+        "contactNo": "9090909090",
+        "employeeId": "EMP005",
+        "designation": "DevOps Engineer",
+        "reportingManagerName": "Leena George",
+        "statusNo": 1,
+        "statusRemarks": "Active",
+        "userMasterBusinessUnitDetail": [
+            {
+                "buId": 8,
+                "statusNo": 1,
+                "statusRemarks": "Stable assignment"
+            }
+        ]
+    },
+    "get": {
+        "save": {
+            "userTypeNo": 3,
+            "userProfileId": "UP777",
+            "userName": "Brown 7777",
+            "emailId": "emi77777@example.com",
+            "contactNo": "9988776655",
+            "employeeId": "EMP7777",
+            "designation": "HR Manager",
+            "reportingManagerName": "Suresh Iyer",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 3,
+                    "statusNo": 0,
+                    "statusRemarks": "Temporarily inactive"
+                }
+            ]
+        },
+        "getQuery": {
+            "userProfileId": "UP777"
+        }
+    },
+    "search": {
+        "save": {
+            "userTypeNo": 3,
+            "userProfileId": "UPpppm4",
+            "userName": "E Brown",
+            "emailId": "ey@example.com",
+            "contactNo": "9988776655",
+            "employeeId": "EMP8os54",
+            "designation": "HR Manager",
+            "reportingManagerName": "Suresh Iyer",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "userMasterBusinessUnitDetail": [
+                {
+                    "buId": 3,
+                    "statusNo": 0,
+                    "statusRemarks": "Temporarily inactive"
+                }
+            ]
+        },
+        "searchQuery": {
+            "userProfileId": "UPpppm4"
+        }
+    },
+    "validationTestCases": [
+        {
+            "id": 1,
+            "description": "❌ Owner already exists",
+            "input": {
+                "userTypeNo": 1,
+                "userProfileId": "UPpppm4",
+                "userName": "E Brown",
+                "emailId": "ey@example.com",
+                "contactNo": "9988776655",
+                "employeeId": "EMP8os54",
+                "designation": "HR Manager",
+                "reportingManagerName": "Suresh Iyer",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "UserTypeNo",
+                "ErrorMessage": "Owner already exists."
+            }
+        },
+        {
+            "id": 2,
+            "description": "❌ Owner type cannot be changed",
+            "input": {
+                "userTypeNo": 2,
+                "originalUserTypeNo": 1
+            },
+            "expectedError": {
+                "PropertyName": "UserTypeNo",
+                "ErrorMessage": "User Type cannot be changed."
+            }
+        },
+        {
+            "id": 3,
+            "description": "❌ Owner cannot be deleted",
+            "input": {
+                "userTypeNo": 1,
+                "operation": "delete"
+            },
+            "expectedError": {
+                "PropertyName": "UserTypeNo",
+                "ErrorMessage": "Owner cannot be deleted."
+            }
+        },
+        {
+            "id": 4,
+            "description": "❌ Owner cannot have inactive status",
+            "input": {
+                "userTypeNo": 1,
+                "statusNo": 0
+            },
+            "expectedError": {
+                "PropertyName": "StatusNo",
+                "ErrorMessage": "Owner cannot have inactive status."
+            }
+        },
+        {
+            "id": 5,
+            "description": "❌ Blank User Name",
+            "input": {
+                "userName": ""
+            },
+            "expectedError": {
+                "PropertyName": "UserName",
+                "ErrorMessage": "Enter User Name."
+            }
+        },
+        {
+            "id": 6,
+            "description": "❌ Blank Email Id",
+            "input": {
+                "emailId": ""
+            },
+            "expectedError": {
+                "PropertyName": "EmailId",
+                "ErrorMessage": "Enter Email Id."
+            }
+        },
+        {
+            "id": 7,
+            "description": "❌ Duplicate Email Id",
+            "input": {
+                "emailId": "duplicate@example.com"
+            },
+            "expectedError": {
+                "PropertyName": "EmailId",
+                "ErrorMessage": "Duplicate Email Id is not allowed."
+            }
+        },
+        {
+            "id": 8,
+            "description": "❌ Owner's Email Id cannot be changed",
+            "input": {
+                "userTypeNo": 1,
+                "originalEmailId": "owner@example.com",
+                "emailId": "newowner@example.com"
+            },
+            "expectedError": {
+                "PropertyName": "EmailId",
+                "ErrorMessage": "Email Id of owner cannot be changed."
+            }
+        },
+        {
+            "id": 9,
+            "description": "❌ Invalid Email Format",
+            "input": {
+                "emailId": "invalid-email"
+            },
+            "expectedError": {
+                "PropertyName": "EmailId",
+                "ErrorMessage": "Enter valid Email Id."
+            }
+        },
+        {
+            "id": 10,
+            "description": "❌ Status Remark required when status is inactive",
+            "input": {
+                "statusNo": 0,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "StatusRemarks",
+                "ErrorMessage": "Enter Status Remark."
+            }
+        },
+        {
+            "id": 11,
+            "description": "❌ Duplicate Employee Id",
+            "input": {
+                "employeeId": "EMP001"
+            },
+            "expectedError": {
+                "PropertyName": "EmployeeId",
+                "ErrorMessage": "Duplicate Employee Id is not allowed."
+            }
+        },
+        {
+            "id": 12,
+            "description": "❌ Duplicate User Profile Id",
+            "input": {
+                "userProfileId": "UP001"
+            },
+            "expectedError": {
+                "PropertyName": "UserProfileId",
+                "ErrorMessage": "Duplicate User Profile Id is not allowed."
+            }
+        },
+        {
+            "id": 13,
+            "description": "❌ User Profile Id cannot be updated",
+            "input": {
+                "originalUserProfileId": "UP001",
+                "userProfileId": "UP999"
+            },
+            "expectedError": {
+                "PropertyName": "UserProfileId",
+                "ErrorMessage": "User Profile Id can not be updated."
+            }
+        }
+    ]
+}
+
+

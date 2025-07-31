@@ -1,0 +1,207 @@
+{
+    "save": {
+        "code": "save1",
+        "makeName": "Save 1",
+        "statusNo": "1",
+        "statusRemarks": ""
+    },
+    "save2": {
+        "code": "save2",
+        "makeName": "Save 2",
+        "statusNo": "2",
+        "statusRemarks": "Status Remarks"
+    },
+    "update": {
+        "save": {
+            "code": "UP",
+            "makeName": "Save for Update",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "update": {
+            "code": "UP1",
+            "makeName": "Update For Update",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "makeName": "Save For Update"
+        }
+    },
+    "delete": {
+        "save": {
+            "code": "DLT",
+            "makeName": "Save for Delete",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "makeName": "Save for Delete"
+        }
+    },
+    "get": {
+        "save": {
+            "code": "GetMK",
+            "makeName": "Get Make",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "getQuery": {
+            "makeName": "Get Make"
+        }
+    },
+    "search": {
+        "save": {
+            "code": "SrcMK",
+            "makeName": "Search Make",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "makeName": "Get Make"
+        }
+    },
+    "getById": {
+        "save": {
+            "code": "GBI",
+            "makeName": "Save for Get by id",
+            "statusNo": "1",
+            "statusRemarks": ""
+        },
+        "searchData": {
+            "makeName": "Save for Get by id"
+        }
+    },
+    "duplicateValidation": {
+        "code": "DP1",
+        "makeName": "Save for Duplication",
+        "statusNo": "1",
+        "statusRemarks": ""
+    },
+    "validationTestCases": [
+        {
+            "id": 1,
+            "description": "❌ Blank Make Name",
+            "input": {
+                "code": "M001",
+                "makeName": "",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "MakeName",
+                "ErrorMessage": "Make Name is required."
+            }
+        },
+        {
+            "id": 2,
+            "description": "❌ Make Name exceeds 100 characters",
+            "input": {
+                "code": "M002",
+                "makeName": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "MakeName",
+                "ErrorMessage": "Make Name must be between 1 and 100 characters."
+            }
+        },
+        {
+            "id": 3,
+            "description": "❌ Duplicate Make Name",
+            "precondition": {
+                "code": "M003",
+                "makeName": "DuplicateMake",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "input": {
+                "code": "M004",
+                "makeName": "DuplicateMake",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "MakeName",
+                "ErrorMessage": "Duplicate Make Name is not allowed."
+            }
+        },
+        {
+            "id": 4,
+            "description": "❌ Blank Code",
+            "input": {
+                "code": "",
+                "makeName": "Make A",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Code is required."
+            }
+        },
+        {
+            "id": 5,
+            "description": "❌ Code exceeds 6 characters",
+            "input": {
+                "code": "TOOLONG",
+                "makeName": "Make B",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Code must be between 1 and 6 characters."
+            }
+        },
+        {
+            "id": 6,
+            "description": "❌ Duplicate Code",
+            "precondition": {
+                "code": "M005",
+                "makeName": "Make Unique",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "input": {
+                "code": "M005",
+                "makeName": "Make Another",
+                "statusNo": 1,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "Code",
+                "ErrorMessage": "Duplicate Code is not allowed."
+            }
+        },
+        {
+            "id": 8,
+            "description": "❌ Blank Status Remarks when statusNo = 2",
+            "input": {
+                "code": "M007",
+                "makeName": "Make D",
+                "statusNo": 2,
+                "statusRemarks": ""
+            },
+            "expectedError": {
+                "PropertyName": "StatusRemarks",
+                "ErrorMessage": "Status Remarks is required."
+            }
+        },
+        {
+            "id": 9,
+            "description": "❌ Status Remarks exceeds 300 characters",
+            "input": {
+                "code": "M008",
+                "makeName": "Make E",
+                "statusNo": 2,
+                "statusRemarks": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+            },
+            "expectedError": {
+                "PropertyName": "StatusRemarks",
+                "ErrorMessage": "Status Remarks must be between 1 and 300 characters."
+            }
+        }
+    ]
+}

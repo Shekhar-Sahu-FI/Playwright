@@ -1,0 +1,83 @@
+{
+    "save": {
+        "code": "CC001",
+        "costCenterName": "CostCenter Save",
+        "description": "This is description",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
+    "save2": {
+        "code": "CC002",
+        "costCenterName": "CostCenter Save2",
+        "description": "This is description",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
+    "update": {
+        "save": {
+            "code": "CC003",
+            "costCenterName": "CostCenter Update Save",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "update": {
+            "code": "CC003",
+            "costCenterName": "CostCenter Update Edited",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "costCenterName": "CostCenter Update Save"
+        }
+    },
+    "getById": {
+        "save": {
+            "code": "CC004",
+            "costCenterName": "CostCenter GetById",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "costCenterName": "CostCenter GetById"
+        }
+    },
+    "delete": {
+        "save": {
+            "code": "CC005",
+            "costCenterName": "CostCenter Delete",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "costCenterName": "CostCenter Delete"
+        }
+    },
+    "get": {
+        "save": {
+            "code": "CC006",
+            "costCenterName": "CostCenter Get",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "getQuery": {
+            "costCenterName": "CostCenter Get"
+        }
+    },
+    "search": {
+        "save": {
+            "code": "CC007",
+            "costCenterName": "CostCenter Search",
+            "description": "This is description",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "costCenterName": "CostCenter Search"
+        }
+    }
+}

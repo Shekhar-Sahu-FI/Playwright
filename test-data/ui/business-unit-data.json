@@ -1,0 +1,107 @@
+{
+    "save1": {
+        "gstIn": "27AABCU9603R1Z9",
+        "code": "BU002",
+        "name": "Save BU Name",
+        "parentBUQuery": "fo",
+        "parentBUName": "FordS",
+        "address1": "456 Updated Street",
+        "address2": "Business Zone",
+        "address3": "Block B",
+        "country": "1",
+        "stateQuery": "cg",
+        "stateName": "Chhattisgarh",
+        "cityName": "Bhilai",
+        "pin": "321654",
+        "status": "In1",
+        "statusRemarks": "Updated for automation test"
+    },
+    "save2": {
+        "gstIn": "27AABCU9603R1Z9",
+        "code": "BU002",
+        "name": "Save2 BU Name",
+        "address1": "456 Updated Street",
+        "address2": "Business Zone",
+        "address3": "Block B",
+        "country": "1",
+        "stateQuery": "cg",
+        "stateName": "Chhattisgarh",
+        "cityName": "Bhilai",
+        "pin": "321654",
+        "status": "1"
+    },
+    "update": {
+        "firstSave": {
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "BU002",
+            "name": "Updated BU Name",
+            "address1": "456 Updated Street",
+            "address2": "Business Zone",
+            "address3": "Block B",
+            "country": "1",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Bhilai",
+            "pin": "321654",
+            "status": "1"
+        },
+        "update": {
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "BU987",
+            "name": "Updated BU Name Again",
+            "address1": "456 Updated Street",
+            "address2": "Mana Zonee",
+            "address3": "Block Q",
+            "country": "1",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Raipur",
+            "pin": "321654",
+            "status": "1"
+        }
+    },
+    "delete": {
+        "gstIn": "27AABCU9603R1Z9",
+        "code": "DLT123",
+        "name": "Delete BU Name",
+        "address1": "456 Updated Street",
+        "address2": "Mana Zonee",
+        "address3": "Block Q",
+        "country": "1",
+        "stateQuery": "cg",
+        "stateName": "Chhattisgarh",
+        "cityName": "Raipur",
+        "pin": "321654",
+        "status": "1"
+    },
+    "addChild": {
+        "parent":{
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "ADD",
+            "name": "parent Bu",
+            "address1": "456 Updated Street",
+            "address2": "Mana Zonee",
+            "address3": "Block Q",
+            "country": "1",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Raipur",
+            "pin": "321654",
+            "status": "1"
+        },
+        "child":{
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "CHld",
+            "name": "Child BU Name",
+            "address1": "456 Updated Street",
+            "address2": "Mana Zonee",
+            "address3": "Block Q",
+            "country": "1",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Raipur",
+            "pin": "321654",
+            "status": "1"
+        }
+    }
+}

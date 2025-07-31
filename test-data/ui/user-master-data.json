@@ -1,0 +1,98 @@
+{
+  "update": {
+    "firstSave" : {
+        "name": "Newton",
+        "userProfileId": "New098",
+        "emailId": "dw2@gmail.com",
+        "userType": "2", 
+        "contactNo": "321654212", 
+        "employeeId": "EMP123", 
+        "designation": "Head Manager", 
+        "reportingManagerName": "Grahem Bell", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "name": "Newton Isac",
+        "userType": "3", 
+        "contactNo": "321654212", 
+        "designation": "Head Manager", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+    }
+  },
+  "save1": {
+        "name": "Charles",
+        "userProfileId": "CharX",
+        "emailId": "char@gmail.com",
+        "userType": "3", 
+        "contactNo": "321654212", 
+        "designation": "Head Manager"
+  },
+  "save2": {
+        "name": "Isac Newton",
+        "userProfileId": "IN3",
+        "emailId": "Newton@gmail.com",
+        "userType": "3", 
+        "contactNo": "321654212", 
+        "businessUnit1": ["Supra"],
+        "businessUnit2": ["GT", "Mustang"],
+        "employeeId": "EMP21", 
+        "reportingManagerName": "Grahem Bell", 
+        "designation": "Head Manager", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+  },
+    "save3": {
+        "name": "Ramanujan",
+        "userProfileId": "RJ1",
+        "emailId": "rjin@gmail.com",
+        "userType": "3", 
+        "contactNo": "321654212", 
+        "employeeId": "RJ21", 
+        "departmentQuery": "dp",
+        "departmentName": "Depaertment @@4",
+        "reportingManagerName": "God", 
+        "designation": "Head Manager", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+  },
+  "save4": {
+        "name": "Hawkins",
+        "userProfileId": "SH1",
+        "emailId": "Sh@gmail.com",
+        "userType": "3", 
+        "contactNo": "321654212", 
+        "employeeId": "SH21", 
+        "businessUnit1": ["Supra"],
+        "businessUnit2": ["GT", "Mustang"],
+        "departmentQuery": "dp",
+        "departmentName": "Depaertment @@4",
+        "reportingManagerName": "God", 
+        "designation": "Head Manager", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+  },
+  "delete": {
+        "name": "Enstien",
+        "userProfileId": "end098",
+        "emailId": "ton@gmail.com",
+        "userType": "2", 
+        "contactNo": "321654212", 
+        "designation": "Head Manager"
+  },
+
+  "duplicate": {
+        "name": "Tesla",
+        "userProfileId": "Tes098",
+        "emailId": "testla@gmail.com",
+        "userType": "2", 
+        "contactNo": "321654212", 
+        "employeeId": "EMP898", 
+        "designation": "Head Manager", 
+        "reportingManagerName": "Grahem Bell", 
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 1"
+  }
+
+}

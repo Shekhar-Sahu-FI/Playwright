@@ -1,0 +1,82 @@
+[
+  {
+    "description": "Blank userName",
+    "save": {
+      "userName": "",
+      "userTypeNo": 111,
+      "userProfileId": "aaaa",
+      "emailId": "aaaa",
+      "contactNo": "aaaa",
+      "employeeId": "aaaa",
+      "designation": "aaaa",
+      "departmentId": 111,
+      "reportingManagerName": "aaaa",
+      "statusNo": 111,
+      "statusRemarks": "aaaa"
+    },
+    "validationError": {
+      "PropertyName": "Add Field",
+      "ErrorMessage": "Add Message"
+    }
+  },
+  {
+    "description": "Blank userProfileId",
+    "save": {
+      "userName": "aaaa",
+      "userTypeNo": 111,
+      "userProfileId": "",
+      "emailId": "aaaa",
+      "contactNo": "aaaa",
+      "employeeId": "aaaa",
+      "designation": "aaaa",
+      "departmentId": 111,
+      "reportingManagerName": "aaaa",
+      "statusNo": 111,
+      "statusRemarks": "aaaa"
+    },
+    "validationError": {
+      "PropertyName": "Add Field",
+      "ErrorMessage": "Add Message"
+    }
+  },
+  {
+    "description": "Blank emailId",
+    "save": {
+      "userName": "aaaa",
+      "userTypeNo": 111,
+      "userProfileId": "aaaa",
+      "emailId": "",
+      "contactNo": "aaaa",
+      "employeeId": "aaaa",
+      "designation": "aaaa",
+      "departmentId": 111,
+      "reportingManagerName": "aaaa",
+      "statusNo": 111,
+      "statusRemarks": "aaaa"
+    },
+    "validationError": {
+      "PropertyName": "Add Field",
+      "ErrorMessage": "Add Message"
+    }
+  },
+  {
+    "description": "Blank statusRemarks",
+    "save": {
+      "userName": "aaaa",
+      "userTypeNo": 111,
+      "userProfileId": "aaaa",
+      "emailId": "aaaa",
+      "contactNo": "aaaa",
+      "employeeId": "aaaa",
+      "designation": "aaaa",
+      "departmentId": 111,
+      "reportingManagerName": "aaaa",
+      "statusNo": 111,
+      "statusRemarks": ""
+    },
+    "validationError": {
+      "PropertyName": "Add Field",
+      "ErrorMessage": "Add Message"
+    }
+  }
+]

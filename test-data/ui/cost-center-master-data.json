@@ -1,0 +1,70 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "CCU1",
+    "name": "CC U1",
+    "businessUnitQuery": "ho",
+    "businessUnitName": "Cruce",
+    "parentQuery": "cc",
+    "parentCostCenterName": "Cost Center @2",
+    "description": "This is a description from data file",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "CCU2",
+        "name": "CC updated",
+        "businessUnitQuery": "fo",
+        "businessUnitName": "Mustang",
+        "parentQuery": "CC",
+        "parentCostCenterName": "Cost Center @1",
+        "updatedescription": "This is a description from data file 2",
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 2"
+    }
+  },
+  "save1": {
+    "code": "CC2",
+    "name": "CC O2",
+    "businessUnitQuery": "fo",
+    "businessUnitName": "Mustang",
+    "parentQuery": "cc",
+    "parentCostCenterName": "Cost Center @2",
+    "description": "This is a description from data file",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  },
+  "save2": {
+    "code": "CC92",
+    "name": "CC 92",
+    "businessUnitQuery": "fo",
+    "businessUnitName": "Mustang",
+    "parentQuery": "cc",
+    "parentCostCenterName": "Cost Center @2",
+    "description": "This is a description from data file",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  },
+  "delete": {
+    "code": "CC3",
+    "name": "CC O3",
+    "businessUnitQuery": "fo",
+    "businessUnitName": "Mustang",
+    "parentQuery": "cc",
+    "parentCostCenterName": "Cost Center @3",
+    "description": "This is a description from data file",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  },
+  "duplicate": {
+    "code": "CC4",
+    "name": "CC O4",
+    "businessUnitQuery": "fo",
+    "businessUnitName": "Mustang",
+    "parentQuery": "cc",
+    "parentCostCenterName": "Cost Center @1",
+    "description": "This is a description from data file",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  }
+}

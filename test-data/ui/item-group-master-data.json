@@ -1,0 +1,50 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "GA",
+    "name": "Item Group GA",
+    "categoryQuery": "Ca",
+    "categoryName": "Category @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "GZ",
+        "name": "IG updated GZ",
+        "categoryQuery": "ca",
+        "categoryName": "Category @2",
+        "status": "2",
+        "statusRemarks": "Status Remarks from data 2"
+    }
+  },
+  "save1": {
+    "code": "GB",
+    "name": "IG GB",
+    "categoryQuery": "ca",
+    "categoryName": "Category @9"
+  },
+  "save2": {
+    "code": "Gs",
+    "name": "CC Gs",
+    "categoryQuery": "ca",
+    "categoryName": "Category @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  },
+  "delete": {
+    "code": "GC",
+    "name": "CC GC",
+    "categoryQuery": "ca",
+    "categoryName": "Category @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  },
+  "duplicate": {
+    "code": "GD",
+    "name": "IG GD",
+    "categoryQuery": "ca",
+    "categoryName": "Category @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data"
+  }
+}

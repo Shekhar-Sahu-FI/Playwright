@@ -1,0 +1,76 @@
+{
+    "save": {
+        "code": "DP101",
+        "departmentName": "Department Save Unique",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
+    "save2": {
+        "code": "DP102",
+        "departmentName": "Department Save2 Unique",
+        "statusNo": 2,
+        "statusRemarks": "Department Remarks Unique"
+    },
+    "update": {
+        "save": {
+            "code": "DP103",
+            "departmentName": "Department Update Save Unique",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "update": {
+            "code": "DP103",
+            "departmentName": "Department Update Edited Unique",
+            "statusNo": 1,
+            "statusRemarks": "",
+            "departmentMasterBusinessUnitDetail": [ {"buId": 41},{"buId": 42}]
+        },
+        "searchQuery": {
+            "departmentName": "Department Update Save Unique"
+        }
+    },
+    "getById": {
+        "save": {
+            "code": "DP104",
+            "departmentName": "Department GetById Unique",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "departmentName": "Department GetById Unique"
+        }
+    },
+    "delete": {
+        "save": {
+            "code": "DP105",
+            "departmentName": "Department Delete Unique",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "departmentName": "Department Delete Unique"
+        }
+    },
+    "get": {
+        "save": {
+            "code": "DP106",
+            "departmentName": "Department Get Unique",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "getQuery": {
+            "departmentName": "Department Get Unique"
+        }
+    },
+    "search": {
+        "save": {
+            "code": "DP107",
+            "departmentName": "Department Search Unique",
+            "statusNo": 1,
+            "statusRemarks": ""
+        },
+        "searchQuery": {
+            "departmentName": "Department Search Unique"
+        }
+    }
+}

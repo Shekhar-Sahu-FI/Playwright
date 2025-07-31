@@ -1,0 +1,157 @@
+{
+    "unit": [
+        {
+            "code": "U1",
+            "name": "Unit 1",
+            "status": "1"
+        },
+        {
+            "code": "UT2",
+            "name": "Unit 2",
+            "status": "1"
+        }
+    ],
+    "make": [
+        {
+            "code": "make1",
+            "name": "Make 1",
+            "status": "1"
+        },
+        {
+            "code": "make 2",
+            "name": "Make 2",
+            "status": "1"
+        }
+    ],
+    "category": [
+        {
+            "code": "ZZ",
+            "name": "Electrical",
+            "status": "1",
+            "statusRemarks": ""
+        },
+        {
+            "code": "OP",
+            "name": "Opaque",
+            "status": "1",
+            "statusRemarks": ""
+        }
+    ],
+    "group": [
+        {
+            "code": "O8",
+            "name": "IG 08",
+            "query": "op",
+            "category": "Opaque",
+            "status": "2",
+            "statusRemarks": "Status Remarks from data"
+        },
+        {
+            "code": "O9",
+            "name": "IG 09",
+            "query": "zz",
+            "category": "Electrical",
+            "status": "2",
+            "statusRemarks": "Status Remarks from data"
+        }
+    ],
+    "department": [
+        {
+            "code": "DP@3",
+            "name": "Depaertment @3",
+            "businessUnit": [
+                "Nike"
+            ],
+            "status": "1"
+        },
+        {
+            "code": "DP@4",
+            "name": "Depaertment @4",
+            "businessUnit": [
+                "Nike"
+            ],
+            "status": "2",
+            "statusRemarks": "Status Remarks from data 1"
+        }
+    ],
+    "costCenter": [
+        {
+            "code": "CC2",
+            "name": "CC O2",
+            "businessUnitQuery": "ni",
+            "businessUnitName": "Nike",
+            "description": "This is a description from data file",
+            "status": "2",
+            "statusRemarks": "Status Remarks from data"
+        },
+        {
+            "code": "CC3",
+            "name": "CC O3",
+            "businessUnitQuery": "ni",
+            "businessUnitName": "Nike",
+            "description": "This is a description from data file",
+            "status": "2",
+            "statusRemarks": "Status Remarks from data"
+        }
+    ],
+    "user": [
+        {
+            "name": "Charles",
+            "userProfileId": "Chs987654",
+            "emailId": "char1234@gmail.com",
+            "userType": "3",
+            "contactNo": "321654212",
+            "designation": "Head Manager",
+            "status": "1"
+        },
+        {
+            "name": "Charlei",
+            "userProfileId": "HH001",
+            "emailId": "char@gmail.com",
+            "userType": "2",
+            "contactNo": "321654212",
+            "designation": "Head Manager",
+            "status": "1"
+        }
+    ],
+    "businessUnit": [
+        {
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "NK",
+            "name": "Nike",
+            "address1": "456 Updated Street",
+            "address2": "Mana Zonee",
+            "address3": "Block Q",
+            "country": "India",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Raipur",
+            "pin": "321654",
+            "status": "Active"
+        },
+        {
+            "gstIn": "27AABCU9603R1Z9",
+            "code": "ADD98",
+            "name": "Addias",
+            "address1": "456 Updated Street",
+            "address2": "Mana Zonee",
+            "address3": "Block Q",
+            "country": "India",
+            "stateQuery": "cg",
+            "stateName": "Chhattisgarh",
+            "cityName": "Raipur",
+            "pin": "321654",
+            "status": "Active"
+        }
+    ],
+    "warehouse": [
+        {
+            "code": "WH1",
+            "name": "Warehouse 011",
+            "businessUnit": [
+                "Nike"
+            ],
+            "status": "1"
+        }
+    ]
+}

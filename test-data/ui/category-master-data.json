@@ -1,0 +1,38 @@
+{
+  "update": {
+    "firstSave" : {
+    "code": "Ca",
+    "name": "Category 1",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+    },
+    "updateCase" : {
+        "code": "CT 02",
+        "name": "Category @@011",
+        "status": "1"
+    }
+  },
+  "save1": {
+    "code": "Cb",
+    "name": "Category QWE",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+  "save2": {
+    "code": "Cc",
+    "name": "Category @2"
+  },
+  "delete": {
+    "code": "Cd",
+    "name": "Categoty @3",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  },
+
+  "duplicate": {
+   "code": "Ce",
+    "name": "Category @9",
+    "status": "2",
+    "statusRemarks": "Status Remarks from data 1"
+  }
+}
