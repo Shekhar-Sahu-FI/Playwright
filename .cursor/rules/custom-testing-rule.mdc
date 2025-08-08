@@ -1,0 +1,30 @@
+---
+description: >
+  Rules for Cursor to enforce test structure for UI and API automation.
+globs:
+  - "**/*.spec.ts"           # Apply to all Playwright test files
+alwaysApply: false           # Only applies when explicitly invoked
+
+rules:
+
+  # ✅ Rule 1: API Tests Must Use Centralized Test Data
+  - pattern: "tests/api/**/*.spec.ts"
+    message: "API tests must load test data from testdata/ folder."
+    suggestion: |
+      import testData from "../../testdata/<your-file>.json";
+
+  # ✅ Rule 2: UI Tests Should Not Contain API Calls
+  - pattern: "tests/ui/**/*.spec.ts"
+    message: "UI tests should not make direct API calls. Use UI actions instead."
+
+  # ✅ Rule 3: Test Data Files Should Be JSON or YAML
+  - pattern: "testdata/*"
+    message: "Test data should be in JSON or YAML format for consistency."
+
+  # ✅ Rule 4: Enforce Naming Conventions
+  - pattern: "**/*.spec.ts"
+    message: "Test filenames must follow `<feature>.spec.ts` naming convention."
+
+  # ✅ Rule 5: Prevent Mixing UI and API in One Test File
+  - pattern: "tests/**/*.spec.ts"
+    message: "Do not mix API and UI tests in the same file."

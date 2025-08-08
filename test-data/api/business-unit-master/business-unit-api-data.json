@@ -72,6 +72,20 @@
             "statusRemarks": ""
         }
     },
+    "duplicateValidation": {
+        "code": "jojojoj",
+        "businessUnitName": "Jojo Jo jo",
+        "gstinNo": "784512369852147",
+        "address1": "Bhilai",
+        "address2": "CG",
+        "address3": "India",
+        "countryNo": 1,
+        "pincode": "321654",
+        "stateId": 9,
+        "cityName": "Bhilai",
+        "statusNo": 1,
+        "statusRemarks": ""
+    },
     "validationTestCases": [
         {
             "id": 1,
@@ -197,7 +211,7 @@
                 "ErrorMessage": "Duplicate Business Unit Name not allowed."
             }
         },
-         {
+        {
             "id": 6,
             "description": "❌ Business Unit Name exceeds 100 characters",
             "input": {

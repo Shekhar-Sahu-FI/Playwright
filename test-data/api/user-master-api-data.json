@@ -168,7 +168,7 @@
             ]
         },
         "getQuery": {
-            "userProfileId": "UP777"
+             "userProfileId": "UP777"
         }
     },
     "search": {

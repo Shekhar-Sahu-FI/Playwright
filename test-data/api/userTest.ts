@@ -273,7 +273,8 @@ export const exceedCharacterLength = [
     ],
   },
   {
-    description: "Max +1 Character for statusRemarks 300 + 1 character with status 1",
+    description:
+      "Max +1 Character for statusRemarks 300 + 1 character with status 1",
     save: {
       userName: "aaaa",
       userTypeNo: 2,
@@ -539,5 +540,79 @@ export const blankNonMandatoryField = [
       userMasterBusinessUnitDetail: [],
     },
     expected: true,
+  },
+];
+
+export const getAPIValidationMessage = [
+  {
+    description: "Empty Json",
+    save: {},
+    validationError: [
+      {
+        PropertyName: "",
+        ErrorMessage: "Provide at least one filter criteria.",
+      },
+    ],
+  },
+  {
+    description: "Single character in code.",
+    save: {
+      code: "a",
+    },
+    validationError: [
+      {
+        PropertyName: "Code",
+        ErrorMessage: "Provide at least 2 characters for code.",
+      },
+    ],
+  },
+  {
+    description: "Single Character in userName",
+    save: {
+      userName: "a",
+    },
+    validationError: [
+      {
+        PropertyName: "UserName",
+        ErrorMessage: "Provide at least 2 characters for user name.",
+      },
+    ],
+  },
+  {
+    description: "Empty userName",
+    save: {
+      userName: "",
+    },
+    validationError: [
+      {
+        PropertyName: "",
+        ErrorMessage: "Provide at least one filter criteria.",
+      },
+    ],
+  },
+  {
+    description: "Empty Code.",
+    save: {
+      code: "",
+    },
+    validationError: [
+      {
+        PropertyName: "",
+        ErrorMessage: "Provide at least one filter criteria.",
+      },
+    ],
+  },
+  {
+    description: "Empty Code and userName.",
+    save: {
+      userName: "",
+      code: "",
+    },
+    validationError: [
+      {
+        PropertyName: "",
+        ErrorMessage: "Provide at least one filter criteria.",
+      },
+    ],
   },
 ];

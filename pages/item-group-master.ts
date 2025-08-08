@@ -23,7 +23,7 @@ export class ItemGroupMaster {
     this.groupName = page.locator('[name="itemGroupName"]');
     this.category =  page.getByPlaceholder("Ex - Welding Consumables")
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
     this.codeError = page.getByText('Duplicate Code is not allowed');
     this.groupNameError = page.getByText('Duplicate Item Item Group Name is not allowed.');

@@ -20,7 +20,7 @@ export class CategoryMaster {
     this.code = page.locator('[name="code"]');
     this.categoryName = page.locator('[name="itemCategoryName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
     this.codeError = page.getByText('Duplicate Code is not allowed');
     this.categoryNameError = page.getByText('Duplicate Item Category Name is not allowed.');

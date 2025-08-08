@@ -1,0 +1,18 @@
+payLoadData {
+  code: 'GBI',
+  unitName: 'Save for Get',
+  statusNo: 1,
+  statusRemarks: ''
+}
+API Response {
+  title: 'ValidationException',
+  status: 400,
+  message: 'Validation failed: \r\n' +
+    ' -- Code: Duplicate code is not allowed. Severity: Error',
+  validationErrors: [
+    {
+      PropertyName: 'Code',
+      ErrorMessage: 'Duplicate code is not allowed.'
+    }
+  ]
+}

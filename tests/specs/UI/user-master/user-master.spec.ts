@@ -7,6 +7,7 @@ import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
 import { FormHelper } from "../../../../utils/form-helper";
 import { checkInputAttributes } from "../../../../utils/inputBox";
+import { deleteAll } from "../../../../utils/apiClients";
 
 let config: TestConfig;
 let loginPage: LoginPage;
@@ -187,6 +188,7 @@ test.describe("User Master Tests", () => {
       testData.update.firstSave.userProfileId
     );
   });
+ 
 
 });
 

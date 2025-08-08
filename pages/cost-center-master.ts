@@ -27,7 +27,7 @@ export class CostCenterMaster {
     this.parentCostCenter = page.getByPlaceholder('Select Parent Cost Center')
     this.statusNo = page.locator('select[name="statusNo"]');
     this.description = page.getByPlaceholder('Enter Description');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole("heading", { name: "Confirmation" });
     this.codeError = page.getByText("Duplicate code is not allowed.");
     this.costCenterNameError = page.getByText(

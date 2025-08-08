@@ -14,7 +14,7 @@ let unitMasterPage: UnitMaster;
 let formLayout: FormLayout;
 let formHelper : FormHelper;
 
-test.describe("Unit Master Tests @testUnitMaster", () => {
+test.describe("Unit Master UI Tests @testUnitMaster", () => {
   const testData = loadTestData("test-data/ui/unit-master-data.json");
 
   test.beforeEach(async ({ page }) => {

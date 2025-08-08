@@ -20,7 +20,7 @@ export class UnitMaster {
     this.code = page.locator('[name="code"]');
     this.unitName = page.locator('[name="unitName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
     this.codeError = page.getByText('Duplicate code is not allowed.');
     this.unitNameError = page.getByText('Duplicate Unit Name is not allowed.');

@@ -14,7 +14,7 @@ let categoryMasterPage: CategoryMaster;
 let formLayout: FormLayout;
 let formHelper : FormHelper;
 
-test.describe("Category Master Tests", () => {
+test.describe("Category Master UI Tests", () => {
   const testData = loadTestData("test-data/ui/category-master-data.json");
 
   test.beforeEach(async ({ page }) => {

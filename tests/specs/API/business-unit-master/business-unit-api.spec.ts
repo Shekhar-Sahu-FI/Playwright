@@ -5,13 +5,31 @@ import {
   getAll,
   getByIdWithGetAll,
   deleteSavedData,
+  checkValidation,
+  save,
 } from "../../../../utils/apiClients";
+
 import { loadTestData } from "../../../../utils/data-provider";
+import { exceedCharacterLength, blankMandatoryField, blankNonMandatoryField, saveWithInMaxLength } from "../../../../test-data/api/business-unit-master/business-unit";
 
 const baseURL = "/Admin/BusinessUnitMaster";
 
 test.describe("Business Unit Master API Testing", () => {
-  const testData = loadTestData("test-data/api/business-unit-api-data.json");
+  const testData = loadTestData("test-data/api/business-unit-master/business-unit-api-data.json");
+
+
+  //Validation for the more than max length
+    checkValidation(exceedCharacterLength, baseURL, "Save");
+  
+    //Validation for the blank non mandatory Field
+    checkValidation(blankMandatoryField, baseURL,"Save");
+  
+  
+    // save for non Mandatory empty field
+    save(blankNonMandatoryField, baseURL);
+  
+    //save with in Max length
+    save(saveWithInMaxLength, baseURL);
 
   test("🟢 Create Business Unit 1 @saveBusiness UnitAPI", async () => {
     const response = await saveMaster(`${baseURL}/Save`, testData.save, true);
@@ -19,8 +37,12 @@ test.describe("Business Unit Master API Testing", () => {
 
     const body = await response.json();
     expect(body, "Save response should be truthy").toBeTruthy();
+  });
 
-    await deleteSavedData(testData.save, baseURL);
+  test("🔎 Get Business Unit By ID and Validate @getById", async () => {
+    await getByIdWithGetAll(baseURL, testData.getById, validateResponse);
+
+    await deleteSavedData(testData.getById, baseURL);
   });
 
   test("🟢 Create Business Unit 2 @saveBusiness UnitAPI", async () => {
@@ -37,19 +59,11 @@ test.describe("Business Unit Master API Testing", () => {
 
     const body = await response.json();
     expect(body, "Save response should be truthy").toBeTruthy();
-
-    await deleteSavedData(testData.save2, baseURL);
-  });
-
-  test("🔎 Get Business Unit By ID and Validate @getById", async () => {
-    await getByIdWithGetAll(baseURL, testData.getById, validateResponse);
-
-    await deleteSavedData(testData.getById, baseURL);
   });
 
   test("🚫 Duplicate Business Unit Validation @duplicateCheckBusiness Unit", async () => {
     const expectedErrors = {
-      BuName: "Duplicate Business Unit Name is not allowed.",
+      BusinessUnitName: "Duplicate Business Unit Name is not allowed.",
       Code: "Duplicate Code is not allowed.",
     };
     await duplicateCheck(baseURL, expectedErrors, testData.duplicateValidation);
@@ -81,8 +95,6 @@ test.describe("Business Unit Master API Testing", () => {
 
     const body = await updateRes.json();
     expect(body, "Response Body should be true").toBeTruthy();
-
-    await deleteSavedData(updateData, baseURL);
   });
 
   test("🗑️ Delete Business Unit @deleteBusiness Unit", async () => {
@@ -95,31 +107,7 @@ test.describe("Business Unit Master API Testing", () => {
     await deleteSavedData(testData.delete.save, baseURL);
   });
 
-    for (const testCase of testData.validationTestCases) {
-      test(`Validation: ${testCase.description}`, async () => {
-        if (testCase.precondition) {
-          await saveMaster(`${baseURL}/Save`, testCase.precondition, true);
-        }
 
-        const response = await saveMaster(
-          `${baseURL}/Save`,
-          testCase.input,
-          true
-        );
-        const body = await response.json();
-
-        const match = body.validationErrors.find(
-          (e) =>
-            e.PropertyName === testCase.expectedError.PropertyName &&
-            e.ErrorMessage === testCase.expectedError.ErrorMessage
-        );
-
-        expect(
-          match,
-          `Expected error not found: ${testCase.expectedError.PropertyName}`
-        ).toBeTruthy();
-      });
-    }
 });
 
 function validateResponse(formData: any, apiResponse: any) {
@@ -138,4 +126,3 @@ function validateResponse(formData: any, apiResponse: any) {
   expect(apiResponse.status?.statusNo == formData.statusNo).toBeTruthy();
   expect(apiResponse.statusRemarks == formData.statusRemarks).toBeTruthy();
 }
-

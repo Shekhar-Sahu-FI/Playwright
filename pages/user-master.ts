@@ -36,7 +36,7 @@ export class UserMaster {
     this.reportingManagerName = page.locator('[name="reportingManagerName"]');
     this.employeeId = page.locator('[name="employeeId"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.userProfileIdError = page.getByText('Duplicate User Profile Id is not allowed.');
     this.emailIdError = page.getByText('Duplicate Email Id is not allowed.');
     this.employeeIdError = page.getByText('Duplicate Employee Id is not allowed.');

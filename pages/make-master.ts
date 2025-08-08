@@ -19,7 +19,7 @@ export class MakeMaster {
     this.code = page.locator('[name="code"]');
     this.makeName = page.locator('[name="makeName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.codeError = page.getByText("Duplicate code is not allowed.");
     this.makeNameError = page.getByText("Duplicate Make Name is not allowed.");
   }

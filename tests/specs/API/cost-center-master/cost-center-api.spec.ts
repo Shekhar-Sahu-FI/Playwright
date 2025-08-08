@@ -69,13 +69,13 @@ test.describe("CostCenter Master API Testing", () => {
     await deleteSavedData(saveData, baseURL);
   });
 
-  //    test("🚫 Duplicate CostCenter Validation @duplicateCheckCostCenter", async () => {
-  //      const expectedErrors = {
-  //        CostCenterName: "Duplicate CostCenter Name is not allowed.",
-  //        Code: "Duplicate Code is not allowed.",
-  //      };
-  //      await duplicateCheck(baseURL, expectedErrors, testData.duplicateValidation);
-  //    });
+     test("🚫 Duplicate CostCenter Validation @duplicateCheckCostCenter", async () => {
+       const expectedErrors = {
+         CostCenterName: "Duplicate CostCenter Name is not allowed.",
+         Code: "Duplicate Code is not allowed.",
+       };
+       await duplicateCheck(baseURL, expectedErrors, testData.duplicateValidation);
+     });
 
   test("✏️ Update CostCenter @updateCostCenter", async () => {
     const buList = await getAll(`${buURL}/GetAll`);
@@ -132,31 +132,6 @@ test.describe("CostCenter Master API Testing", () => {
     await deleteSavedData(saveData, baseURL);
   });
 
-  //   for (const testCase of testData.validationTestCases) {
-  //     test(`Validation: ${testCase.description}`, async () => {
-  //       if (testCase.precondition) {
-  //         await saveMaster(`${baseURL}/Save`, testCase.precondition, true);
-  //       }
-
-  //       const response = await saveMaster(
-  //         `${baseURL}/Save`,
-  //         testCase.input,
-  //         true
-  //       );
-  //       const body = await response.json();
-
-  //       const match = body.validationErrors.find(
-  //         (e) =>
-  //           e.PropertyName === testCase.expectedError.PropertyName &&
-  //           e.ErrorMessage === testCase.expectedError.ErrorMessage
-  //       );
-
-  //       expect(
-  //         match,
-  //         `Expected error not found: ${testCase.expectedError.PropertyName}`
-  //       ).toBeTruthy();
-  //     });
-  //   }
 });
 
 const validateGetRes = (formData, getRes) => {
