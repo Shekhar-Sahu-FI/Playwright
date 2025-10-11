@@ -1,15 +1,15 @@
 {
   "update": {
-    "firstSave" : {
-    "code": "New",
-    "name": "Newton",
-    "status": "2",
-    "statusRemarks": "Status Remarks from data 1"
+    "firstSave": {
+      "code": "New",
+      "name": "Newton",
+      "status": "2",
+      "statusRemarks": "Status Remarks from data 1"
     },
-    "updateCase" : {
-        "code": "NewUP",
-        "name": "Newton @@011",
-        "status": "1"
+    "updateCase": {
+      "code": "NewUP",
+      "name": "Newton @@011",
+      "status": "1"
     }
   },
   "save1": {
@@ -28,13 +28,10 @@
     "status": "2",
     "statusRemarks": "Status Remarks from data 1"
   },
-
   "duplicate": {
-   "code": "Unit@9",
+    "code": "Unit@9",
     "name": "Unit @9",
     "status": "2",
     "statusRemarks": "Status Remarks from data 1"
   }
-
-
 }

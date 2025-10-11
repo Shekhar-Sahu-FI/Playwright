@@ -11,7 +11,7 @@ export async function checkInputAttributes(page: Page, spec: {
   value?: string;
   autocomplete?: string;
 }) {
- console.log("specs", spec)
+ 
   const input = page.locator(`[name="${spec.name}"]`);
 
   if (spec.type !== undefined) {

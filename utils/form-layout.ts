@@ -4,6 +4,7 @@ export class FormLayout {
   private readonly page: Page;
   private readonly addBtn: Locator;
   private readonly saveBtn: Locator;
+  private readonly updateBtn: Locator;
   private readonly deleteBtn: Locator;
   private readonly saveOptionBtn: Locator;
   private readonly cancelBtn: Locator;
@@ -16,9 +17,11 @@ export class FormLayout {
     this.page = page;
 
     this.saveBtn = page.getByRole("button", { name: "Save Changes" });
+    // this.updateBtn = page.locator('[aria-label="Save"]');
+    this.updateBtn = page.getByRole('button', { name: 'Save' });
     this.addBtn = page.locator('[title="New item (ctrl + n)"]');
-    this.deleteBtn = page.locator("#DeleteBtn");
-    this.saveOptionBtn = page.locator("#SaveOptionBtn");
+    this.deleteBtn = page.locator("button", { hasText: "Delete" });
+    this.saveOptionBtn = page.locator('[aria-label="More options"]');
     this.cancelBtn = page.getByRole('button', { name: 'Cancel' });
     this.yesBtn = page.locator("button", { hasText: "Yes" });
     this.noBtn = page.locator("button", { hasText: "No" });
@@ -31,6 +34,10 @@ export class FormLayout {
   }
   async clickSave() {
     await this.saveBtn.click();
+  }
+
+  async clickUpdate() {
+    await this.updateBtn.click();
   }
 
   async clickSaveOption() {
@@ -52,8 +59,14 @@ export class FormLayout {
     await this.noBtn.click();
   }
 
-  async saveData(mode : string) {
-    await this.clickSave();
+  async saveData(mode: string) {
+    if (mode == "save") {
+      await this.clickSave();
+    }
+    else if (mode == "update") {
+      await this.clickUpdate();
+      console.log("Update Clicked")
+    }
     try {
       if (await this.confirmation.isVisible()) {
         await this.clickYes();
@@ -66,7 +79,7 @@ export class FormLayout {
     }
   }
 
-  async clickSaveAndYes(){
+  async clickSaveAndYes() {
     await this.clickSave();
     try {
       if (await this.confirmation.isVisible()) {
@@ -83,7 +96,7 @@ export class FormLayout {
     try {
       if (await this.confirmation.isVisible()) {
         await this.clickYes();
-      //  this.page.waitForSelector()
+        //  this.page.waitForSelector()
         await this.cancelBtn.click();
       }
     } catch (err) {
@@ -92,5 +105,5 @@ export class FormLayout {
   }
 
 
-  
+
 }

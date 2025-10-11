@@ -43,7 +43,7 @@ test.describe("Item group Master Tests", () => {
   });
 
   test("New Item group creation 1 @saveGroupNew1", async ({ page }) => {
-     await formHelper.saveAndVerify(testData.save1)
+    await formHelper.saveAndVerify(testData.save1)
   });
 
   test("New Item group creation 2 @saveGroupNew2", async ({ page }) => {
@@ -52,11 +52,11 @@ test.describe("Item group Master Tests", () => {
 
   test("Check Validation Error @validationGrpError", async ({ page }) => {
     await formHelper.checkValidationError([
-      "Enter Item Group Code","Enter Item Group Name","Enter Status Remark","Enter Item Category Name","Enter Item Category Code"])
+      "Enter Item Group Code", "Enter Item Group Name", "Enter Status Remark", "Enter Item Category Name", "Enter Item Category Code"])
   })
 
   test("Delete Saved Data @deleteData", async ({ page }) => {
-         await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
 
   });
 
@@ -72,7 +72,7 @@ test.describe("Item group Master Tests", () => {
   });
 
   test("Update Saved Data @updategroupData", async ({ page }) => {
-        formHelper.updateData(testData.update, testData.firstSave.code)
+    formHelper.updateData(testData.update, testData.firstSave.code)
   });
 });
 

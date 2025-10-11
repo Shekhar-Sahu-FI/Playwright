@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout'; 
+import { FormLayout } from '../utils/form-layout';
 
 export class ItemGroupMaster {
   private readonly page: Page;
@@ -17,11 +17,11 @@ export class ItemGroupMaster {
 
   constructor(page: Page) {
     this.page = page;
-    this.formLayout = new FormLayout(page); 
+    this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="itemGroupCode"]');
     this.groupName = page.locator('[name="itemGroupName"]');
-    this.category =  page.getByPlaceholder("Ex - Welding Consumables")
+    this.category = page.getByPlaceholder("Ex - Welding Consumables")
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
@@ -30,7 +30,7 @@ export class ItemGroupMaster {
   }
 
   async isItemGroupMasterPage() {
-    await this.page.getByText('unit-master').isVisible();
+    await this.page.getByText('item-group-master').isVisible();
   }
 
   async fillCode(code: string) {
@@ -50,58 +50,58 @@ export class ItemGroupMaster {
   }
 
   async fillCategory(query: string, category: string) {
-  await this.category.fill(query);
-  await this.selectSuggestion(category); 
- 
-}
-async selectSuggestion(name:string){
-  const suggestion = this.page.locator(`td:has-text("${name}")`);
-  await expect(suggestion).toBeVisible({ timeout: 6000 });
+    await this.category.fill(query);
+    await this.selectSuggestion(category);
 
-  for (let i = 0; i < 3; i++) {
-    try {
-      await suggestion.click();
-      break;
-    } catch (err) {
-      if (i === 2) throw err; 
-      await this.page.waitForTimeout(500); 
+  }
+  async selectSuggestion(name: string) {
+    const suggestion = this.page.locator(`td:has-text("${name}")`);
+    await expect(suggestion).toBeVisible({ timeout: 6000 });
+
+    for (let i = 0; i < 3; i++) {
+      try {
+        await suggestion.click();
+        break;
+      } catch (err) {
+        if (i === 2) throw err;
+        await this.page.waitForTimeout(500);
+      }
     }
   }
-}
 
-  async fillItemGroupMasterForm(data:any) {
+  async fillItemGroupMasterForm(data: any) {
     await this.fillCode(data.code);
     await this.fillGroupName(data.name);
     await this.selectStatusNo(data.status);
     await this.fillCategory(data.query, data.category);
-    if(data.statusRemarks){
+    if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
     await this.formLayout.saveData("save");
   }
 
-   async getErrorStates() {
+  async getErrorStates() {
     return {
-        codeErrorVisible: await this.codeError.isVisible(),
-        nameErrorVisible: await this.groupNameError.isVisible(),
+      codeErrorVisible: await this.codeError.isVisible(),
+      nameErrorVisible: await this.groupNameError.isVisible(),
     };
-    }
+  }
 
   getRowByCode(code: string) {
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`)
     });
-  }  
+  }
 
-  async  verifyFormData( data: any) {
+  async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
     await expect(this.groupName).toHaveValue(data.name);
-    if(data.status){
+    if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
   }
-  
+
 }

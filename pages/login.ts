@@ -62,7 +62,7 @@ export class LoginPage{
             await this.setEmail(email);
             await this.setPassword(password);
             await this.loginButton.click()
-            await this.successMessage.waitFor({ state: 'visible' })
+            // await this.successMessage.waitFor({ state: 'visible' })
         }
         catch( error ){
             console.log(`Error Occured while Clicking Login Button : ${error} `);

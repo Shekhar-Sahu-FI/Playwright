@@ -19,7 +19,7 @@ export class MakeMaster {
     this.code = page.locator('[name="code"]');
     this.makeName = page.locator('[name="makeName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemarks"]');
+    this.statusRemarks = page.locator('[name="statusRemark"]');
     this.codeError = page.getByText("Duplicate code is not allowed.");
     this.makeNameError = page.getByText("Duplicate Make Name is not allowed.");
   }
@@ -44,11 +44,11 @@ export class MakeMaster {
     await this.statusRemarks.fill(statusRemarks);
   }
 
-  async fillMakeMasterForm(data:any){
+  async fillMakeMasterForm(data: any) {
     await this.fillCode(data.code);
     await this.fillMakeName(data.name);
     await this.selectStatusNo(data.status);
-     if(data.statusRemarks){
+    if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
     await this.formLayout.saveData("save");
@@ -70,10 +70,10 @@ export class MakeMaster {
   async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
     await expect(this.makeName).toHaveValue(data.name);
-    if(data.status){
+    if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
   }

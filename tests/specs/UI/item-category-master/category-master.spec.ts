@@ -12,9 +12,9 @@ let loginPage: LoginPage;
 let homePage: HomePage;
 let categoryMasterPage: CategoryMaster;
 let formLayout: FormLayout;
-let formHelper : FormHelper;
+let formHelper: FormHelper;
 
-test.describe("Category Master UI Tests", () => {
+test.describe("Category Master Full UI Tests", () => {
   const testData = loadTestData("test-data/ui/category-master-data.json");
 
   test.beforeEach(async ({ page }) => {
@@ -29,17 +29,22 @@ test.describe("Category Master UI Tests", () => {
     homePage = new HomePage(page);
     await homePage.isHomePage();
 
-    await homePage.geToMaster('master', "Material Information","Item Category Master");
+    // await homePage.geToMaster('master', "Material Information", "Item Category Master");
+
+    await page.locator('[name="hamburger"]').click()
+    await page.locator('div').filter({ hasText: /^Master$/ }).click();
+    await page.locator('li:nth-child(1) > .relative > .flex.flex-row').hover();
+    await page.getByRole('link', { name: 'Item Category Master' }).click();
 
     categoryMasterPage = new CategoryMaster(page);
     await categoryMasterPage.isCategoryMasterPage();
     await expect(page).toHaveURL(/.*category-master/);
 
-     formHelper = new FormHelper(page,formLayout,SaveData,categoryMasterPage );
+    formHelper = new FormHelper(page, formLayout, SaveData, categoryMasterPage);
   });
 
   test("New category creation 1 @saveCategotyNew1", async ({ page }) => {
-     await formHelper.saveAndVerify(testData.save1)
+    await formHelper.saveAndVerify(testData.save1)
   });
 
   test("New category creation 2 @saveNew2", async ({ page }) => {
@@ -48,12 +53,12 @@ test.describe("Category Master UI Tests", () => {
 
   test("Check Validation Error @validationError", async ({ page }) => {
     await formHelper.checkValidationError(
-    [ "Enter Code","Enter Item Category Name","Enter Status Remarks"]
+      ["Enter Code", "Enter Item Category Name", "Enter Status Remarks"]
     )
   });
 
   test("Delete Category Saved Data @deleteData", async ({ page }) => {
-   await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
 
   });
 
@@ -67,12 +72,12 @@ test.describe("Category Master UI Tests", () => {
   });
 
   test("Update Saved Data @updateCategoryData", async ({ page }) => {
-       await formHelper.updateData(testData.update, testData.update.firstSave.name)
+    await formHelper.updateData(testData.update, testData.update.firstSave.name)
   });
 });
 
-const SaveData = async (page: Page, data: any,  mode: "save" | "update" | "" = "") => {
-  
+const SaveData = async (page: Page, data: any, mode: "save" | "update" | "" = "") => {
+
   await test.step("Fill the form", async () => {
     await categoryMasterPage.fillCode(data.code);
     await categoryMasterPage.fillCategoryName(data.name);
@@ -84,12 +89,12 @@ const SaveData = async (page: Page, data: any,  mode: "save" | "update" | "" = "
     }
   });
 
- if(mode){
-  await test.step("Save and verify", async () => {
-    await formLayout.saveData(mode);
+  if (mode) {
+    await test.step("Save and verify", async () => {
+      await formLayout.saveData(mode);
       await expect(page).toHaveURL(/.*category-master/);
       const row = categoryMasterPage.getRowByCode(data.name);
       await expect(row).toHaveCount(1);
-  });
-}
+    });
+  }
 };

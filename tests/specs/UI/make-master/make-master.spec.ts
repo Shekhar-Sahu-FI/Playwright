@@ -73,25 +73,6 @@ test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
     );
   });
 
-  // test.only("testing Row Index", async ({ page }) => {
-  //   const row = page.locator('[id="TestingIfForTableRow1"]');
-  //   await page.waitForTimeout(3000);
-  //   const count = await row.count();
-  //   console.log(count);
-
-  //   const count5 = await row.count();
-  //   console.log(count5);
-  //   for (let i = 0; i < count5; i++) {
-  //     const nameCell = await row.nth(i).locator("td").nth(1).textContent();
-  //     const codeCell = await row.nth(i).locator("td").nth(2).textContent();
-  //     const text = await row.nth(i).innerText();
-  //     console.log("name", nameCell);
-  //     console.log("code" , codeCell);
-  //   }
-    
-  //   await row.nth(0).locator("td").nth(0).click()
-  //     await page.waitForTimeout(5000);
-  // });
 });
 
 const SaveData = async (

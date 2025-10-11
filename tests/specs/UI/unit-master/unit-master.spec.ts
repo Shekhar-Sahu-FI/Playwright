@@ -12,9 +12,9 @@ let loginPage: LoginPage;
 let homePage: HomePage;
 let unitMasterPage: UnitMaster;
 let formLayout: FormLayout;
-let formHelper : FormHelper;
+let formHelper: FormHelper;
 
-test.describe("Unit Master UI Tests @testUnitMaster", () => {
+test.describe("Unit Master Full UI Tests @testUnitMaster", () => {
   const testData = loadTestData("test-data/ui/unit-master-data.json");
 
   test.beforeEach(async ({ page }) => {
@@ -25,16 +25,16 @@ test.describe("Unit Master UI Tests @testUnitMaster", () => {
     await loginPage.login(config.email, config.password);
 
     formLayout = new FormLayout(page);
-    
+
     homePage = new HomePage(page);
     await homePage.isHomePage();
     await homePage.masterSearch("MMUM");
-    
+
     unitMasterPage = new UnitMaster(page);
     await unitMasterPage.isUnitMasterPage();
     await expect(page).toHaveURL(/.*unit-master/);
 
-    formHelper = new FormHelper(page,formLayout,SaveData,unitMasterPage );
+    formHelper = new FormHelper(page, formLayout, SaveData, unitMasterPage);
   });
 
   test("New Unit creation 1 @saveUnitNew1", async ({ page }) => {
@@ -46,19 +46,20 @@ test.describe("Unit Master UI Tests @testUnitMaster", () => {
   });
 
   test("Check Validation Error @validationUnitError", async ({ page }) => {
-     await formHelper.checkValidationError(
-        ["Enter Code.","Enter Unit Name.","Enter Status Remarks."]
+    await formHelper.checkValidationError(
+      ["Enter Code.", "Enter Unit Name.", "Enter Status Remarks."]
     );
   });
 
   test("Delete Saved Data @deleteUnitData", async ({ page }) => {
-     await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
   });
 
   test("Duplicate Data Validation @duplicateUnit", async ({ page }) => {
     await formHelper.duplicateDataValidation(testData.duplicate);
-   
+
     const { codeErrorVisible, nameErrorVisible } = await unitMasterPage.getErrorStates();
+    console.log(codeErrorVisible, nameErrorVisible, "<=====");
     expect(codeErrorVisible).toBeTruthy();
     expect(nameErrorVisible).toBeTruthy();
   });
@@ -80,12 +81,12 @@ const SaveData = async (page: Page, data: any, mode: "save" | "update" | "" = ""
     }
   });
 
-  if(mode){
-  await test.step("Save and verify", async () => {
-    await formLayout.saveData(mode);
+  if (mode) {
+    await test.step("Save and verify", async () => {
+      await formLayout.saveData(mode);
       await expect(page).toHaveURL(/.*unit-master/);
       const row = unitMasterPage.getRowByCode(data.code);
       await expect(row).toHaveCount(1);
-  });
-}
+    });
+  }
 };

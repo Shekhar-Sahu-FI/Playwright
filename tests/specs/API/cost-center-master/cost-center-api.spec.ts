@@ -142,7 +142,7 @@ const validateGetRes = (formData, getRes) => {
 };
 
 const validateSearchRes = (formData, searchRes) => {
-  console.log(formData, searchRes);
+ 
   expect(searchRes.code == formData.code).toBeTruthy();
   expect(searchRes.costCenterName == formData.costCenterName).toBeTruthy();
   expect(searchRes.statusNo == formData.statusNo).toBeTruthy();
