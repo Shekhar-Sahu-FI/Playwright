@@ -6,7 +6,7 @@ import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { TreeCheckboxTester } from "../../../../utils/tree-component";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
@@ -14,7 +14,7 @@ let homePage: HomePage;
 let departmentMasterPage: DepartmentMaster;
 let formLayout: FormLayout;
 let treeCheckboxTester: TreeCheckboxTester;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Department Master Tests", () => {
   const testData = loadTestData("test-data/ui/department-master-data.json");
@@ -36,30 +36,30 @@ test.describe("Department Master Tests", () => {
     departmentMasterPage = new DepartmentMaster(page);
     await departmentMasterPage.isDepartmentMasterPage();
     await expect(page).toHaveURL(/.*department-master/);
-    formHelper = new FormHelper(page, formLayout, SaveData, departmentMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, departmentMasterPage);
   });
 
   test("save 1 New Department creation @saveNewDepartment", async ({
     page,
   }) => {
-    await formHelper.saveAndVerify(testData.save1)
+    await formOperation.saveAndVerify(testData.save1)
   });
 
   test("Save 2 Department creation @saveNewDepartment2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2)
+    await formOperation.saveAndVerify(testData.save2)
   });
 
   test("Check Validation Error @departmentValidationError", async ({
     page,
   }) => {
-     await formHelper.checkValidationError(
-    ["Enter Code", "Enter Department Name","Enter Status Remarks", "Select at least one Business Unit."])
+    await formOperation.checkValidationError(
+      ["Enter Code", "Enter Department Name", "Enter Status Remarks", "Select at least one Business Unit."])
   });
 
   test("Delete Saved Data @departmentDeleteData", async ({ page }) => {
-        await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code)
 
-   
+
   });
 
   // test('Test Tree Component @treeComponent', async({page})=>{
@@ -78,16 +78,16 @@ test.describe("Department Master Tests", () => {
   test("Duplicate Data Validation @departmentDuplicateValidation", async ({
     page,
   }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } =
-    await departmentMasterPage.getErrorStates();
+      await departmentMasterPage.getErrorStates();
     expect(codeErrorVisible).toBeTruthy();
     expect(nameErrorVisible).toBeTruthy();
   });
 
   test("Update Saved Data @departmentUpdateData", async ({ page }) => {
-    formHelper.updateData(testData.update, testData.firstSave.code)
+    formOperation.updateData(testData.update, testData.firstSave.code)
   });
 });
 

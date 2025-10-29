@@ -64,7 +64,8 @@ export class UnitMaster {
   }
 
   getRowByCode(code: string) {
-    console.log(code, 'code');
+    const dropdown = this.page.locator('select');
+    dropdown.selectOption('100');
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`),
     });

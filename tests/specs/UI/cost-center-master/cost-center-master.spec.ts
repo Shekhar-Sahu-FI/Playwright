@@ -5,14 +5,14 @@ import { CostCenterMaster } from '../../../../pages/cost-center-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
-import { FormHelper } from '../../../../utils/form-helper';
+import { FormOperation } from '../../../../utils/form-operation';
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let costCenterMasterPage: CostCenterMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe('Cost Center Master Tests', () => {
   const testData = loadTestData('test-data/ui/cost-center-master-data.json');
@@ -33,23 +33,23 @@ test.describe('Cost Center Master Tests', () => {
     costCenterMasterPage = new CostCenterMaster(page);
     await costCenterMasterPage.isCostCenterMasterPage();
     await expect(page).toHaveURL(/.*cost-center-master/);
-    formHelper = new FormHelper(page, formLayout, SaveData, costCenterMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, costCenterMasterPage);
   });
 
   test('Create new cost center @saveCCNew21', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1);
+    await formOperation.saveAndVerify(testData.save1);
   });
 
   test('Create new cost center @saveCCNew2', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2);
+    await formOperation.saveAndVerify(testData.save2);
   });
 
   test('Delete cost center data @deleteCCData', async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code);
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code);
   });
 
   test('Form validation errors @CCValidationError', async ({ page }) => {
-    await formHelper.checkValidationError([
+    await formOperation.checkValidationError([
       'Enter Code',
       'Enter Cost Center Name',
       'Enter Business Unit Name',
@@ -58,14 +58,14 @@ test.describe('Cost Center Master Tests', () => {
   });
 
   test('Duplicate cost center validation @CCDuplicateValidation', async ({ page }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
     const { codeErrorVisible, nameErrorVisible } = await costCenterMasterPage.getErrorStates();
     expect(codeErrorVisible).toBeTruthy();
     expect(nameErrorVisible).toBeTruthy();
   });
 
   test('Update existing cost center @updateCC', async ({ page }) => {
-    await formHelper.updateData(testData.update, testData.update.firstSave.name);
+    await formOperation.updateData(testData.update, testData.update.firstSave.name);
   });
 
 });

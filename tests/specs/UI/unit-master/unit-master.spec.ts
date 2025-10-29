@@ -5,14 +5,14 @@ import { UnitMaster } from "../../../../pages/unit-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let unitMasterPage: UnitMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Unit Master Full UI Tests @testUnitMaster", () => {
   const testData = loadTestData("test-data/ui/unit-master-data.json");
@@ -34,29 +34,33 @@ test.describe("Unit Master Full UI Tests @testUnitMaster", () => {
     await unitMasterPage.isUnitMasterPage();
     await expect(page).toHaveURL(/.*unit-master/);
 
-    formHelper = new FormHelper(page, formLayout, SaveData, unitMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, unitMasterPage);
   });
 
   test("New Unit creation 1 @saveUnitNew1", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1)
+    await formOperation.saveAndVerify(testData.save1)
   });
 
   test("New Unit creation 2 @saveNew2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2);
+    await formOperation.saveAndVerify(testData.save2);
+  });
+
+  test("New Unit creation Test 3", async ({ page }) => {
+    await formOperation.saveAndVerify(testData.test);
   });
 
   test("Check Validation Error @validationUnitError", async ({ page }) => {
-    await formHelper.checkValidationError(
+    await formOperation.checkValidationError(
       ["Enter Code.", "Enter Unit Name.", "Enter Status Remarks."]
     );
   });
 
   test("Delete Saved Data @deleteUnitData", async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code)
   });
 
   test("Duplicate Data Validation @duplicateUnit", async ({ page }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } = await unitMasterPage.getErrorStates();
     console.log(codeErrorVisible, nameErrorVisible, "<=====");
@@ -65,7 +69,7 @@ test.describe("Unit Master Full UI Tests @testUnitMaster", () => {
   });
 
   test("Update Saved Data @updateUnitData", async ({ page }) => {
-    await formHelper.updateData(testData.update, testData.update.firstSave.code)
+    await formOperation.updateData(testData.update, testData.update.firstSave.code)
   });
 });
 

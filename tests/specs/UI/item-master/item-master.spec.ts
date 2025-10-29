@@ -5,14 +5,14 @@ import { ItemMaster } from "../../../../pages/item-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let itemMasterPage: ItemMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Item Master Tests", () => {
     const testData = loadTestData("test-data/ui/item-master-data.json");
@@ -33,46 +33,46 @@ test.describe("Item Master Tests", () => {
         itemMasterPage = new ItemMaster(page);
         await expect(page).toHaveURL(/.*item-master/);
 
-        formHelper = new FormHelper(page, formLayout, SaveData, itemMasterPage);
+        formOperation = new FormOperation(page, formLayout, SaveData, itemMasterPage);
     });
 
     test("New Item creation 1 @saveNewItem", async ({ page }) => {
-        await formHelper.saveAndVerify(testData.save)
+        await formOperation.saveAndVerify(testData.save)
     });
 
     test("Item with mandatory only", async ({ page }) => {
-        await formHelper.saveAndVerify(testData.saveWithMandatoryData)
+        await formOperation.saveAndVerify(testData.saveWithMandatoryData)
     });
 
     test("Item with maximum Characters", async ({ page }) => {
-        await formHelper.saveAndVerify(testData.saveWithMaxChar)
+        await formOperation.saveAndVerify(testData.saveWithMaxChar)
     });
 
     test("Item with other than mandatory", async ({ page }) => {
-        await formHelper.saveAndVerify(testData.saveWithMandatoryData)
+        await formOperation.saveAndVerify(testData.saveWithMandatoryData)
     });
 
     test("Mandatory Validation For Subgroup", async ({ page }) => {
-        await formHelper.checkValidationError([
+        await formOperation.checkValidationError([
             "Enter Subgroup Code", "Enter Subgroup Code", "Select Item Group", "Select a Unit", "Enter Lead Time", "Enter Status Remarks"
         ])
     });
 
     test("Item Save And Update", async ({ page }) => {
-        await formHelper.updateData(testData.saveAndUpdate, testData.saveAndUpdate.firstSave.itemName)
+        await formOperation.updateData(testData.saveAndUpdate, testData.saveAndUpdate.firstSave.itemName)
     });
 
     test("Delete Saved Item In Item Master", async ({ page }) => {
-        await formHelper.deleteAndVerify(testData.saveAndDelete, testData.saveAndDelete.itemName)
+        await formOperation.deleteAndVerify(testData.saveAndDelete, testData.saveAndDelete.itemName)
     });
 
     // test("Check Item Subgroup Field Parameters", async ({ page }) => {
-    //     await formHelper.openNewForm();
+    //     await formOperation.openNewForm();
     //     await itemMasterPage.checkFieldParameter();
     // });
 
     test("Duplicate Item  Validation", async ({ page }) => {
-        await formHelper.duplicateDataValidation(testData.duplicateError);
+        await formOperation.duplicateDataValidation(testData.duplicateError);
 
         const { codeErrorVisible, itemCodeErrorVisible, itemNameErrorVisible } = await itemMasterPage.getErrorStates();
         console.log(codeErrorVisible, itemCodeErrorVisible, itemNameErrorVisible)

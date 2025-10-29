@@ -62,6 +62,8 @@ export class MakeMaster {
   }
 
   getRowByCode(code: string) {
+    const dropdown = this.page.locator('select');
+    dropdown.selectOption('100');
     return this.page.locator("tr", {
       has: this.page.locator(`td >> text=${code}`),
     });

@@ -5,14 +5,14 @@ import { CategoryMaster } from "../../../../pages/category-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let categoryMasterPage: CategoryMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Category Master Full UI Tests", () => {
   const testData = loadTestData("test-data/ui/category-master-data.json");
@@ -40,30 +40,30 @@ test.describe("Category Master Full UI Tests", () => {
     await categoryMasterPage.isCategoryMasterPage();
     await expect(page).toHaveURL(/.*category-master/);
 
-    formHelper = new FormHelper(page, formLayout, SaveData, categoryMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, categoryMasterPage);
   });
 
   test("New category creation 1 @saveCategotyNew1", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1)
+    await formOperation.saveAndVerify(testData.save1)
   });
 
   test("New category creation 2 @saveNew2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2)
+    await formOperation.saveAndVerify(testData.save2)
   });
 
   test("Check Validation Error @validationError", async ({ page }) => {
-    await formHelper.checkValidationError(
+    await formOperation.checkValidationError(
       ["Enter Code", "Enter Item Category Name", "Enter Status Remarks"]
     )
   });
 
   test("Delete Category Saved Data @deleteData", async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code)
 
   });
 
   test("Duplicate Data Validation @duplicateCCValidation", async ({ page }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } =
       await categoryMasterPage.getErrorStates();
@@ -72,7 +72,7 @@ test.describe("Category Master Full UI Tests", () => {
   });
 
   test("Update Saved Data @updateCategoryData", async ({ page }) => {
-    await formHelper.updateData(testData.update, testData.update.firstSave.name)
+    await formOperation.updateData(testData.update, testData.update.firstSave.name)
   });
 });
 

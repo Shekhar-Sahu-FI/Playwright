@@ -5,14 +5,14 @@ import { BusinessUnitMaster } from '../../../../pages/business-unit';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
-import { FormHelper } from '../../../../utils/form-helper';
+import { FormOperation } from '../../../../utils/form-operation';
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let buMasterPage: BusinessUnitMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe('Business Unit Master Tests', () => {
   const testData = loadTestData('test-data/ui/business-unit-data.json');
@@ -34,7 +34,7 @@ test.describe('Business Unit Master Tests', () => {
     buMasterPage = new BusinessUnitMaster(page);
     await expect(page).toHaveURL(/.*organization/);
 
-    // formHelper = new FormHelper(page, formLayout, SaveData, buMasterPage );
+    // formOperation = new formOperation(page, formLayout, SaveData, buMasterPage );
   });
 
   test('New BU creation 1 @bu1', async ({ page }) => {

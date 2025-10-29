@@ -5,7 +5,7 @@ import { UserMaster } from '../../../../pages/user-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
-import { FormHelper } from '../../../../utils/form-helper';
+import { FormOperation } from '../../../../utils/form-operation';
 import { checkInputAttributes } from '../../../../utils/inputBox';
 import { deleteAll } from '../../../../utils/apiClients';
 import { error } from 'console';
@@ -15,7 +15,7 @@ let loginPage: LoginPage;
 let homePage: HomePage;
 let userMasterPage: UserMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 const inputFieldSpecs = [
   // {
@@ -291,7 +291,7 @@ test.describe('User Master Tests', () => {
     await userMasterPage.isUserMasterPage();
     await expect(page).toHaveURL(/.*user-master/);
 
-    formHelper = new FormHelper(page, formLayout, SaveData, userMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, userMasterPage);
   });
 
   // for (const spec of inputFieldSpecs) {
@@ -302,23 +302,23 @@ test.describe('User Master Tests', () => {
   // }
 
   test('New Unit creation 1 @saveUserNew1', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1);
+    await formOperation.saveAndVerify(testData.save1);
   });
 
   test('New Unit creation 2 @saveUserNew2', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2);
+    await formOperation.saveAndVerify(testData.save2);
   });
 
   test('New Unit creation 3 @saveUserNew3', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save3);
+    await formOperation.saveAndVerify(testData.save3);
   });
 
   test('New Unit creation 4 @saveUserNew4', async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save4);
+    await formOperation.saveAndVerify(testData.save4);
   });
 
   test('Check Validation Error @validationUserError', async ({ page }) => {
-    await formHelper.checkValidationError([
+    await formOperation.checkValidationError([
       'Enter User Type.',
       'Enter User Profile Id.',
       'Enter User Name.',
@@ -328,11 +328,11 @@ test.describe('User Master Tests', () => {
   });
 
   test('Delete Saved Data @deleteUserData', async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.userProfileId);
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.userProfileId);
   });
 
   test('Duplicate Data Validation @duplicateUser', async ({ page }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { userProfileIdError, emailIdError, employeeIdError } =
       await userMasterPage.getErrorStates();
@@ -342,7 +342,7 @@ test.describe('User Master Tests', () => {
   });
 
   test('Update Saved Data @updateUserData', async ({ page }) => {
-    await formHelper.updateData(testData.update, testData.update.firstSave.userProfileId);
+    await formOperation.updateData(testData.update, testData.update.firstSave.userProfileId);
   });
 });
 
@@ -396,116 +396,4 @@ const SaveData = async (page: Page, data: any, mode: 'save' | 'update' | '' = ''
   }
 };
 
-const checkField = async () => {
-  await formHelper.openNewForm();
 
-  for (const field of userFormFields) {
-    test(`Validate field: ${field.fieldName}`, async ({ page }) => {
-      // 🔹 Check Label
-      const label = page.locator('label', { hasText: field.fieldName });
-      await expect(label, `Label missing for ${field.fieldName}`).toBeVisible();
-
-      // 🔹 Check Placeholder
-      if (field.placeholder) {
-        const input = page.getByPlaceholder(field.placeholder);
-        await expect(input, `Placeholder incorrect for ${field.fieldName}`).toBeVisible();
-      }
-
-      // 🔹 Check Mandatory Field
-      if (field.mandatory) {
-        const mandatoryMark = label.locator('span.text-destructive');
-        await expect(
-          mandatoryMark,
-          `Mandatory mark (*) missing for ${field.fieldName}`
-        ).toBeVisible();
-      }
-    });
-  }
-};
-
-test.describe('Check Fields User Master', () => {
-  test.beforeEach(async ({ page }) => {
-    config = new TestConfig();
-    await page.goto(config.appUrl);
-
-    loginPage = new LoginPage(page);
-    await loginPage.login(config.email, config.password);
-
-    formLayout = new FormLayout(page);
-
-    homePage = new HomePage(page);
-    await homePage.isHomePage();
-    await homePage.masterSearch('MAUM');
-    // await homePage.geToMaster('master', "Other Masters","User Master");
-
-    userMasterPage = new UserMaster(page);
-    await userMasterPage.isUserMasterPage();
-    await expect(page).toHaveURL(/.*user-master/);
-
-    formHelper = new FormHelper(page, formLayout, SaveData, userMasterPage);
-    formHelper.openNewForm();
-  });
-
-  test(`Validate all fields (soft assertions)`, async ({ page }) => {
-    const errors: string[] = [];
-    let label;
-    let placeholder;
-    let isMandatory;
-    let maxLength;
-
-    for (const field of userFormFields) {
-      try {
-        // 🔹 Check Label
-        label = page.locator('label', { hasText: field.fieldName });
-        await expect(
-          label,
-          `Label For ${field.fieldName}: Expected - ${field.fieldName}, Recieved - ${label}`
-        ).toBeVisible();
-
-        // 🔹 Check Placeholder
-        if (field.placeholder) {
-          let input = page.getByRole('textbox', { name: field.fieldName });
-          placeholder = await input.getAttribute('placeholder');
-          console.log('🎉😶‍🌫️', placeholder);
-          await expect(
-            placeholder,
-            `PlaceHolder For ${field.fieldName}: Expected - ${field.placeholder}, Recieved - ${placeholder}`
-          ).toBe(field.placeholder);
-        }
-
-        // 🔹 Check Mandatory Field
-        if (field.mandatory) {
-          isMandatory = label.locator('span.text-destructive');
-          await expect(
-            isMandatory,
-            `Mandatory For ${field.fieldName}: Expected - true, Recieved - ${isMandatory}`
-          ).toBeVisible();
-        }
-
-        if (field.width && field.fieldType == 'Textbox') {
-          let input = page.getByRole('textbox', { name: field.fieldName });
-          maxLength = await input.getAttribute('maxlength');
-          expect(
-            Number(maxLength),
-            `Max Length For ${field.fieldName}: Expected - ${field.width}, Recieved - ${maxLength}`
-          ).toBe(Number(field.width));
-        } else if (field.width && field.fieldType == 'AutoSuggest') {
-          let input = page.getByRole('textbox', { name: field.placeholder });
-          const maxLength = await input.getAttribute('maxlength');
-
-          expect(
-            Number(maxLength),
-            `Max Length For ${field.fieldName}: Expected - ${field.width}, Recieved - ${maxLength}`
-          ).toBe(Number(field.width));
-        }
-      } catch (err) {
-        errors.push(`❌ Field "${field.fieldName}": ${err.message}`);
-      }
-    }
-
-    // ✅ Report all failures at once
-    if (errors.length > 0) {
-      throw new Error(`Field validation failed:\n${errors.join('\n')}`);
-    }
-  });
-});

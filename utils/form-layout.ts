@@ -1,5 +1,10 @@
 import { Page, Locator, expect } from "@playwright/test";
 
+
+/**
+ * FormLayout handles common form actions for master pages.
+ * All button locators are configurable for reuse and maintainability.
+ */
 export class FormLayout {
   private readonly page: Page;
   private readonly addBtn: Locator;
@@ -15,9 +20,7 @@ export class FormLayout {
 
   constructor(page: Page) {
     this.page = page;
-
     this.saveBtn = page.getByRole("button", { name: "Save Changes" });
-    // this.updateBtn = page.locator('[aria-label="Save"]');
     this.updateBtn = page.getByRole('button', { name: 'Save' });
     this.addBtn = page.locator('[title="New item (ctrl + n)"]');
     this.deleteBtn = page.locator("button", { hasText: "Delete" });
@@ -29,56 +32,66 @@ export class FormLayout {
     this.error = page.getByRole("heading", { name: "Confirmation" });
   }
 
+
+  /** Clicks the Add button to open a new form. */
   async clickAdd() {
     await this.addBtn.click();
   }
+  /** Clicks the Save button to save changes. */
   async clickSave() {
     await this.saveBtn.click();
   }
-
+  /** Clicks the Update button to update changes. */
   async clickUpdate() {
     await this.updateBtn.click();
   }
-
+  /** Clicks the Save Option button for more options. */
   async clickSaveOption() {
     await this.saveOptionBtn.click();
   }
-
+  /** Clicks the Delete button to delete the record. */
   async clickDelete() {
     await this.deleteBtn.click();
   }
-
+  /** Clicks the Yes button in confirmation dialogs. */
   async clickYes() {
     await this.yesBtn.click();
   }
+  /** Clicks the Cancel button. */
   async clickCancel() {
     await this.cancelBtn.click();
   }
-
+  /** Clicks the No button in confirmation dialogs. */
   async clickNo() {
     await this.noBtn.click();
   }
 
-  async saveData(mode: string) {
-    if (mode == "save") {
+
+  /**
+   * Handles save or update actions and confirmation dialogs.
+   * @param mode 'save' or 'update'
+   */
+  async saveData(mode: 'save' | 'update') {
+    if (mode === 'save') {
       await this.clickSave();
-    }
-    else if (mode == "update") {
+    } else if (mode === 'update') {
       await this.clickUpdate();
-      console.log("Update Clicked")
+      console.log("Update Clicked");
     }
     try {
       if (await this.confirmation.isVisible()) {
         await this.clickYes();
-        let message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.'
+        const message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.';
         await expect(this.page.getByText(message)).toBeVisible();
         await this.cancelBtn.click();
       }
     } catch (err) {
-      console.log("Confirmation not found or error occurred", err);
+      console.error("Confirmation not found or error occurred", err);
     }
   }
 
+
+  /** Clicks Save and Yes for confirmation. */
   async clickSaveAndYes() {
     await this.clickSave();
     try {
@@ -86,24 +99,23 @@ export class FormLayout {
         await this.clickYes();
       }
     } catch (err) {
-      console.log("Confirmation not found or error occurred", err);
+      console.error("Confirmation not found or error occurred", err);
     }
   }
 
+
+  /** Handles record deletion and confirmation. */
   async deleteData() {
     await this.clickSaveOption();
     await this.clickDelete();
     try {
       if (await this.confirmation.isVisible()) {
         await this.clickYes();
-        //  this.page.waitForSelector()
         await this.cancelBtn.click();
       }
     } catch (err) {
-      console.log("Confirmation not found or error occurred", err);
+      console.error("Confirmation not found or error occurred", err);
     }
   }
-
-
 
 }

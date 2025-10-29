@@ -6,7 +6,7 @@ import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { TreeCheckboxTester } from "../../../../utils/tree-component";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { formOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
@@ -14,7 +14,7 @@ let homePage: HomePage;
 let warehouseMasterPage: WarehouseMaster;
 let formLayout: FormLayout;
 let treeCheckboxTester: TreeCheckboxTester;
-let formHelper: FormHelper;
+let formOperation: formOperation;
 
 test.describe("Warehoues Master Tests", () => {
   const testData = loadTestData("test-data/ui/warehouse-master-data.json");
@@ -36,19 +36,19 @@ test.describe("Warehoues Master Tests", () => {
     warehouseMasterPage = new WarehouseMaster(page);
     await warehouseMasterPage.isWarehouseMasterPage();
     await expect(page).toHaveURL(/.*warehouse-master/);
-    formHelper = new FormHelper(page, formLayout, SaveData, warehouseMasterPage);
+    formOperation = new formOperation(page, formLayout, SaveData, warehouseMasterPage);
   });
 
   test("save 1 New Warehouse creation @saveNewWarehouse", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1);
+    await formOperation.saveAndVerify(testData.save1);
   });
 
   test("Save 2 Warehouse creation @saveNewWarehouse2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1);
+    await formOperation.saveAndVerify(testData.save1);
   });
 
   test("Check Validation Error @warehouesValidationError", async ({ page }) => {
-    await formHelper.checkValidationError([
+    await formOperation.checkValidationError([
       "Enter Code",
       "Enter Warehouse Name",
       "Enter Status Remarks",
@@ -56,7 +56,7 @@ test.describe("Warehoues Master Tests", () => {
   });
 
   test("Delete Saved Data @warehoueDeleteData", async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code);
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code);
   });
 
   // test('Test Tree Component @treeComponent', async({page})=>{
@@ -75,7 +75,7 @@ test.describe("Warehoues Master Tests", () => {
   test("Duplicate Data Validation @warehouseDuplicateValidation", async ({
     page,
   }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } =
       await warehouseMasterPage.getErrorStates();
@@ -84,7 +84,7 @@ test.describe("Warehoues Master Tests", () => {
   });
 
   test("Update Saved Data @warehouseUpdateData", async ({ page }) => {
-    formHelper.updateData(testData.update, testData.firstSave.code);
+    formOperation.updateData(testData.update, testData.firstSave.code);
   });
 });
 

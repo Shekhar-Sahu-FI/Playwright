@@ -5,14 +5,14 @@ import { MakeMaster } from "../../../../pages/make-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let makeMasterPage: MakeMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
   const testData = loadTestData("test-data/ui/make-master-data.json");
@@ -34,19 +34,19 @@ test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
     await makeMasterPage.isMakeMasterPage();
     await expect(page).toHaveURL(/.*make-master/);
 
-    formHelper = new FormHelper(page, formLayout, SaveData, makeMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, makeMasterPage);
   });
 
   test("New Make creation 1 @saveNew1", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1);
+    await formOperation.saveAndVerify(testData.save1);
   });
 
   test("New Make creation 2 @saveNew2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2);
+    await formOperation.saveAndVerify(testData.save2);
   });
 
   test("Check Validation Error @validationError", async ({ page }) => {
-    await formHelper.checkValidationError([
+    await formOperation.checkValidationError([
       "Enter Code.",
       "Enter Make Name.",
       "Enter Status Remarks.",
@@ -54,11 +54,11 @@ test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
   });
 
   test("Delete Saved Data @deleteData", async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code);
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code);
   });
 
   test("Duplicate Data Validation @duplicateValidation", async ({ page }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } =
       await makeMasterPage.getErrorStates();
@@ -67,7 +67,7 @@ test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
   });
 
   test("Update Saved Data @UpdateMakeData", async ({ page }) => {
-    await formHelper.updateData(
+    await formOperation.updateData(
       testData.update,
       testData.update.firstSave.code
     );

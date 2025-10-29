@@ -5,14 +5,14 @@ import { ItemGroupMaster } from "../../../../pages/item-group-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
-import { FormHelper } from "../../../../utils/form-helper";
+import { FormOperation } from "../../../../utils/form-operation";
 
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
 let itemGroupMasterPage: ItemGroupMaster;
 let formLayout: FormLayout;
-let formHelper: FormHelper;
+let formOperation: FormOperation;
 
 test.describe("Item group Master Tests", () => {
   const testData = loadTestData("test-data/ui/item-group-master-data.json");
@@ -39,31 +39,31 @@ test.describe("Item group Master Tests", () => {
     await itemGroupMasterPage.isItemGroupMasterPage();
     await expect(page).toHaveURL(/.*item-group-master/);
 
-    formHelper = new FormHelper(page, formLayout, SaveData, itemGroupMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, itemGroupMasterPage);
   });
 
   test("New Item group creation 1 @saveGroupNew1", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save1)
+    await formOperation.saveAndVerify(testData.save1)
   });
 
   test("New Item group creation 2 @saveGroupNew2", async ({ page }) => {
-    await formHelper.saveAndVerify(testData.save2)
+    await formOperation.saveAndVerify(testData.save2)
   });
 
   test("Check Validation Error @validationGrpError", async ({ page }) => {
-    await formHelper.checkValidationError([
+    await formOperation.checkValidationError([
       "Enter Item Group Code", "Enter Item Group Name", "Enter Status Remark", "Enter Item Category Name", "Enter Item Category Code"])
   })
 
   test("Delete Saved Data @deleteData", async ({ page }) => {
-    await formHelper.deleteAndVerify(testData.delete, testData.delete.code)
+    await formOperation.deleteAndVerify(testData.delete, testData.delete.code)
 
   });
 
   test("Duplicate Data Validation @duplicateGrpValidation", async ({
     page,
   }) => {
-    await formHelper.duplicateDataValidation(testData.duplicate);
+    await formOperation.duplicateDataValidation(testData.duplicate);
 
     const { codeErrorVisible, nameErrorVisible } =
       await itemGroupMasterPage.getErrorStates();
@@ -72,7 +72,7 @@ test.describe("Item group Master Tests", () => {
   });
 
   test("Update Saved Data @updategroupData", async ({ page }) => {
-    formHelper.updateData(testData.update, testData.firstSave.code)
+    formOperation.updateData(testData.update, testData.firstSave.code)
   });
 });
 

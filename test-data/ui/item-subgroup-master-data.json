@@ -17,15 +17,18 @@
         "itemSubgroupMasterMakeDetail": [
             {
                 "query": "make",
-                "makeName": "Make 03"
+                "makeName": "Make 03",
+                "makeCode": "MK03"
             },
             {
                 "query": "make",
-                "makeName": "Make 05"
+                "makeName": "Make 05",
+                "makeCode": "MK05"
             },
             {
                 "query": "make",
-                "makeName": "Make 06"
+                "makeName": "Make 06",
+                "makeCode": "MK06"
             }
         ],
         "status": "2",
@@ -44,8 +47,8 @@
     },
     "saveAndUpdate": {
         "firstSave": {
-            "itemSubgroupCode": "S7",
-            "itemSubgroupName": "Grinder",
+            "itemSubgroupCode": "S5",
+            "itemSubgroupName": "Grinder Machine",
             "itemGroupQuery": "Qua",
             "itemGroupName": "Quality Equipment",
             "unitQuery": "unit",
