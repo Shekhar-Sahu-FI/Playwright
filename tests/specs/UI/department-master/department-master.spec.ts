@@ -4,7 +4,6 @@ import { TestConfig } from "../../../../test.config";
 import { DepartmentMaster } from "../../../../pages/department-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
-import { TreeCheckboxTester } from "../../../../utils/tree-component";
 import { loadTestData } from "../../../../utils/data-provider";
 import { FormOperation } from "../../../../utils/form-operation";
 
@@ -13,7 +12,6 @@ let loginPage: LoginPage;
 let homePage: HomePage;
 let departmentMasterPage: DepartmentMaster;
 let formLayout: FormLayout;
-let treeCheckboxTester: TreeCheckboxTester;
 let formOperation: FormOperation;
 
 test.describe("Department Master Tests", () => {
@@ -27,7 +25,6 @@ test.describe("Department Master Tests", () => {
     await loginPage.login(config.email, config.password);
 
     formLayout = new FormLayout(page);
-    treeCheckboxTester = new TreeCheckboxTester(page, "Jaguar");
 
     homePage = new HomePage(page);
     await homePage.isHomePage();
@@ -68,11 +65,7 @@ test.describe("Department Master Tests", () => {
   //             await formLayout.clickAdd();
   //             await expect(page).toHaveURL(/.*new/);
   //         });
-  //         await treeCheckboxTester.checkParentChecksAllChildren();
-  //         await treeCheckboxTester.uncheckParentUnchecksAllChildren();
-  //         await treeCheckboxTester.uncheckOneChildUnchecksParent();
-  //         await treeCheckboxTester.checkAllChildrenCheckParent();
-  //         await treeCheckboxTester.uncheckAll();
+  
   // })
 
   test("Duplicate Data Validation @departmentDuplicateValidation", async ({

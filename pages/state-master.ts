@@ -1,22 +1,17 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { FormLayout } from '../utils/form-layout';
 
-export interface UnitMasterFormData {
-  unitName: string;
-  code: string;
-  status: string;
-  statusRemarks?: string;
-}
-export class UnitMaster {
+export class StateMaster {
   readonly page: Page;
   readonly formLayout: FormLayout;
 
   readonly code: Locator;
-  readonly unitName: Locator;
+  readonly countryNo: Locator;
+  readonly stateName: Locator;
   readonly statusNo: Locator;
   readonly statusRemarks: Locator;
   readonly codeError: Locator;
-  readonly unitNameError: Locator;
+  readonly stateNameError: Locator;
   readonly confirmation: Locator;
 
   constructor(page: Page) {
@@ -24,24 +19,39 @@ export class UnitMaster {
     this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="code"]');
-    this.unitName = page.locator('[name="unitName"]');
+    this.countryNo = page.getByPlaceholder('Select Country');
+    this.stateName = page.locator('[name="stateName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
-    this.codeError = page.getByText('Duplicate code is not allowed.');
-    this.unitNameError = page.getByText('Duplicate Unit Name is not allowed.');
+    this.codeError = page.getByText('Duplicate Code not allowed.');
+    this.stateNameError = page.getByText('Duplicate State Name not allowed.');
   }
 
-  async isUnitMasterPage() {
-    await this.page.getByText('unit-master').isVisible();
+  async isStateMasterPage() {
+    await this.page.getByText('state-master').isVisible();
+  }
+
+  async selectCountry(query: string, countryName: string) {
+    await this.countryNo.fill(query);
+
+    await this.page.waitForSelector('#uc-combo-options', { state: 'visible' });
+
+    const option = this.page.locator('#uc-combo-options li', { hasText: countryName });
+
+    await option.click();
   }
 
   async fillCode(code: string) {
+    console.log('Filling code:', code);
     await this.code.fill(code);
+    await expect((await this.code.inputValue()).length).toBeLessThanOrEqual(6);
   }
 
-  async fillUnitName(unitName: string) {
-    await this.unitName.fill(unitName);
+  async fillStateName(stateName: string) {
+    console.log('Filling stateName :', stateName);
+    await this.stateName.fill(stateName);
+    await expect((await this.stateName.inputValue()).length).toBeLessThanOrEqual(50);
   }
 
   async selectStatusNo(status: string) {
@@ -50,11 +60,12 @@ export class UnitMaster {
 
   async fillStatusRemarks(statusRemarks: string) {
     await this.statusRemarks.fill(statusRemarks);
+    await expect((await this.statusRemarks.inputValue()).length).toBeLessThanOrEqual(300);
   }
 
-  async fillUnitMasterForm(data: any) {
+  async fillStateMasterForm(data: any) {
     await this.fillCode(data.code);
-    await this.fillUnitName(data.name);
+    await this.fillStateName(data.name);
     await this.selectStatusNo(data.status);
     if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
@@ -65,7 +76,7 @@ export class UnitMaster {
   async getErrorStates() {
     return {
       codeErrorVisible: await this.codeError.isVisible(),
-      nameErrorVisible: await this.unitNameError.isVisible(),
+      nameErrorVisible: await this.stateNameError.isVisible(),
     };
   }
 
@@ -79,7 +90,7 @@ export class UnitMaster {
 
   async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
-    await expect(this.unitName).toHaveValue(data.name);
+    await expect(this.stateName).toHaveValue(data.name);
     if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }

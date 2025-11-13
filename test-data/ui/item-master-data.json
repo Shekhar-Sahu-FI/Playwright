@@ -1,235 +1,235 @@
 {
-    "saveWithAllData": {
-        "itemCode": "SSS8",
-        "itemName": "Stainless Steel",
-        "itemSubgroupQuery": "itemsub",
-        "itemSubgroupName": "ItemSubgroup 04",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "stockValuationMethodNo": "2",
-        "remarks": "This is for Quality.",
-        "isMaintainDimension": false,
-        "dimensionIn": "1",
-        "dimensionUnitQuery": "unit",
-        "dimensionUnitName": "unit 04",
-        "standardWt": "152.4",
-        "isMaintainBatchAndExpiry": false,
-        "makeManagementTypeNo": "3",
-        "itemMasterMakeDetail": [
-            {
-                "query": "make",
-                "makeName": "Make 03"
-            },
-            {
-                "query": "make",
-                "makeName": "Make 05"
-            },
-            {
-                "query": "make",
-                "makeName": "Make 06"
-            }
-        ],
-        "itemMasterWarehouseDetail": [
-            {
-                "query": "warehouse",
-                "warehouseName": "Warehouse 03",
-                "reorderLevel": "500",
-                "reorderQty": "100"
-            },
-            {
-                "query": "warehouse",
-                "warehouseName": "Warehouse 02",
-                "reorderLevel": "751",
-                "reorderQty": "987"
-            }
-        ],
-        "isUnitConversion": true,
-        "itemMasterUnitConvertionDetail": [
-            {
-                "unitType": "1",
-                "unitConvertionType": "1",
-                "baseUnitValue": "4521.5",
-                "unitConvertionNameQuery": "unit",
-                "unitConvertionName": "Unit 03",
-                "unitConvertionValue": "845.32"
-            }
-        ],
-        "status": "2",
-        "statusRemarks": "This is item is not for use right now."
-    },
-    "saveWithMandatoryData": {
-        "itemCode": "SSS9",
-        "itemName": "MS Plate 3X5M",
-        "itemSubgroupQuery": "itemsub",
-        "itemSubgroupName": "ItemSubgroup 04",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "stockValuationMethodNo": "2",
-        "makeManagementTypeNo": "1",
-        "status": "2",
-        "statusRemarks": "This is item is not for use right now."
-    },
-    "saveAndUpdate": {
-        "firstSave": {
-            "itemCode": "ITMS",
-            "itemName": "Mild Steel Angle",
-            "itemSubgroupQuery": "itemsub",
-            "itemSubgroupName": "ItemSubgroup 04",
-            "unitQuery": "unit",
-            "unitName": "Unit 02",
-            "unitCode": "UN02",
-            "leadTime": "5",
-            "stockValuationMethodNo": "2",
-            "remarks": "This is for Quality.",
-            "isMaintainDimension": true,
-            "dimensionIn": "1",
-            "dimensionUnitQuery": "unit",
-            "dimensionUnitName": "unit 04",
-            "dimensionUnitCode": "UN04",
-            "standardWt": "152.4",
-            "isMaintainBatchAndExpiry": false,
-            "makeManagementTypeNo": "2",
-            "itemMasterWarehouseDetail": [
-                {
-                    "query": "warehouse",
-                    "warehouseName": "Warehouse 03",
-                    "reorderLevel": "500",
-                    "reorderQty": "100"
-                },
-                {
-                    "query": "warehouse",
-                    "warehouseName": "Warehouse 02",
-                    "reorderLevel": "751",
-                    "reorderQty": "987"
-                }
-            ],
-            "isUnitConversion": true,
-            "itemMasterUnitConvertionDetail": [
-                {
-                    "unitType": "1",
-                    "unitConvertionType": "1",
-                    "baseUnitValue": "4521.5",
-                    "unitConvertionNameQuery": "unit",
-                    "unitConvertionName": "Unit 03",
-                    "unitConvertionCode": "UN03",
-                    "unitConvertionValue": "845.32"
-                }
-            ],
-            "status": "2",
-            "statusRemarks": "This is item is not for use right now."
+  "saveWithAllData": {
+    "itemCode": "SSS8",
+    "itemName": "Stainless Steel",
+    "itemSubgroupQuery": "itemsub",
+    "itemSubgroupName": "ItemSubgroup 04",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "stockValuationMethodNo": "2",
+    "remarks": "This is for Quality.",
+    "isMaintainDimension": false,
+    "dimensionIn": "1",
+    "dimensionUnitQuery": "unit",
+    "dimensionUnitName": "unit 04",
+    "standardWt": "152.4",
+    "isMaintainBatchAndExpiry": false,
+    "makeManagementTypeNo": "3",
+    "itemMasterMakeDetail": [
+      {
+        "query": "make",
+        "makeName": "Make 03"
+      },
+      {
+        "query": "make",
+        "makeName": "Make 05"
+      },
+      {
+        "query": "make",
+        "makeName": "Make 06"
+      }
+    ],
+    "itemMasterWarehouseDetail": [
+      {
+        "query": "warehouse",
+        "warehouseName": "Warehouse 03",
+        "reorderLevel": "500",
+        "reorderQty": "100"
+      },
+      {
+        "query": "warehouse",
+        "warehouseName": "Warehouse 02",
+        "reorderLevel": "751",
+        "reorderQty": "987"
+      }
+    ],
+    "isUnitConversion": true,
+    "itemMasterUnitConvertionDetail": [
+      {
+        "unitType": "1",
+        "unitConvertionType": "1",
+        "baseUnitValue": "4521.5",
+        "unitConvertionNameQuery": "unit",
+        "unitConvertionName": "Unit 03",
+        "unitConvertionValue": "845.32"
+      }
+    ],
+    "status": "2",
+    "statusRemarks": "This is item is not for use right now."
+  },
+  "saveWithMandatoryData": {
+    "itemCode": "SSS9",
+    "itemName": "MS Plate 3X5M",
+    "itemSubgroupQuery": "Plat",
+    "itemSubgroupName": "Plate",
+    "unitQuery": "Kilo",
+    "unitName": "Kilogram",
+    "leadTime": "5",
+    "stockValuationMethodNo": "2",
+    "makeManagementTypeNo": "1",
+    "status": "2",
+    "statusRemarks": "This is item is not for use right now."
+  },
+  "saveAndUpdate": {
+    "firstSave": {
+      "itemCode": "ITMS",
+      "itemName": "Mild Steel Angle",
+      "itemSubgroupQuery": "itemsub",
+      "itemSubgroupName": "ItemSubgroup 04",
+      "unitQuery": "unit",
+      "unitName": "Unit 02",
+      "unitCode": "UN02",
+      "leadTime": "5",
+      "stockValuationMethodNo": "2",
+      "remarks": "This is for Quality.",
+      "isMaintainDimension": true,
+      "dimensionIn": "1",
+      "dimensionUnitQuery": "unit",
+      "dimensionUnitName": "unit 04",
+      "dimensionUnitCode": "UN04",
+      "standardWt": "152.4",
+      "isMaintainBatchAndExpiry": false,
+      "makeManagementTypeNo": "2",
+      "itemMasterWarehouseDetail": [
+        {
+          "query": "warehouse",
+          "warehouseName": "Warehouse 03",
+          "reorderLevel": "500",
+          "reorderQty": "100"
         },
-        "updateCase": {
-            "itemCode": "ITMD",
-            "itemName": "Mild Steel Beam",
-            "itemSubgroupQuery": "itemsub",
-            "itemSubgroupName": "ItemSubgroup 08",
-            "unitQuery": "unit",
-            "unitName": "Unit 03",
-            "unitCode": "UN03",
-            "leadTime": "8",
-            "stockValuationMethodNo": "1",
-            "remarks": "This is for updated Quality.",
-            "isMaintainDimension": true,
-            "dimensionIn": "2",
-            "dimensionUnitQuery": "unit",
-            "dimensionUnitName": "Unit 05",
-            "dimensionUnitCode": "UN05",
-            "standardWt": "111.4",
-            "isMaintainBatchAndExpiry": true,
-            "makeManagementTypeNo": "3",
-            "itemMasterMakeDetail": [
-                {
-                    "query": "make",
-                    "makeName": "Make 03"
-                },
-                {
-                    "query": "make",
-                    "makeName": "Make 05"
-                },
-                {
-                    "query": "make",
-                    "makeName": "Make 06"
-                }
-            ],
-            "itemMasterWarehouseDetail": [
-                {
-                    "query": "warehouse",
-                    "warehouseName": "Warehouse 05",
-                    "reorderLevel": "500",
-                    "reorderQty": "100"
-                },
-                {
-                    "query": "warehouse",
-                    "warehouseName": "Warehouse 01",
-                    "reorderLevel": "751",
-                    "reorderQty": "987"
-                }
-            ],
-            "isUnitConversion": true,
-            "itemMasterUnitConvertionDetail": [
-                {
-                    "unitType": "1",
-                    "unitConvertionType": "1",
-                    "baseUnitValue": "4521.5",
-                    "unitConvertionNameQuery": "unit",
-                    "unitConvertionName": "Unit 03",
-                    "unitConvertionCode": "UN03",
-                    "unitConvertionValue": "845.32"
-                },
-                {
-                    "unitType": "2",
-                    "unitConvertionType": "3",
-                    "baseUnitValue": "7855",
-                    "unitConvertionNameQuery": "unit",
-                    "unitConvertionName": "Unit 05",
-                    "unitConvertionCode": "UN05",
-                    "unitConvertionValue": "1252"
-                }
-            ],
-            "status": "1",
-            "statusRemarks": ""
+        {
+          "query": "warehouse",
+          "warehouseName": "Warehouse 02",
+          "reorderLevel": "751",
+          "reorderQty": "987"
         }
+      ],
+      "isUnitConversion": true,
+      "itemMasterUnitConvertionDetail": [
+        {
+          "unitType": "1",
+          "unitConvertionType": "1",
+          "baseUnitValue": "4521.5",
+          "unitConvertionNameQuery": "unit",
+          "unitConvertionName": "Unit 03",
+          "unitConvertionCode": "UN03",
+          "unitConvertionValue": "845.32"
+        }
+      ],
+      "status": "2",
+      "statusRemarks": "This is item is not for use right now."
     },
-    "saveAndDelete": {
-        "itemCode": "SS10",
-        "itemName": "MS Angle 45M",
-        "itemSubgroupQuery": "itemsub",
-        "itemSubgroupName": "ItemSubgroup 04",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "stockValuationMethodNo": "2",
-        "makeManagementTypeNo": "1",
-        "status": "2",
-        "statusRemarks": "This is item is not for use right now."
-    },
-    "duplicateError": {
-        "itemCode": "SS11",
-        "itemName": "MS Angle 67M",
-        "itemSubgroupQuery": "itemsub",
-        "itemSubgroupName": "ItemSubgroup 04",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "stockValuationMethodNo": "2",
-        "makeManagementTypeNo": "1",
-        "status": "2",
-        "statusRemarks": "This is item is not for use right now."
-    },
-    "saveWithMaxChar": {
-        "itemCode": "SSS9",
-        "itemName": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analThe purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
-        "itemSubgroupQuery": "itemsub",
-        "itemSubgroupName": "ItemSubgroup 04",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "stockValuationMethodNo": "2",
-        "makeManagementTypeNo": "1",
-        "status": "2",
-        "statusRemarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
-        "remarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analysis to the implementation, testing, and deployment phases. The team has demonstrated consistent diligence and commitment to meeting deadlines while ensuring that quality standards are adhered to across all stages of the project. Throughout the initiation phase, detailed planning sessions were conducted, which involved brainstorming sessions, requirement-gathering meetings, and in-depth discussions with stakeholders. These sessions were instrumental in clarifying the scope of the project, identifying potential risks, and establishing a realistic timeline for deliverables. The team utilized a structured approach to document all requirements, ensuring that there was ensuring that there was her"
+    "updateCase": {
+      "itemCode": "ITMD",
+      "itemName": "Mild Steel Beam",
+      "itemSubgroupQuery": "itemsub",
+      "itemSubgroupName": "ItemSubgroup 08",
+      "unitQuery": "unit",
+      "unitName": "Unit 03",
+      "unitCode": "UN03",
+      "leadTime": "8",
+      "stockValuationMethodNo": "1",
+      "remarks": "This is for updated Quality.",
+      "isMaintainDimension": true,
+      "dimensionIn": "2",
+      "dimensionUnitQuery": "unit",
+      "dimensionUnitName": "Unit 05",
+      "dimensionUnitCode": "UN05",
+      "standardWt": "111.4",
+      "isMaintainBatchAndExpiry": true,
+      "makeManagementTypeNo": "3",
+      "itemMasterMakeDetail": [
+        {
+          "query": "make",
+          "makeName": "Make 03"
+        },
+        {
+          "query": "make",
+          "makeName": "Make 05"
+        },
+        {
+          "query": "make",
+          "makeName": "Make 06"
+        }
+      ],
+      "itemMasterWarehouseDetail": [
+        {
+          "query": "warehouse",
+          "warehouseName": "Warehouse 05",
+          "reorderLevel": "500",
+          "reorderQty": "100"
+        },
+        {
+          "query": "warehouse",
+          "warehouseName": "Warehouse 01",
+          "reorderLevel": "751",
+          "reorderQty": "987"
+        }
+      ],
+      "isUnitConversion": true,
+      "itemMasterUnitConvertionDetail": [
+        {
+          "unitType": "1",
+          "unitConvertionType": "1",
+          "baseUnitValue": "4521.5",
+          "unitConvertionNameQuery": "unit",
+          "unitConvertionName": "Unit 03",
+          "unitConvertionCode": "UN03",
+          "unitConvertionValue": "845.32"
+        },
+        {
+          "unitType": "2",
+          "unitConvertionType": "3",
+          "baseUnitValue": "7855",
+          "unitConvertionNameQuery": "unit",
+          "unitConvertionName": "Unit 05",
+          "unitConvertionCode": "UN05",
+          "unitConvertionValue": "1252"
+        }
+      ],
+      "status": "1",
+      "statusRemarks": ""
     }
+  },
+  "saveAndDelete": {
+    "itemCode": "SS10",
+    "itemName": "MS Angle 45M",
+    "itemSubgroupQuery": "pla",
+    "itemSubgroupName": "Plate",
+    "unitQuery": "kilo",
+    "unitName": "Kilogram",
+    "leadTime": "5",
+    "stockValuationMethodNo": "2",
+    "makeManagementTypeNo": "1",
+    "status": "2",
+    "statusRemarks": "This is item is not for use right now."
+  },
+  "duplicateError": {
+    "itemCode": "SS11",
+    "itemName": "MS Angle 67M",
+    "itemSubgroupQuery": "itemsub",
+    "itemSubgroupName": "ItemSubgroup 04",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "stockValuationMethodNo": "2",
+    "makeManagementTypeNo": "1",
+    "status": "2",
+    "statusRemarks": "This is item is not for use right now."
+  },
+  "saveWithMaxChar": {
+    "itemCode": "SSS9",
+    "itemName": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analThe purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
+    "itemSubgroupQuery": "itemsub",
+    "itemSubgroupName": "ItemSubgroup 04",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "stockValuationMethodNo": "2",
+    "makeManagementTypeNo": "1",
+    "status": "2",
+    "statusRemarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
+    "remarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analysis to the implementation, testing, and deployment phases. The team has demonstrated consistent diligence and commitment to meeting deadlines while ensuring that quality standards are adhered to across all stages of the project. Throughout the initiation phase, detailed planning sessions were conducted, which involved brainstorming sessions, requirement-gathering meetings, and in-depth discussions with stakeholders. These sessions were instrumental in clarifying the scope of the project, identifying potential risks, and establishing a realistic timeline for deliverables. The team utilized a structured approach to document all requirements, ensuring that there was ensuring that there was her"
+  }
 }

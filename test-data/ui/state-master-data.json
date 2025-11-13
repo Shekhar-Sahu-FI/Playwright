@@ -1,0 +1,45 @@
+{
+  "update": {
+    "firstSave": {
+      "query": "unit",
+      "countryName": "United States",
+      "code": "CALF",
+      "name": "Califormia",
+      "status": "2",
+      "statusRemarks": "State activated successfully."
+    },
+    "updateCase": {
+      "query": "indi",
+      "countryName": "India",
+      "code": "NYC",
+      "name": "New York",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  "save1": {
+    "query": "indi",
+    "countryName": "India",
+    "code": "NYC",
+    "name": "New York",
+    "status": "1",
+    "statusRemarks": ""
+  },
+  "delete": {
+    "query": "unit",
+    "countryName": "United States",
+    "code": "Max",
+    "name": "Maxico",
+    "status": "1",
+    "statusRemarks": ""
+  },
+
+  "duplicate": {
+    "query": "unit",
+    "countryName": "United States",
+    "code": "JAM",
+    "name": "Jamaica",
+    "status": "2",
+    "statusRemarks": "State activated successfully."
+  }
+}

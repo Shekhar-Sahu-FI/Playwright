@@ -28,12 +28,8 @@ test.describe("Item group Master Tests", () => {
 
     homePage = new HomePage(page);
     await homePage.isHomePage();
-    console.log("Home Page Reached");
-    await homePage.geToMaster(
-      "master",
-      "Material Information",
-      "Item group Master"
-    );
+
+    await homePage.masterSearch("MMMG");
 
     itemGroupMasterPage = new ItemGroupMaster(page);
     await itemGroupMasterPage.isItemGroupMasterPage();
@@ -55,7 +51,8 @@ test.describe("Item group Master Tests", () => {
       "Enter Item Group Code", "Enter Item Group Name", "Enter Status Remark", "Enter Item Category Name", "Enter Item Category Code"])
   })
 
-  test("Delete Saved Data @deleteData", async ({ page }) => {
+  test("Delete Saved Group Data @deleteData", async ({ page }) => {
+    console.log("Deleting the data", testData.delete);
     await formOperation.deleteAndVerify(testData.delete, testData.delete.code)
 
   });

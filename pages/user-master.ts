@@ -1,29 +1,29 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout'; 
+import { FormLayout } from '../utils/form-layout';
 
 export class UserMaster {
-  private readonly page: Page;
-  private readonly formLayout: FormLayout;
+  readonly page: Page;
+  readonly formLayout: FormLayout;
 
-  private readonly code: Locator;
-  private readonly userType: Locator;
-  private readonly userName: Locator;
-  private readonly userProfileId: Locator;
-  private readonly emailId: Locator;
-  private readonly contactNo: Locator;
-  private readonly employeeId: Locator;
-  private readonly designation: Locator;
-  private readonly department: Locator;
-  private readonly reportingManagerName: Locator;
-  private readonly statusNo: Locator;
-  private readonly statusRemarks: Locator;
-  private readonly userProfileIdError: Locator;
-  private readonly emailIdError: Locator;
-  private readonly employeeIdError: Locator;
+  readonly code: Locator;
+  readonly userType: Locator;
+  readonly userName: Locator;
+  readonly userProfileId: Locator;
+  readonly emailId: Locator;
+  readonly contactNo: Locator;
+  readonly employeeId: Locator;
+  readonly designation: Locator;
+  readonly department: Locator;
+  readonly reportingManagerName: Locator;
+  readonly statusNo: Locator;
+  readonly statusRemarks: Locator;
+  readonly userProfileIdError: Locator;
+  readonly emailIdError: Locator;
+  readonly employeeIdError: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.formLayout = new FormLayout(page); 
+    this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="code"]');
     this.userType = page.locator('[name="userTypeNo"]');
@@ -69,31 +69,31 @@ export class UserMaster {
   async fillContactNo(contactNo: string) {
     await this.contactNo.fill(contactNo);
   }
-  
+
   async fillEmployeeId(employeeId: string) {
     await this.employeeId.fill(employeeId);
   }
 
   async fillDepartment(query: string, department: string) {
     await this.department.fill(query);
-    await this.selectSuggestion(department);  
+    await this.selectSuggestion(department);
   }
 
-  async selectSuggestion(name:string){
-  const suggestion = this.page.locator(`td:has-text("${name}")`);
-  await expect(suggestion).toBeVisible({ timeout: 5000 });
+  async selectSuggestion(name: string) {
+    const suggestion = this.page.locator(`td:has-text("${name}")`);
+    await expect(suggestion).toBeVisible({ timeout: 5000 });
 
-  for (let i = 0; i < 3; i++) {
-    try {
-      await suggestion.click();
-      break;
-    } catch (err) {
-      if (i === 2) throw err; 
-      await this.page.waitForTimeout(500); 
+    for (let i = 0; i < 3; i++) {
+      try {
+        await suggestion.click();
+        break;
+      } catch (err) {
+        if (i === 2) throw err;
+        await this.page.waitForTimeout(500);
+      }
     }
   }
-}
-  
+
   async fillDesignation(contactNo: string) {
     await this.designation.fill(contactNo);
   }
@@ -110,33 +110,33 @@ export class UserMaster {
     await this.statusRemarks.fill(statusRemarks);
   }
 
-  async fillUserMasterForm(data:any) {
+  async fillUserMasterForm(data: any) {
 
     await this.fillUserName(data.name);
     await this.fillUserProfileId(data.userProfileId);
     await this.fillEmailId(data.emailId);
     await this.fillUserType(data.userType)
-     if(data.contactNo){
+    if (data.contactNo) {
       await this.contactNo.fill(data.contactNo);
     }
-    if(data.employeeId){
+    if (data.employeeId) {
       await this.employeeId.fill(data.employeeId);
     }
-    if(data.designation){
+    if (data.designation) {
       await this.designation.fill(data.designation);
     }
-    if(data.reportingManagerName){
+    if (data.reportingManagerName) {
       await this.reportingManagerName.fill(data.reportingManagerName);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
-    if(data.businessUnit1){
-        await this.checkBusinessUnit(data.businessUnit1)
+    if (data.businessUnit1) {
+      await this.checkBusinessUnit(data.businessUnit1)
     }
     await this.selectStatusNo(data.status);
-    
-    if(data.statusRemarks){
+
+    if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
     await this.formLayout.saveData("save");
@@ -150,59 +150,59 @@ export class UserMaster {
     }
   }
 
-  async checkBusinessUnit(children: string[]){
-     for (const child of children) {
+  async checkBusinessUnit(children: string[]) {
+    for (const child of children) {
       const childLabel = this.page.locator("label", { hasText: child });
       await expect(childLabel).toBeChecked();
     }
 
   }
 
-   async getErrorStates() {
+  async getErrorStates() {
     return {
-        userProfileIdError: await this.userProfileIdError.isVisible(),
-        emailIdError: await this.emailIdError.isVisible(),
-        employeeIdError : await this.employeeIdError.isVisible()
+      userProfileIdError: await this.userProfileIdError.isVisible(),
+      emailIdError: await this.emailIdError.isVisible(),
+      employeeIdError: await this.employeeIdError.isVisible()
     };
-    }
+  }
 
   getRowByCode(code: string) {
-    console.log(code,"code")
+    console.log(code, "code")
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`)
     });
-  }  
+  }
 
-  async  verifyFormData( data: any) {
+  async verifyFormData(data: any) {
 
     await expect(this.userName).toHaveValue(data.name);
     await expect(this.userProfileId).toHaveValue(data.userProfileId);
     await expect(this.emailId).toHaveValue(data.emailId);
     await expect(this.userType).toHaveValue(data.userType);
-    if(data.status){
+    if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }
-    if(data.contactNo){
+    if (data.contactNo) {
       await expect(this.contactNo).toHaveValue(data.contactNo);
     }
-    if(data.employeeId){
+    if (data.employeeId) {
       await expect(this.employeeId).toHaveValue(data.employeeId);
     }
-    if(data.designation){
+    if (data.designation) {
       await expect(this.designation).toHaveValue(data.designation);
     }
-    if(data.reportingManagerName){
+    if (data.reportingManagerName) {
       await expect(this.reportingManagerName).toHaveValue(data.reportingManagerName);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
-    if(data.businessUnit1){
-        await this.checkBusinessUnit(data.businessUnit1)
+    if (data.businessUnit1) {
+      await this.checkBusinessUnit(data.businessUnit1)
     }
-    if(data.businessUnit2){
-        await this.checkBusinessUnit(data.businessUnit2)
+    if (data.businessUnit2) {
+      await this.checkBusinessUnit(data.businessUnit2)
     }
   }
-  
+
 }

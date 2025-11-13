@@ -1,0 +1,192 @@
+[
+  {
+    "SM_05": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST01",
+      "name": "Maharashtra",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_06": {
+      "query": "unit",
+      "countryName": "United States",
+      "code": "ST02",
+      "name": "Gujarat",
+      "status": "2",
+      "statusRemarks": "State activated successfully."
+    }
+  },
+  {
+    "SM_07": {
+      "query": "jer",
+      "countryName": "jermany",
+      "code": "ST03",
+      "name": "Karnataka",
+      "status": "2",
+      "statusRemarks": "Marked inactive for verification."
+    }
+  },
+  {
+    "SM_08": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST01U",
+      "name": "Maharashtra Updated",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_010": {
+      "query": "ind",
+      "countryName": "United States",
+      "code": "ST09",
+      "name": "Goa",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_011": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "CODE06",
+      "name": "Punjab",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_012": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "CODE007",
+      "name": "Haryana",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_013": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "CD005",
+      "name": "Kerala",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_014": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "A",
+      "name": "Bihar",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_017": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST16",
+      "name": "Himachal Pradesh",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_018": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST17",
+      "name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_019": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST18",
+      "name": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_020": {
+      "query": "unit",
+      "countryName": "United States",
+      "code": "ST19",
+      "name": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_021": {
+      "query": "unit",
+      "countryName": "United States",
+      "code": "ST20",
+      "name": "Z",
+      "status": "1",
+      "statusRemarks": ""
+    }
+  },
+  {
+    "SM_024": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST23",
+      "name": "Nagaland",
+      "status": "2",
+      "statusRemarks": "Status remark with spaces."
+    }
+  },
+  {
+    "SM_025": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST49",
+      "name": "Assam",
+      "status": "2",
+      "statusRemarks": "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
+    }
+  },
+  {
+    "SM_026": {
+      "query": "unit",
+      "countryName": "United States",
+      "code": "ST50",
+      "name": "Manipur",
+      "status": "2",
+      "statusRemarks": "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
+    }
+  },
+  {
+    "SM_027": {
+      "query": "jer",
+      "countryName": "jermany",
+      "code": "ST51",
+      "name": "Meghalaya",
+      "status": "2",
+      "statusRemarks": "TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
+    }
+  },
+  {
+    "SM_028": {
+      "query": "ind",
+      "countryName": "India",
+      "code": "ST27",
+      "name": "Odisha",
+      "status": "2",
+      "statusRemarks": "O"
+    }
+  }
+]

@@ -1,139 +1,139 @@
 {
-    "saveWithAllData": {
-        "itemSubgroupCode": "S8",
-        "itemSubgroupName": "Stainless Steel",
-        "itemGroupQuery": "Qua",
-        "itemGroupName": "Quality Equipment",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "remarks": "This is for Quality.",
-        "isMaintainDimension": true,
-        "dimensionIn": "1",
-        "dimensionUnitQuery": "unit",
-        "dimensionUnitName": "unit 04",
-        "isMaintainBatchAndExpiry": false,
-        "makeManagementTypeNo": "3",
-        "itemSubgroupMasterMakeDetail": [
-            {
-                "query": "make",
-                "makeName": "Make 03",
-                "makeCode": "MK03"
-            },
-            {
-                "query": "make",
-                "makeName": "Make 05",
-                "makeCode": "MK05"
-            },
-            {
-                "query": "make",
-                "makeName": "Make 06",
-                "makeCode": "MK06"
-            }
-        ],
-        "status": "2",
-        "statusRemarks": "This item is not for use right now."
+  "saveWithAllData": {
+    "itemSubgroupCode": "S8",
+    "itemSubgroupName": "Stainless Steel",
+    "itemGroupQuery": "Qua",
+    "itemGroupName": "Quality Equipment",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "remarks": "This is for Quality.",
+    "isMaintainDimension": true,
+    "dimensionIn": "1",
+    "dimensionUnitQuery": "unit",
+    "dimensionUnitName": "unit 04",
+    "isMaintainBatchAndExpiry": false,
+    "makeManagementTypeNo": "3",
+    "itemSubgroupMasterMakeDetail": [
+      {
+        "query": "make",
+        "makeName": "Make 03",
+        "makeCode": "MK03"
+      },
+      {
+        "query": "make",
+        "makeName": "Make 05",
+        "makeCode": "MK05"
+      },
+      {
+        "query": "make",
+        "makeName": "Make 06",
+        "makeCode": "MK06"
+      }
+    ],
+    "status": "2",
+    "statusRemarks": "This item is not for use right now."
+  },
+  "saveWithMandatoryData": {
+    "itemSubgroupCode": "S9",
+    "itemSubgroupName": "Consumable",
+    "itemGroupQuery": "Qua",
+    "itemGroupName": "Quality Equipment",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "status": "2",
+    "statusRemarks": "This item is not for use right now."
+  },
+  "saveAndUpdate": {
+    "firstSave": {
+      "itemSubgroupCode": "S5",
+      "itemSubgroupName": "Grinder Machine",
+      "itemGroupQuery": "Qua",
+      "itemGroupName": "Quality Equipment",
+      "unitQuery": "unit",
+      "unitName": "Unit 03",
+      "unitCode": "UN03",
+      "leadTime": "5",
+      "remarks": "This is for Grinder.",
+      "isMaintainDimension": true,
+      "dimensionIn": "1",
+      "dimensionUnitQuery": "unit",
+      "dimensionUnitName": "unit 03",
+      "dimensionUnitCode": "UN03",
+      "isMaintainBatchAndExpiry": false,
+      "makeManagementTypeNo": "2",
+      "status": "1"
     },
-    "saveWithMandatoryData": {
-        "itemSubgroupCode": "S9",
-        "itemSubgroupName": "Consumable",
-        "itemGroupQuery": "Qua",
-        "itemGroupName": "Quality Equipment",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "status": "2",
-        "statusRemarks": "This item is not for use right now."
-    },
-    "saveAndUpdate": {
-        "firstSave": {
-            "itemSubgroupCode": "S5",
-            "itemSubgroupName": "Grinder Machine",
-            "itemGroupQuery": "Qua",
-            "itemGroupName": "Quality Equipment",
-            "unitQuery": "unit",
-            "unitName": "Unit 03",
-            "unitCode": "UN03",
-            "leadTime": "5",
-            "remarks": "This is for Grinder.",
-            "isMaintainDimension": true,
-            "dimensionIn": "1",
-            "dimensionUnitQuery": "unit",
-            "dimensionUnitName": "unit 03",
-            "dimensionUnitCode": "UN03",
-            "isMaintainBatchAndExpiry": false,
-            "makeManagementTypeNo": "2",
-            "status": "1"
+    "updateCase": {
+      "itemSubgroupCode": "S9",
+      "itemSubgroupName": "Grinding Mill",
+      "itemGroupQuery": "ItemGroup",
+      "itemGroupName": "ItemGroup 02",
+      "unitQuery": "unit",
+      "unitName": "Unit 02",
+      "unitCode": "UN02",
+      "leadTime": "5",
+      "remarks": "This is for Grinding mill.",
+      "isMaintainDimension": true,
+      "dimensionIn": "2",
+      "dimensionUnitQuery": "unit",
+      "dimensionUnitName": "unit 06",
+      "isMaintainBatchAndExpiry": true,
+      "makeManagementTypeNo": "3",
+      "itemSubgroupMasterMakeDetail": [
+        {
+          "query": "make",
+          "makeName": "Make 03",
+          "makeCode": "MK03"
         },
-        "updateCase": {
-            "itemSubgroupCode": "S9",
-            "itemSubgroupName": "Grinding Mill",
-            "itemGroupQuery": "ItemGroup",
-            "itemGroupName": "ItemGroup 02",
-            "unitQuery": "unit",
-            "unitName": "Unit 02",
-            "unitCode": "UN02",
-            "leadTime": "5",
-            "remarks": "This is for Grinding mill.",
-            "isMaintainDimension": true,
-            "dimensionIn": "2",
-            "dimensionUnitQuery": "unit",
-            "dimensionUnitName": "unit 06",
-            "isMaintainBatchAndExpiry": true,
-            "makeManagementTypeNo": "3",
-            "itemSubgroupMasterMakeDetail": [
-                {
-                    "query": "make",
-                    "makeName": "Make 03",
-                    "makeCode": "MK03"
-                },
-                {
-                    "query": "make",
-                    "makeName": "Make 05",
-                    "makeCode": "MK05"
-                },
-                {
-                    "query": "make",
-                    "makeName": "Make 06",
-                    "makeCode": "MK06"
-                }
-            ],
-            "status": "2",
-            "statusRemarks": "This item subgroup is not for use right now."
+        {
+          "query": "make",
+          "makeName": "Make 05",
+          "makeCode": "MK05"
+        },
+        {
+          "query": "make",
+          "makeName": "Make 06",
+          "makeCode": "MK06"
         }
-    },
-    "saveAndDelete": {
-        "itemSubgroupCode": "S2",
-        "itemSubgroupName": "Oil",
-        "itemGroupQuery": "Qua",
-        "itemGroupName": "Quality Equipment",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "status": "2",
-        "statusRemarks": "This item is not for use right now."
-    },
-    "duplicateError": {
-        "itemSubgroupCode": "S3",
-        "itemSubgroupName": "Lubrication",
-        "itemGroupQuery": "Qua",
-        "itemGroupName": "Quality Equipment",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "status": "2",
-        "statusRemarks": "This item is not for use right now."
-    },
-    "saveWithMaxChar": {
-        "itemSubgroupCode": "S8",
-        "itemSubgroupName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "itemGroupQuery": "itemg",
-        "itemGroupName": "ItemGroup 02",
-        "unitQuery": "unit",
-        "unitName": "Unit 02",
-        "leadTime": "5",
-        "status": "2",
-        "statusRemarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
-        "remarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analysis to the implementation, testing, and deployment phases. The team has demonstrated consistent diligence and commitment to meeting deadlines while ensuring that quality standards are adhered to across all stages of the project. Throughout the initiation phase, detailed planning sessions were conducted, which involved brainstorming sessions, requirement-gathering meetings, and in-depth discussions with stakeholders. These sessions were instrumental in clarifying the scope of the project, identifying potential risks, and establishing a realistic timeline for deliverables. The team utilized a structured approach to document all requirements, ensuring that there was ensuring that there was her"
+      ],
+      "status": "2",
+      "statusRemarks": "This item subgroup is not for use right now."
     }
+  },
+  "saveAndDelete": {
+    "itemSubgroupCode": "S2",
+    "itemSubgroupName": "Oil",
+    "itemGroupQuery": "Hard",
+    "itemGroupName": "Hard Steel",
+    "unitQuery": "Kil",
+    "unitName": "Kilogram",
+    "leadTime": "5",
+    "status": "2",
+    "statusRemarks": "This item is not for use right now."
+  },
+  "duplicateError": {
+    "itemSubgroupCode": "S3",
+    "itemSubgroupName": "Lubrication",
+    "itemGroupQuery": "Qua",
+    "itemGroupName": "Quality Equipment",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "status": "2",
+    "statusRemarks": "This item is not for use right now."
+  },
+  "saveWithMaxChar": {
+    "itemSubgroupCode": "S8",
+    "itemSubgroupName": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "itemGroupQuery": "itemg",
+    "itemGroupName": "ItemGroup 02",
+    "unitQuery": "unit",
+    "unitName": "Unit 02",
+    "leadTime": "5",
+    "status": "2",
+    "statusRemarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement anal",
+    "remarks": "The purpose of this document is to provide comprehensive remarks regarding the current project, its progress, and the overall evaluation of the tasks undertaken by the team. Over the course of the project timeline, a variety of activities have been executed, ranging from the initial requirement analysis to the implementation, testing, and deployment phases. The team has demonstrated consistent diligence and commitment to meeting deadlines while ensuring that quality standards are adhered to across all stages of the project. Throughout the initiation phase, detailed planning sessions were conducted, which involved brainstorming sessions, requirement-gathering meetings, and in-depth discussions with stakeholders. These sessions were instrumental in clarifying the scope of the project, identifying potential risks, and establishing a realistic timeline for deliverables. The team utilized a structured approach to document all requirements, ensuring that there was ensuring that there was her"
+  }
 }

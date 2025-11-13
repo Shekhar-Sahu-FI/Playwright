@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { FormLayout } from '../utils/form-layout';
+import { selectFromAutoSuggestion } from '../utils/field-utillity';
 
 export class ItemGroupMaster {
   private readonly page: Page;
@@ -50,10 +51,9 @@ export class ItemGroupMaster {
   }
 
   async fillCategory(query: string, category: string) {
-    await this.category.fill(query);
-    await this.selectSuggestion(category);
-
+    await selectFromAutoSuggestion(this.page, this.category, "cat", "Category 09");
   }
+
   async selectSuggestion(name: string) {
     const suggestion = this.page.locator(`td:has-text("${name}")`);
     await expect(suggestion).toBeVisible({ timeout: 6000 });
