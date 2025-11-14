@@ -1,0 +1,21 @@
+{
+  "save": {
+    "authGroupName": "AUGRP 01",
+    "description": "Group for GRN",
+    "approverDetail": [
+      {
+        "userName": "Shekhar",
+        "levelNo": 1,
+        "query": "She",
+        "printingCaption": "Shekhar Eng."
+      },
+      {
+        "userName": "Prem",
+        "levelNo": 2,
+        "query": "prem",
+        "printingCaption": "Premanand Sr. Eng"
+      }
+    ],
+    "statusNo": 1
+  }
+}

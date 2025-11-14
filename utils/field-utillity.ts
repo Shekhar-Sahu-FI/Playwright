@@ -18,31 +18,29 @@ type FieldSpec = {
 };
 
 export async function fieldParameterCheck(fields: FieldSpec[], page: Page) {
-
   for (const ele of fields) {
     await test.step(`Checking field: ${ele.label || 'Unnamed Field'}`, async () => {
-  //  Check mandatory label
-  if (ele.label && ele.mandatory) {
-    const labelLocator = page.locator(`label:has-text("${ele.label}")`);
-    const star = labelLocator.locator('span.text-destructive');
-    await expect.soft(star, `${ele.label} should have * mark for mandatory`).toHaveText('*');
-  }
+      //  Check mandatory label
+      if (ele.label && ele.mandatory) {
+        const labelLocator = page.locator(`label:has-text("${ele.label}")`);
+        const star = labelLocator.locator('span.text-destructive');
+        await expect.soft(star, `${ele.label} should have * mark for mandatory`).toHaveText('*');
+      }
 
-  //  Check disabled/enabled
-  if (ele.disabled) {
-    await expect.soft(ele.field, `${ele.label} should be disabled`).toBeDisabled();
-  }
+      //  Check disabled/enabled
+      if (ele.disabled) {
+        await expect.soft(ele.field, `${ele.label} should be disabled`).toBeDisabled();
+      }
 
-  if (ele.type === 'text' || ele.type === 'textarea' || ele.type === 'email') {
-    await textFieldParameter(ele, page);
-  }
+      if (ele.type === 'text' || ele.type === 'textarea' || ele.type === 'email') {
+        await textFieldParameter(ele, page);
+      }
 
-  if (ele.type === 'dropdown') {
-    await dropdownFieldParameter(ele, page);
+      if (ele.type === 'dropdown') {
+        await dropdownFieldParameter(ele, page);
+      }
+    });
   }
-});
-}
-
 }
 
 export async function checkTabOrderByFocus(page: Page, expectedFields: Locator[]) {
@@ -199,21 +197,20 @@ export async function dropdownFieldParameter(ele: FieldSpec, page: Page) {
 
 export async function selectFromAutoSuggestion(
   page: Page,
-  inputField: Locator,
+  inputFields: Locator,
   query: string,
   valueToSelect: string,
-  timeout: number = 20000,
+  index: number,
 ) {
-  console.log(`🔍 Searching for "${valueToSelect}" using query "${query}"`);
+  const timeout = 20000;
 
-  // Step 1: Type query slowly
+  const inputField = inputFields.nth(index);
   await inputField.fill('');
   await inputField.type(query, { delay: 100 });
 
   // Step 2: Define the table
   const suggestionTable = page.locator('table:has(th:has-text("ID"))');
 
-  console.log('⌛ Waiting for autosuggestion table to appear...');
   for (let i = 0; i < 10; i++) {
     if (await suggestionTable.isVisible()) break;
     await page.waitForTimeout(1000);
@@ -226,9 +223,7 @@ export async function selectFromAutoSuggestion(
   const suggestionRow = suggestionTable.locator('tr', { hasText: valueToSelect });
   await suggestionRow.waitFor({ state: 'visible', timeout });
   await suggestionRow.scrollIntoViewIfNeeded();
-  await suggestionRow.click();
+  await suggestionRow.press('Enter');
 
-  // Step 5: Confirm field value updated
   await expect(inputField).toHaveValue(valueToSelect, { timeout });
-  console.log(`✅ Selected suggestion: "${valueToSelect}"`);
 }
