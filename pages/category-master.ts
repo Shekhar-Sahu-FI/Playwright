@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout'; 
+import { FormLayout } from '../utils/form-layout';
+import { fillWithRetry } from '../utils/field-utillity';
 
 export class CategoryMaster {
   private readonly page: Page;
@@ -15,7 +16,7 @@ export class CategoryMaster {
 
   constructor(page: Page) {
     this.page = page;
-    this.formLayout = new FormLayout(page); 
+    this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="code"]');
     this.categoryName = page.locator('[name="itemCategoryName"]');
@@ -27,15 +28,15 @@ export class CategoryMaster {
   }
 
   async isCategoryMasterPage() {
-    await this.page.getByText('unit-master').isVisible();
+    await this.page.getByText('category-master').isVisible();
   }
 
   async fillCode(code: string) {
-    await this.code.fill(code);
+    await fillWithRetry(this.code, code);
   }
 
   async fillCategoryName(categoryName: string) {
-    await this.categoryName.fill(categoryName);
+    await fillWithRetry(this.categoryName, categoryName);
   }
 
   async selectStatusNo(status: string) {
@@ -46,38 +47,37 @@ export class CategoryMaster {
     await this.statusRemarks.fill(statusRemarks);
   }
 
-  async fillCategoryMasterForm(data:any) {
+  async fillCategoryMasterForm(data: any) {
     await this.fillCode(data.code);
     await this.fillCategoryName(data.name);
     await this.selectStatusNo(data.status);
-    if(data.statusRemarks){
+    if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
-    await this.formLayout.saveData("save");
+    await this.formLayout.saveData('save');
   }
 
-   async getErrorStates() {
+  async getErrorStates() {
     return {
-        codeErrorVisible: await this.codeError.isVisible(),
-        nameErrorVisible: await this.categoryNameError.isVisible(),
+      codeErrorVisible: await this.codeError.isVisible(),
+      nameErrorVisible: await this.categoryNameError.isVisible(),
     };
-    }
+  }
 
   getRowByCode(code: string) {
     return this.page.locator('tr', {
-      has: this.page.locator(`td >> text=${code}`)
+      has: this.page.locator(`td >> text=${code}`),
     });
-  }  
+  }
 
-  async  verifyFormData( data: any) {
+  async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
     await expect(this.categoryName).toHaveValue(data.name);
-    if(data.status){
+    if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
   }
-  
 }

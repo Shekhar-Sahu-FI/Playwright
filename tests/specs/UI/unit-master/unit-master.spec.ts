@@ -50,11 +50,11 @@ test.describe('Unit Master Full UI Tests @testUnitMaster', () => {
     await page.goto(`https://stageapp.arpaerp.com/master/unit-master`);
   });
 
-  test('New Unit creation 1 @saveUnitNew1', async ({ page }) => {
+  test('New Unit creation  @saveUnit_1', async ({ page }) => {
     await formOperation.saveAndVerify(testData.save1);
   });
 
-  test('New Unit creation 2 @saveNew2', async ({ page }) => {
+  test('New Unit creation 2 @saveNew_2', async ({ page }) => {
     await formOperation.saveAndVerify(testData.save2);
   });
 

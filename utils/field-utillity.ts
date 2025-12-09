@@ -227,3 +227,21 @@ export async function selectFromAutoSuggestion(
 
   await expect(inputField).toHaveValue(valueToSelect, { timeout });
 }
+
+export async function fillWithRetry(locator: Locator, value: string) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    await locator.fill(''); // clear
+    await locator.pressSequentially(value); // type slowly & reliably
+    await locator.blur();
+
+    // wait for input value to settle
+    const current = await locator.inputValue();
+    if (current.trim() === value.trim()) {
+      return; // success
+    }
+
+    await locator.click();
+  }
+
+  throw new Error(`❌ Failed to set value '${value}' after retries`);
+}

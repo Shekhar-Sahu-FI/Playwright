@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { FormLayout } from '../utils/form-layout';
+import { fillWithRetry } from '../utils/field-utillity';
 import { selectFromAutoSuggestion } from '../utils/field-utillity';
 
 export class ItemGroupMaster {
@@ -15,14 +16,13 @@ export class ItemGroupMaster {
   private readonly confirmation: Locator;
   private readonly category: Locator;
 
-
   constructor(page: Page) {
     this.page = page;
     this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="itemGroupCode"]');
     this.groupName = page.locator('[name="itemGroupName"]');
-    this.category = page.getByPlaceholder("Ex - Welding Consumables")
+    this.category = page.getByPlaceholder('E.g. - Welding Consumables');
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
@@ -35,23 +35,45 @@ export class ItemGroupMaster {
   }
 
   async fillCode(code: string) {
-    await this.code.fill(code);
+    await fillWithRetry(this.code, code);
   }
 
   async fillGroupName(groupName: string) {
-    await this.groupName.fill(groupName);
+    await fillWithRetry(this.groupName, groupName);
   }
 
   async selectStatusNo(status: string) {
     await this.statusNo.selectOption(status);
+    await expect(this.statusNo).toHaveValue(status);
   }
 
   async fillStatusRemarks(statusRemarks: string) {
-    await this.statusRemarks.fill(statusRemarks);
+    await fillWithRetry(this.statusRemarks, statusRemarks);
   }
 
   async fillCategory(query: string, category: string) {
-    await selectFromAutoSuggestion(this.page, this.category, "cat", "Category 09");
+    await selectFromAutoSuggestion(this.page, this.category, 'cat', 'Category 09');
+  }
+
+  async clickAdvanceSearch() {
+    const parent = this.page.locator('div', {
+      has: this.page.locator('[placeholder="E.g. - Welding Consumables"]'),
+    });
+
+    await parent.locator('button[title="Advance Search"]').click();
+  }
+
+  async selectCategory(categoryName: string) {
+    await this.clickAdvanceSearch();
+    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+
+    await this.page
+      .locator('tr', { has: this.page.locator(`td span:text-is("${categoryName}")`) })
+      .locator('label:has(input[type="radio"])')
+      .click();
+
+    await this.formLayout.clickOk();
+    await expect(this.code).toHaveValue(/.+/);
   }
 
   async selectSuggestion(name: string) {
@@ -77,7 +99,7 @@ export class ItemGroupMaster {
     if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
-    await this.formLayout.saveData("save");
+    await this.formLayout.saveData('save');
   }
 
   async getErrorStates() {
@@ -89,7 +111,7 @@ export class ItemGroupMaster {
 
   getRowByCode(code: string) {
     return this.page.locator('tr', {
-      has: this.page.locator(`td >> text=${code}`)
+      has: this.page.locator(`td >> text=${code}`),
     });
   }
 
@@ -103,5 +125,4 @@ export class ItemGroupMaster {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
   }
-
 }

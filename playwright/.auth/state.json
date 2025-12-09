@@ -2,7 +2,7 @@
   "cookies": [],
   "origins": [
     {
-      "origin": "http://localhost:5173",
+      "origin": "https://stageapp.arpaerp.com",
       "localStorage": [
         {
           "name": "themeVars",
@@ -11,10 +11,6 @@
         {
           "name": "theme",
           "value": "light"
-        },
-        {
-          "name": "authToken",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2hla2hhci5zYWh1QGFycGFlcnAuY29tIiwidGVuYW50Tm8iOiIyIiwidXNlclByb2ZpbGVJZCI6IlNoZWtoYXIyIiwidXNlcklkIjoiNiIsInN1YiI6InNoZWtoYXIuc2FodUBhcnBhZXJwLmNvbSIsImp0aSI6ImIyY2FjMzE3LWYwODMtNDk5Ny04MWMwLWY1MTE1Y2FiNWEwMiIsImV4cCI6MTc5Mzk2NzM5OSwiaXNzIjoiYXJwYWVycC5jb20iLCJhdWQiOiJhcnBhZXJwLmNvbSJ9.Wu3BbWAsaB_LFvKe-BfdSZGq62Z7BhT-0nZIO84mlHg"
         }
       ]
     }

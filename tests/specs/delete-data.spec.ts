@@ -1,9 +1,8 @@
 import { test, expect, request as playwrightRequest } from '@playwright/test';
 
-const baseURL = 'http://192.168.0.35:5302/api';
+const baseURL = 'https://stageapi.arpaerp.com/api';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic2hla2hhci5zYWh1QGFycGFlcnAuY29tIiwidGVuYW50Tm8iOiIyNyIsInVzZXJQcm9maWxlSWQiOiJBZG1pbiIsInVzZXJJZCI6IjE2Iiwic3ViIjoic2hla2hhci5zYWh1QGFycGFlcnAuY29tIiwianRpIjoiY2RlYWQ3N2UtYzViOS00NjIyLTk2MDktMTNlN2U4MjdmMmI5IiwiZXhwIjoyNzA4NTA2MTUyLCJpc3MiOiJhcnBhZXJwLmNvbSIsImF1ZCI6ImFycGFlcnAuY29tIn0.B2nk74W7BE2xyWMWBgqWvveliUmk3yAD8rc6NwRl6fA';
-
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwidGVuYW50Tm8iOiIxNCIsInVzZXJQcm9maWxlSWQiOiJBZG1pbiIsInVzZXJJZCI6IjMxIiwic2Vzc2lvbklkIjoiMDlkNzczOTQtZTdiZi00NDUwLWJjY2ItM2YzMDIxM2YzN2ZkIiwic3ViIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwianRpIjoiMGQ1YzRhYmQtMzhjMi00ODEwLWFhZTQtYTZjZmJjZDE1YjY0IiwiZXhwIjoxNzY1MjY3MTg0LCJpc3MiOiJhcnBhZXJwLmNvbSIsImF1ZCI6ImFycGFlcnAuY29tIn0.K67psBBDOUEct_-UV1zsojTmU8gRF5NqVHe-E0FsA5k';
 const masterEndpoints = {
   StateMaster: {
     getAll: '/GlobalData/StateMaster/GetAll',
@@ -14,17 +13,27 @@ const masterEndpoints = {
     delete: '/Organization/DepartmentMaster/Delete',
   },
   ItemCategoryMaster: {
-    getAll: '/Inventory/ItemCategoryMaster/GetAll',
-    delete: '/Inventory/ItemCategoryMaster/Delete',
+    getAll: '/Master/ItemCategoryMaster/GetAll',
+    delete: '/master/ItemCategoryMaster/Delete',
+  },
+
+  ItemGroupMaster: {
+    getAll: '/Master/ItemGroupMaster/GetAll',
+    delete: '/Master/ItemGroupMaster/Delete',
+  },
+
+  UnitMaster: {
+    getAll: '/Master/UnitMaster/GetAll',
+    delete: '/Master/UnitMaster/Delete',
   },
   // Add more masters here as needed...
 };
 
 // ✅ Read master name from CLI (e.g., `--project="StateMaster"`)
-const masterName = 'StateMaster';
+const masterName = 'UnitMaster';
 
 test.describe(`Delete Data By API`, () => {
-  test(`Delete all records from StateMaster`, async ({ request }) => {
+  test(`Delete all records from ${masterName}`, async ({ request }) => {
     const masterConfig = masterEndpoints[masterName];
     if (!masterConfig) {
       throw new Error(`❌ No endpoint configuration found for master: ${masterName}`);
@@ -43,7 +52,10 @@ test.describe(`Delete Data By API`, () => {
     });
     console.log('Get Response Status:', getResponse);
     expect(getResponse.ok()).toBeTruthy();
-    const allData = await getResponse.json();
+
+    const data = await getResponse.json();
+    const allData = data.data;
+    console.log(allData);
 
     if (!Array.isArray(allData) || allData.length === 0) {
       console.log(`✅ No records found for ${masterName}. Nothing to delete.`);

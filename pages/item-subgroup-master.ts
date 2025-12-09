@@ -101,6 +101,27 @@ export class ItemSubgroupMaster {
     await this.subgroupName.fill(subgroupName);
   }
 
+  async clickAdvanceSearch() {
+    const parent = this.page.locator('div', {
+      has: this.page.locator('[placeholder="E.g. - Welding Consumables"]'),
+    });
+
+    await parent.locator('button[title="Advance Search"]').click();
+  }
+
+  async selectGroup(groupName: string) {
+    await this.clickAdvanceSearch();
+    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+
+    await this.page
+      .locator('tr', { has: this.page.locator(`td span:text-is("${groupName}")`) })
+      .locator('label:has(input[type="radio"])')
+      .click();
+
+    await this.formLayout.clickOk();
+    await expect(this.subgroupCode).toHaveValue(/.+/);
+  }
+
   /** Fill group field and select suggestion. */
   async fillGroup(query: string, group: string) {
     await selectFromAutoSuggestion(this.page, this.itemGroupName, query, group);

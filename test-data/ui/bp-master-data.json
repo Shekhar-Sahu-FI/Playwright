@@ -1,0 +1,61 @@
+{
+  "bpName": "METSSA ADVANCED GLOBAL ENGINEERING AND INDUSTRIAL SERVICES PRIVATE LIMITED",
+  "website": "https://metssa-global-engineering.com",
+  "msmeNo": "MSME2025ENG998877",
+  "printingName": "METSSA ADVANCED GLOBAL ENGINEERING",
+  "customer": true,
+  "supplier": true,
+  "transporter": false,
+  "status": "1",
+  "statusRemarks": "",
+
+  "locationDetail": [
+    {
+      "locationName": "Corporate Headquarters Industrial Complex",
+      "locationTypeNo": "2",
+      "gstRegTypeNo": "1",
+      "gstinNo": "27AAACM9876Q1ZP",
+      "cinNo": "U12345MH2001PTC765432",
+      "address1": "Plot No. 44, Phase 2 Industrial Estate",
+      "address2": "Tech Park Road, Sector 9",
+      "address3": "MIDC Manufacturing Zone",
+      "countryNo": "73",
+      "stateQuery": "maha",
+      "stateName": "Maharastra",
+      "cityName": "Pune",
+      "pincode": "411001"
+    },
+    {
+      "locationName": "Corporate Regional Industrial Complex",
+      "locationTypeNo": "2",
+      "gstRegTypeNo": "1",
+      "gstinNo": "27AAACM9876Q1ZP",
+      "cinNo": "U12345MH2001PTC765432",
+      "address1": "Plot No. 44, Phase 2 Industrial Estate",
+      "address2": "Tech Park Road, Sector 9",
+      "address3": "MIDC Manufacturing Zone",
+      "countryNo": "73",
+      "stateQuery": "maha",
+      "stateName": "Maharastra",
+      "cityName": "Pune",
+      "pincode": "411001"
+    }
+  ],
+
+  "contactPersonDetail": [
+    {
+      "name": "Rohit Kumar Singh",
+      "designation": "Senior Procurement Manager",
+      "contactNo": "9876543210",
+      "email": "rohit.singh@metssa.com",
+      "remarks": "Primary procurement contact for industrial and engineering material sourcing"
+    },
+    {
+      "name": "Rohit Kumar Yadaw",
+      "designation": "Senior Procurement Manager",
+      "contactNo": "9876543210",
+      "email": "rohit.Yadaw@metssa.com",
+      "remarks": "Primary procurement contact for industrial and engineering material sourcing"
+    }
+  ]
+}

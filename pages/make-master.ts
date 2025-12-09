@@ -1,5 +1,5 @@
-import { expect, Page, Locator } from "@playwright/test";
-import { FormLayout } from "../utils/form-layout";
+import { expect, Page, Locator } from '@playwright/test';
+import { FormLayout } from '../utils/form-layout';
 
 export class MakeMaster {
   private readonly page: Page;
@@ -19,13 +19,13 @@ export class MakeMaster {
     this.code = page.locator('[name="code"]');
     this.makeName = page.locator('[name="makeName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
-    this.codeError = page.getByText("Duplicate code is not allowed.");
-    this.makeNameError = page.getByText("Duplicate Make Name is not allowed.");
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
+    this.codeError = page.getByText('Duplicate code is not allowed.');
+    this.makeNameError = page.getByText('Duplicate Make Name is not allowed.');
   }
 
   async isMakeMasterPage() {
-    await this.page.getByText("make-master").isVisible();
+    await this.page.getByText('make-master').isVisible();
   }
 
   async fillCode(code: string) {
@@ -51,7 +51,7 @@ export class MakeMaster {
     if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
-    await this.formLayout.saveData("save");
+    await this.formLayout.saveData('save');
   }
 
   async getErrorStates() {
@@ -64,7 +64,7 @@ export class MakeMaster {
   getRowByCode(code: string) {
     const dropdown = this.page.locator('select');
     dropdown.selectOption('100');
-    return this.page.locator("tr", {
+    return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`),
     });
   }
