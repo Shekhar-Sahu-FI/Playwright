@@ -1,7 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { FormLayout } from '../utils/form-layout';
-import { fillWithRetry } from '../utils/field-utillity';
-import { selectFromAutoSuggestion } from '../utils/field-utillity';
+import { fillWithRetry, selectFromAutoSuggestion } from '../utils/field-utillity';
 
 export class ItemGroupMaster {
   private readonly page: Page;
@@ -13,7 +12,7 @@ export class ItemGroupMaster {
   private readonly statusRemarks: Locator;
   private readonly codeError: Locator;
   private readonly groupNameError: Locator;
-  private readonly confirmation: Locator;
+  private readonly confirmationHeader: Locator;
   private readonly category: Locator;
 
   constructor(page: Page) {
@@ -25,13 +24,14 @@ export class ItemGroupMaster {
     this.category = page.getByPlaceholder('E.g. - Welding Consumables');
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
-    this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
+    this.confirmationHeader = page.getByRole('heading', { name: 'Confirmation' });
     this.codeError = page.getByText('Duplicate Code is not allowed');
     this.groupNameError = page.getByText('Duplicate Item Item Group Name is not allowed.');
   }
 
   async isItemGroupMasterPage() {
-    await this.page.getByText('item-group-master').isVisible();
+    // Ideally check unique elements, or URL
+    await expect(this.page).toHaveURL(/.*item-group-master/);
   }
 
   async fillCode(code: string) {
@@ -52,51 +52,57 @@ export class ItemGroupMaster {
   }
 
   async fillCategory(query: string, category: string) {
-    await selectFromAutoSuggestion(this.page, this.category, 'cat', 'Category 09');
+    // Fixed: Now using arguments instead of hardcoded strings
+    await selectFromAutoSuggestion(this.page, this.category, query, category);
   }
 
   async clickAdvanceSearch() {
+    // Locating button relative to the input field's container
+    // Ideally this would have a unique ID or consistent attribute
     const parent = this.page.locator('div', {
-      has: this.page.locator('[placeholder="E.g. - Welding Consumables"]'),
+      has: this.category,
     });
-
     await parent.locator('button[title="Advance Search"]').click();
   }
 
   async selectCategory(categoryName: string) {
     await this.clickAdvanceSearch();
-    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+    // Assuming '100' is a page size or filter. Optimizing locator:
+    // Ideally avoid magic values like '100' unless it's constant config
+    await this.page.locator('select').filter({ hasText: '10' }).first().selectOption('100'); 
 
-    await this.page
-      .locator('tr', { has: this.page.locator(`td span:text-is("${categoryName}")`) })
-      .locator('label:has(input[type="radio"])')
-      .click();
+    // Find the row with the category name
+    const targetRow = this.page.locator('tr')
+      .filter({ has: this.page.getByText(categoryName, { exact: true }) });
+      
+    await targetRow.locator('label:has(input[type="radio"])').click();
 
-    await this.formLayout.clickOk();
-    await expect(this.code).toHaveValue(/.+/);
+    await this.formLayout.clickOkIfVisible();
+    
+    // Ensure the selection propagated
+    // Using a regex or non-empty check for code value
+    await expect(this.code).toHaveValue(/.+/); 
   }
 
+  /**
+   * Helper to select a suggestion from a specific table cell.
+   * If this was intended for the 'Advance Search' table, standard locators are better.
+   */
   async selectSuggestion(name: string) {
-    const suggestion = this.page.locator(`td:has-text("${name}")`);
+    const suggestion = this.page.getByRole('cell', { name: name, exact: true });
     await expect(suggestion).toBeVisible({ timeout: 6000 });
-
-    for (let i = 0; i < 3; i++) {
-      try {
-        await suggestion.click();
-        break;
-      } catch (err) {
-        if (i === 2) throw err;
-        await this.page.waitForTimeout(500);
-      }
-    }
+    await suggestion.click();
   }
 
   async fillItemGroupMasterForm(data: any) {
     await this.fillCode(data.code);
     await this.fillGroupName(data.name);
     await this.selectStatusNo(data.status);
-    await this.fillCategory(data.query, data.category);
-    if (data.statusRemarks) {
+    
+    // Correct usage of data properties
+    await this.fillCategory(data.categoryQuery || 'cat', data.category || data.categoryName); 
+
+    if (data.statusRemarks && data.status === '2') {
       await this.fillStatusRemarks(data.statusRemarks);
     }
     await this.formLayout.saveData('save');
@@ -111,7 +117,7 @@ export class ItemGroupMaster {
 
   getRowByCode(code: string) {
     return this.page.locator('tr', {
-      has: this.page.locator(`td >> text=${code}`),
+      has: this.page.locator('td', { hasText: code }),
     });
   }
 

@@ -200,7 +200,7 @@ export async function selectFromAutoSuggestion(
   inputFields: Locator,
   query: string,
   valueToSelect: string,
-  index: number,
+  index: number = 0,
 ) {
   const timeout = 20000;
 

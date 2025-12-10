@@ -15,86 +15,81 @@ export class FormLayout {
   private readonly yesBtn: Locator;
   private readonly noBtn: Locator;
   private readonly okBtn: Locator;
-  private readonly confirmation: Locator;
-  private readonly error: Locator;
+  private readonly confirmationHeader: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.saveBtn = page.getByRole('button', { name: 'Save' });
+    this.addBtn = page.getByTitle('New item (ctrl + n)');
+    this.saveBtn = page.getByRole('button', { name: 'Save', exact: true });
     this.updateBtn = page.getByRole('button', { name: 'Save Changes' });
-    this.addBtn = page.locator('[title="New item (ctrl + n)"]');
-    this.deleteBtn = page.locator('button', { hasText: 'Delete' });
-    this.saveOptionBtn = page.locator('[aria-label="More options"]');
+    this.deleteBtn = page.getByRole('button', { name: 'Delete' });
+    this.saveOptionBtn = page.getByLabel('More options');
     this.cancelBtn = page.getByRole('button', { name: 'Cancel' });
-    this.yesBtn = page.locator('button', { hasText: 'Yes' });
-    this.noBtn = page.locator('button', { hasText: 'No' });
-    this.okBtn = page.locator('button', { hasText: 'OK' });
-    this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
-    this.error = page.getByRole('heading', { name: 'Confirmation' });
+    this.yesBtn = page.getByRole('button', { name: 'Yes' });
+    this.noBtn = page.getByRole('button', { name: 'No' });
+    this.okBtn = page.getByRole('button', { name: 'OK' });
+    this.confirmationHeader = page.getByRole('heading', { name: 'Confirmation' });
   }
 
   /** Clicks the Add button to open a new form. */
   async clickAdd() {
     await this.addBtn.click();
   }
+
   /** Clicks the Save button to save changes. */
   async clickSave() {
     await this.saveBtn.click();
   }
+
   /** Clicks the Update button to update changes. */
   async clickUpdate() {
     await this.updateBtn.click();
   }
+
   /** Clicks the Save Option button for more options. */
   async clickSaveOption() {
     await this.saveOptionBtn.click();
   }
+
   /** Clicks the Delete button to delete the record. */
   async clickDelete() {
     await this.deleteBtn.click();
   }
+
   /** Clicks the Yes button in confirmation dialogs. */
   async clickYes() {
     await this.yesBtn.click();
   }
+
   /** Clicks the Cancel button. */
   async clickCancel() {
     await this.cancelBtn.click();
   }
+
   /** Clicks the No button in confirmation dialogs. */
   async clickNo() {
     await this.noBtn.click();
   }
 
-  async clickOk() {
-    try {
-      if (await this.okBtn.isVisible({ timeout: 500 })) {
-        await this.okBtn.click();
-        return true;
-      } else {
-        console.log('OK button not visible');
-        return false;
-      }
-    } catch {
-      console.log('OK button not found');
-      return false;
+  /** 
+   * Clicks the OK button if visible. 
+   * @returns true if clicked, false otherwise.
+   */
+  async clickOkIfVisible(): Promise<boolean> {
+    if (await this.okBtn.isVisible()) {
+      await this.okBtn.click();
+      return true;
     }
+    return false;
   }
 
-  async clickOkIfVisible() {
-    try {
-      if (await this.okBtn.isVisible()) {
-        await this.okBtn.click();
-      }
-    } catch {}
-  }
-
+  /**
+   * Clicks the Cancel button if visible.
+   */
   async clickCancelIfVisible() {
-    try {
-      if (await this.cancelBtn.isVisible()) {
-        await this.cancelBtn.click();
-      }
-    } catch {}
+    if (await this.cancelBtn.isVisible()) {
+      await this.cancelBtn.click();
+    }
   }
 
   /**
@@ -104,51 +99,41 @@ export class FormLayout {
   async saveData(mode: 'save' | 'update') {
     if (mode === 'save') {
       await this.clickSave();
-    } else if (mode === 'update') {
+    } else {
       await this.clickUpdate();
-      console.log('Update Clicked');
     }
-    try {
-      if (await this.confirmation.isVisible()) {
-        await this.clickYes();
-        const message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.';
-        await expect(this.page.getByText(message)).toBeVisible();
-        await this.cancelBtn.click();
-      }
-    } catch (err) {
-      console.error('Confirmation not found or error occurred', err);
-    }
-  }
 
-  /** Clicks Save and Yes for confirmation. */
-  async clickSaveAndYes(mode: 'save' | 'update') {
-    await this.clickSave();
     try {
-      // if (await this.confirmation.isVisible()) {
-      console.log('this is click save confirmation');
+      // Wait for confirmation to appear
+      await expect(this.confirmationHeader).toBeVisible({ timeout: 5000 });
       await this.clickYes();
-      const message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.';
-      await expect(this.page.getByText(message)).toBeVisible();
-      // }
-    } catch (err) {
-      console.error('Confirmation not found or error occurred', err);
-      await this.clickOk();
-      await this.clickCancel();
-      await this.clickAdd();
+
+      // Use regex to be robust against spacing issues (e.g. 'Successfully  created.')
+      const messageRegex = mode === 'save' ? /Successfully\s+created/ : /Successfully\s+updated/;
+      await expect(this.page.getByText(messageRegex)).toBeVisible();
+
+      await this.clickCancelIfVisible();
+    } catch (error) {
+      console.error(`Error in saveData (${mode}):`, error);
+      throw error; // Re-throw to fail the test if the flow is broken
     }
   }
 
-  /** Handles record deletion and confirmation. */
+  /** 
+   * Handles record deletion and confirmation. 
+   */
   async deleteData() {
     await this.clickSaveOption();
     await this.clickDelete();
+
     try {
-      if (await this.confirmation.isVisible()) {
+      if (await this.confirmationHeader.isVisible()) {
         await this.clickYes();
-        await this.cancelBtn.click();
+        await this.clickCancelIfVisible();
       }
-    } catch (err) {
-      console.error('Confirmation not found or error occurred', err);
+    } catch (error) {
+      console.error('Error in deleteData:', error);
+      throw error;
     }
   }
 }
