@@ -114,6 +114,7 @@ export class FormLayout {
         const message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.';
         await expect(this.page.getByText(message)).toBeVisible();
         await this.cancelBtn.click();
+        console.log('After Cancel Clicked');
       }
     } catch (err) {
       console.error('Confirmation not found or error occurred', err);

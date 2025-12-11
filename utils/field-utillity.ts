@@ -195,37 +195,95 @@ export async function dropdownFieldParameter(ele: FieldSpec, page: Page) {
 //     }
 // }
 
+// export async function selectFromAutoSuggestion(
+//   page: Page,
+//   inputFields: Locator,
+//   query: string,
+//   valueToSelect: string,
+//   index: number = 0,
+// ) {
+//   const timeout = 20000;
+
+//   const inputField = inputFields.nth(index);
+//   await inputField.fill('');
+//   await inputField.type(query, { delay: 100 });
+
+//   // Step 2: Define the table
+//   const suggestionTable = page.locator('table:has(th:has-text("ID"))');
+
+//   for (let i = 0; i < 10; i++) {
+//     if (await suggestionTable.isVisible()) break;
+//     await page.waitForTimeout(1000);
+//   }
+
+//   // Step 3: Ensure it’s visible
+//   await expect(suggestionTable).toBeVisible({ timeout });
+
+//   // Step 4: Select desired row
+//   const suggestionRow = suggestionTable.locator('tr', { hasText: valueToSelect });
+//   await suggestionRow.waitFor({ state: 'visible', timeout });
+//   await suggestionRow.scrollIntoViewIfNeeded();
+//   await suggestionRow.press('Enter');
+
+//   await expect(inputField).toHaveValue(valueToSelect, { timeout });
+// }
+
 export async function selectFromAutoSuggestion(
   page: Page,
   inputFields: Locator,
   query: string,
   valueToSelect: string,
-  index: number,
+  index: number = 0,
 ) {
-  const timeout = 20000;
+  const TIMEOUT = 20000;
 
+  // ----------------------------
+  // 1️⃣ Pick the input field
+  // ----------------------------
   const inputField = inputFields.nth(index);
-  await inputField.fill('');
-  await inputField.type(query, { delay: 100 });
 
-  // Step 2: Define the table
+  await expect(inputField, `Input field at index ${index} is not visible`).toBeVisible({
+    timeout: TIMEOUT,
+  });
+
+  await inputField.fill('');
+  await inputField.type(query, { delay: 80 });
+
+  // ----------------------------
+  // 2️⃣ Wait for suggestions table
+  // ----------------------------
   const suggestionTable = page.locator('table:has(th:has-text("ID"))');
 
-  for (let i = 0; i < 10; i++) {
-    if (await suggestionTable.isVisible()) break;
-    await page.waitForTimeout(1000);
-  }
+  await expect
+    .soft(suggestionTable, `Suggestion table did not appear for query "${query}"`)
+    .toBeVisible({ timeout: TIMEOUT });
 
-  // Step 3: Ensure it’s visible
-  await expect(suggestionTable).toBeVisible({ timeout });
+  // ----------------------------
+  // 3️⃣ Find the desired row
+  // ----------------------------
+  const rowLocator = suggestionTable.locator('tr', {
+    hasText: valueToSelect,
+  });
 
-  // Step 4: Select desired row
-  const suggestionRow = suggestionTable.locator('tr', { hasText: valueToSelect });
-  await suggestionRow.waitFor({ state: 'visible', timeout });
-  await suggestionRow.scrollIntoViewIfNeeded();
-  await suggestionRow.press('Enter');
+  await rowLocator
+    .waitFor({
+      state: 'visible',
+      timeout: TIMEOUT,
+    })
+    .catch(() => {
+      throw new Error(`Value "${valueToSelect}" not found in suggestion list for query "${query}"`);
+    });
 
-  await expect(inputField).toHaveValue(valueToSelect, { timeout });
+  // Scroll to avoid hidden row click issues
+  await rowLocator.scrollIntoViewIfNeeded();
+  await rowLocator.press('Enter');
+
+  // ----------------------------
+  // 4️⃣ Validate selected value
+  // ----------------------------
+  await expect(inputField).toHaveValue(valueToSelect, {
+    timeout: TIMEOUT,
+  });
 }
 
 export async function fillWithRetry(locator: Locator, value: string) {

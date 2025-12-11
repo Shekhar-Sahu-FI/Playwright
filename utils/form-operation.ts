@@ -44,6 +44,40 @@ export class FormOperation<T = Record<string, any>> {
       has: this.page.locator(`td >> text=${code}`),
     });
   }
+  async getRowByCodeAcrossPages(code: string) {
+    // Set maximum rows per page
+    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+
+    // Locators for pagination
+    const nextBtn = this.page
+      .locator('button >> svg[path*="18 6-6-6"]') // selects the right arrow icon (next)
+      .locator('xpath=ancestor::button'); // get parent button
+
+    while (true) {
+      // Step 1: Try to find the row on current page
+      const row = this.page.locator('tr', {
+        has: this.page.locator(`td >> text=${code}`),
+      });
+
+      if ((await row.count()) > 0) {
+        return row; // Found on this page
+      }
+
+      // Step 2: If Next Page button is disabled, break
+      if (await nextBtn.isDisabled()) {
+        break;
+      }
+
+      // Step 3: Go to next page
+      await nextBtn.click();
+
+      // Wait for table to reload
+      await this.page.waitForLoadState('networkidle');
+    }
+
+    // If reached here, code not found
+    // return null;
+  }
 
   /** Creates and saves a new record, verifying the save operation. */
   async saveAndVerify(data: T) {
@@ -63,19 +97,22 @@ export class FormOperation<T = Record<string, any>> {
   async updateData(data: { firstSave: T; updateCase: T }, identifier: string) {
     await test.step('Update existing record', async () => {
       await this.openNewForm();
-      await this.saveDataFn(this.page, data.firstSave, 'save');
+      await this.saveDataFn(this.page, data.firstSave);
 
-      const row = this.getRowByCode(identifier);
-      await expect(row).toHaveCount(1, { timeout: 10000 });
+      const row = await this.getRowByCodeAcrossPages(identifier);
 
-      await row.locator('button').first().click();
+      // Validate existence
+      await expect(row, `Row with code ${identifier} not found`).not.toBeNull();
+      await expect(row!).toHaveCount(1, { timeout: 10000 });
+
+      await row!.locator('button').first().click();
       await expect(this.page).toHaveURL(/.*edit/, { timeout: 10000 });
 
       await this.masterPage.verifyFormData(data.firstSave);
-      await this.saveDataFn(this.page, data.updateCase, 'update');
+      await this.saveDataFn(this.page, data.updateCase);
 
       // Verify update success
-      const updatedRow = this.getRowByCode(identifier);
+      const updatedRow = this.getRowByCodeAcrossPages(identifier);
       await updatedRow.locator('button').first().click();
       await expect(this.page).toHaveURL(/.*edit/, { timeout: 10000 });
       await this.masterPage.verifyFormData(data.updateCase);

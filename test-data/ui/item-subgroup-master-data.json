@@ -49,18 +49,18 @@
     "firstSave": {
       "itemSubgroupCode": "S5",
       "itemSubgroupName": "Grinder Machine",
-      "itemGroupQuery": "Qua",
-      "itemGroupName": "Quality Equipment",
-      "unitQuery": "unit",
-      "unitName": "Unit 03",
-      "unitCode": "UN03",
+      "itemGroupQuery": "WOOD & S",
+      "itemGroupName": "WOOD & SUNMICA",
+      "unitQuery": "SET",
+      "unitName": "SET",
+      "unitCode": "SET",
       "leadTime": "5",
       "remarks": "This is for Grinder.",
       "isMaintainDimension": true,
       "dimensionIn": "1",
-      "dimensionUnitQuery": "unit",
-      "dimensionUnitName": "unit 03",
-      "dimensionUnitCode": "UN03",
+      "dimensionUnitQuery": "PCS",
+      "dimensionUnitName": "PCS",
+      "dimensionUnitCode": "PCS",
       "isMaintainBatchAndExpiry": false,
       "makeManagementTypeNo": "2",
       "status": "1"
@@ -68,34 +68,34 @@
     "updateCase": {
       "itemSubgroupCode": "S9",
       "itemSubgroupName": "Grinding Mill",
-      "itemGroupQuery": "ItemGroup",
-      "itemGroupName": "ItemGroup 02",
-      "unitQuery": "unit",
-      "unitName": "Unit 02",
-      "unitCode": "UN02",
+      "itemGroupQuery": "Trading",
+      "itemGroupName": "Trading Material",
+      "unitQuery": "CFT",
+      "unitName": "CFT",
+      "unitCode": "CFT",
       "leadTime": "5",
       "remarks": "This is for Grinding mill.",
       "isMaintainDimension": true,
       "dimensionIn": "2",
-      "dimensionUnitQuery": "unit",
-      "dimensionUnitName": "unit 06",
+      "dimensionUnitQuery": "CBM",
+      "dimensionUnitName": "CBM",
       "isMaintainBatchAndExpiry": true,
       "makeManagementTypeNo": "3",
       "itemSubgroupMasterMakeDetail": [
         {
-          "query": "make",
-          "makeName": "Make 03",
-          "makeCode": "MK03"
+          "query": "TS",
+          "makeName": "Tata Steel",
+          "makeCode": "TS"
         },
         {
-          "query": "make",
-          "makeName": "Make 05",
-          "makeCode": "MK05"
+          "query": "SAIL",
+          "makeName": "SAIL",
+          "makeCode": "SAIL"
         },
         {
-          "query": "make",
-          "makeName": "Make 06",
-          "makeCode": "MK06"
+          "query": "BIRLA",
+          "makeName": "BIRLA",
+          "makeCode": "BIRLA"
         }
       ],
       "status": "2",

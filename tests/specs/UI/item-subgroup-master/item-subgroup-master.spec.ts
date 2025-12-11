@@ -18,9 +18,12 @@ const SaveData = async (page: Page, data: ItemSubgroupMasterFormData, mode: 'sav
   });
   if (mode) {
     await test.step('Save and verify', async () => {
+      console.log('1 =====================>');
       await formLayout.saveData(mode);
+      console.log('2 =====================>');
       await expect(page).toHaveURL(/.*item-subgroup-master/);
-      const row = itemSubgroupMasterPage.getRowByCode(data.itemSubgroupName);
+      console.log('3 ========================>');
+      const row = itemSubgroupMasterPage.getRowByCodeAcrossPages(data.itemSubgroupName);
       await expect(row).toHaveCount(1);
     });
   }

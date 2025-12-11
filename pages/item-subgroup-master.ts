@@ -101,16 +101,12 @@ export class ItemSubgroupMaster {
     await this.subgroupName.fill(subgroupName);
   }
 
-  async clickAdvanceSearch() {
-    const parent = this.page.locator('div', {
-      has: this.page.locator('[placeholder="E.g. - Welding Consumables"]'),
-    });
-
-    await parent.locator('button[title="Advance Search"]').click();
+  async clickAdvanceSearch(input: Locator) {
+    await input.locator('xpath=following::button[@title="Advance Search"][1]').click();
   }
 
   async selectGroup(groupName: string) {
-    await this.clickAdvanceSearch();
+    await this.clickAdvanceSearch(this.itemGroupName);
     await this.page.locator('select:has(option[value="100"])').selectOption('100');
 
     await this.page
@@ -119,7 +115,19 @@ export class ItemSubgroupMaster {
       .click();
 
     await this.formLayout.clickOk();
-    await expect(this.subgroupCode).toHaveValue(/.+/);
+    await expect(this.code).toHaveValue(/.+/);
+  }
+
+  async selectUnit(unitName: string) {
+    await this.clickAdvanceSearch(this.unit);
+    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+
+    await this.page
+      .locator('tr', { has: this.page.locator(`td span:text-is("${unitName}")`) })
+      .locator('label:has(input[type="radio"])')
+      .click();
+
+    await this.formLayout.clickOk();
   }
 
   /** Fill group field and select suggestion. */
@@ -179,7 +187,7 @@ export class ItemSubgroupMaster {
 
   /** Fill make code and select suggestion. */
   async fillMake(query: string, makeName: string, index: number) {
-    await selectFromAutoSuggestion(this.page, this.makeName, makeName, query);
+    await selectFromAutoSuggestion(this.page, this.makeCode, makeName, query, index);
   }
 
   /** Check field parameters and constraints. */
@@ -255,9 +263,10 @@ export class ItemSubgroupMaster {
     }
 
     if (data.makeManagementTypeNo === '3' && data.itemSubgroupMasterMakeDetail?.length) {
+      await this.selectMakeManagementTypeNo(data.makeManagementTypeNo);
       for (let i = 0; i < data.itemSubgroupMasterMakeDetail.length; i++) {
-        const { query, makeName } = data.itemSubgroupMasterMakeDetail[i];
-        await this.fillMake(query, makeName, i);
+        const { query, makeName, makeCode } = data.itemSubgroupMasterMakeDetail[i];
+        await this.fillMake(query, makeCode, i);
       }
     }
 
@@ -273,6 +282,41 @@ export class ItemSubgroupMaster {
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`),
     });
+  }
+
+  async getRowByCodeAcrossPages(code: string) {
+    // Set maximum rows per page
+    await this.page.locator('select:has(option[value="100"])').selectOption('100');
+
+    // Locators for pagination
+    const nextBtn = this.page
+      .locator('button >> svg[path*="18 6-6-6"]') // selects the right arrow icon (next)
+      .locator('xpath=ancestor::button'); // get parent button
+
+    while (true) {
+      // Step 1: Try to find the row on current page
+      const row = this.page.locator('tr', {
+        has: this.page.locator(`td >> text=${code}`),
+      });
+
+      if ((await row.count()) > 0) {
+        return row; // Found on this page
+      }
+
+      // Step 2: If Next Page button is disabled, break
+      if (await nextBtn.isDisabled()) {
+        break;
+      }
+
+      // Step 3: Go to next page
+      await nextBtn.click();
+
+      // Wait for table to reload
+      await this.page.waitForLoadState('networkidle');
+    }
+
+    // If reached here, code not found
+    // return null;
   }
 
   /** Verify form data matches expected values. */
