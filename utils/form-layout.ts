@@ -112,6 +112,7 @@ export class FormLayout {
       if (await this.confirmation.isVisible()) {
         await this.clickYes();
         const message = mode === 'save' ? 'Successfully  created.' : 'Successfully  updated.';
+        console.log(mode, 'Waiting for message:', message);
         await expect(this.page.getByText(message)).toBeVisible();
         await this.cancelBtn.click();
         console.log('After Cancel Clicked');

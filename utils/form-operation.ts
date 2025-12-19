@@ -109,7 +109,7 @@ export class FormOperation<T = Record<string, any>> {
       await expect(this.page).toHaveURL(/.*edit/, { timeout: 10000 });
 
       await this.masterPage.verifyFormData(data.firstSave);
-      await this.saveDataFn(this.page, data.updateCase);
+      await this.saveDataFn(this.page, data.updateCase, 'update');
 
       // Verify update success
       const updatedRow = this.getRowByCodeAcrossPages(identifier);

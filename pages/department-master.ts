@@ -1,5 +1,5 @@
-import { Page, Locator, expect } from "@playwright/test";
-import { FormLayout } from "../utils/form-layout";
+import { Page, Locator, expect } from '@playwright/test';
+import { FormLayout } from '../utils/form-layout';
 
 export class DepartmentMaster {
   private readonly page: Page;
@@ -21,22 +21,22 @@ export class DepartmentMaster {
     this.departmentName = page.locator('[name="departmentName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
-    this.confirmation = page.getByRole("heading", { name: "Confirmation" });
-    this.codeError = page.getByText("Duplicate Code not allowed.");
-    this.departmentNameError = page.getByText(
-      "Duplicate Department Name not allowed."
-    );
+    this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
+    this.codeError = page.getByText('Duplicate Code not allowed.');
+    this.departmentNameError = page.getByText('Duplicate Department Name not allowed.');
   }
 
   async isDepartmentMasterPage() {
-    await this.page.getByText("department-master").isVisible();
+    await this.page.getByText('department-master').isVisible();
   }
 
   async fillCode(code: string) {
+    console.log('code ==================>', code);
     await this.code.fill(code);
   }
 
-  async fillDepartmentName( departmentName: string ) {
+  async fillDepartmentName(departmentName: string) {
+    console.log('departmentName ==================>', departmentName);
     await this.departmentName.fill(departmentName);
   }
 
@@ -52,11 +52,11 @@ export class DepartmentMaster {
     await this.fillCode(data.code);
     await this.fillDepartmentName(data.name);
     await this.selectStatusNo(data.status);
-    await this.selectBusinessUnit(data.businessUnit)
-    if(data.statusRemarks){
+    await this.selectBusinessUnit(data.businessUnit);
+    if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
     }
-    await this.formLayout.saveData("save");
+    await this.formLayout.saveData('save');
   }
 
   async selectBusinessUnit(children: string[]) {
@@ -64,20 +64,17 @@ export class DepartmentMaster {
     // await parentLabel.click();
 
     for (const child of children) {
-      const childLabel = this.page.locator("label", { hasText: child });
+      const childLabel = this.page.locator('label', { hasText: child });
       await childLabel.click();
     }
   }
 
-  async checkBusinessUnit(children: string[]){
-     for (const child of children) {
-      const childLabel = this.page.locator("label", { hasText: child });
+  async checkBusinessUnit(children: string[]) {
+    for (const child of children) {
+      const childLabel = this.page.locator('label', { hasText: child });
       await expect(childLabel).toBeChecked();
     }
-
   }
-
-
 
   async getErrorStates() {
     return {
@@ -86,22 +83,19 @@ export class DepartmentMaster {
     };
   }
 
-
-
   getRowByCode(code: string) {
     return this.page.locator('tr', {
-      has: this.page.locator(`td >> text=${code}`)
+      has: this.page.locator(`td >> text=${code}`),
     });
   }
 
-   async  verifyFormData( data: any) {
-  
+  async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
     await expect(this.departmentName).toHaveValue(data.name);
-    if(data.status){
+    if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }
-    if(data.status === '2'){
+    if (data.status === '2') {
       await expect(this.statusRemarks).toHaveValue(data.statusRemarks);
     }
     await this.checkBusinessUnit(data.businessUnit1);

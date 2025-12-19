@@ -61,6 +61,10 @@ test.describe('Item Subgroup Master UI Tests', () => {
     await formOperation.updateData(testData.saveAndUpdate, testData.saveAndUpdate.firstSave.itemSubgroupName);
   });
 
+  test('Item Subgroup Save', async ({ page }) => {
+    await formOperation.saveAndVerify(testData.saveAndUpdate);
+  });
+
   test('Check Subgroup Tab Indexing', async ({ page }) => {
     await formOperation.openNewForm();
     // await itemSubgroupMasterPage.checkTabIndexing();
