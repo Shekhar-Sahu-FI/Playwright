@@ -117,9 +117,11 @@ export class ItemMaster {
     await this.dimensionUnit.fill(query);
     await this.selectSuggestion(dimensionUnit);
   }
+
   async fillStandardWt(standardWt: string) {
     await this.standardWt.fill(standardWt);
   }
+
   async selectDimensionIn(dimensionIn: string) {
     await this.dimensionIn.selectOption(dimensionIn);
   }

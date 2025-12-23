@@ -31,13 +31,11 @@ export class DepartmentMaster {
   }
 
   async fillCode(code: string) {
-    console.log('code ==================>', code);
-    await this.code.fill(code);
+    await this.code.type(code);
   }
 
   async fillDepartmentName(departmentName: string) {
-    console.log('departmentName ==================>', departmentName);
-    await this.departmentName.fill(departmentName);
+    await this.departmentName.type(departmentName);
   }
 
   async selectStatusNo(status: string) {
@@ -65,7 +63,7 @@ export class DepartmentMaster {
 
     for (const child of children) {
       const childLabel = this.page.locator('label', { hasText: child });
-      await childLabel.click();
+      await childLabel.click({ force: true });
     }
   }
 

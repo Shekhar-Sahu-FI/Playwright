@@ -1,16 +1,21 @@
 import { test, expect, request as playwrightRequest } from '@playwright/test';
+import { WarehouseMaster } from '../../pages/warehouse-master';
 
 const baseURL = 'https://stageapi.arpaerp.com/api';
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwidGVuYW50Tm8iOiIxNCIsInVzZXJQcm9maWxlSWQiOiJBZG1pbiIsInVzZXJJZCI6IjMxIiwic2Vzc2lvbklkIjoiMDlkNzczOTQtZTdiZi00NDUwLWJjY2ItM2YzMDIxM2YzN2ZkIiwic3ViIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwianRpIjoiMGQ1YzRhYmQtMzhjMi00ODEwLWFhZTQtYTZjZmJjZDE1YjY0IiwiZXhwIjoxNzY1MjY3MTg0LCJpc3MiOiJhcnBhZXJwLmNvbSIsImF1ZCI6ImFycGFlcnAuY29tIn0.K67psBBDOUEct_-UV1zsojTmU8gRF5NqVHe-E0FsA5k';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwidGVuYW50Tm8iOiIxNCIsInVzZXJQcm9maWxlSWQiOiJBZG1pbiIsInVzZXJJZCI6IjMxIiwic2Vzc2lvbklkIjoiMzFkZWMzOGQtNTM3Yi00NWNhLThmNGYtNjkwMjkyZWUxYThlIiwic3ViIjoiemVwaXR5eG9AZm9yZXh6aWcuY29tIiwianRpIjoiNzAxMGQ4NjYtMjViNC00MzE1LWJlNWYtOTE2N2M3OTI1NmMyIiwiZXhwIjoxNzY2NDA5MDQ5LCJpc3MiOiJhcnBhZXJwLmNvbSIsImF1ZCI6ImFycGFlcnAuY29tIn0.4ONoAm2qw83e2viHzABjK1zPE7M3-iENcu3RF-DoiPU';
 const masterEndpoints = {
   StateMaster: {
     getAll: '/GlobalData/StateMaster/GetAll',
     delete: '/GlobalData/StateMaster/Delete',
   },
   DepartmentMaster: {
-    getAll: '/Organization/DepartmentMaster/GetAll',
-    delete: '/Organization/DepartmentMaster/Delete',
+    getAll: '/Master/DepartmentMaster/GetAll',
+    delete: '/Master/DepartmentMaster/Delete',
+  },
+  WarehouseMaster: {
+    getAll: '/Master/WarehouseMaster/GetAll',
+    delete: '/Master/WarehouseMaster/Delete',
   },
   ItemCategoryMaster: {
     getAll: '/Master/ItemCategoryMaster/GetAll',
@@ -30,7 +35,7 @@ const masterEndpoints = {
 };
 
 // ✅ Read master name from CLI (e.g., `--project="StateMaster"`)
-const masterName = 'UnitMaster';
+const masterName = 'DepartmentMaster';
 
 test.describe(`Delete Data By API`, () => {
   test(`Delete all records from ${masterName}`, async ({ request }) => {

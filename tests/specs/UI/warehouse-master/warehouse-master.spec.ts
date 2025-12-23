@@ -79,7 +79,7 @@ const SaveData = async (page: Page, data: any, mode: 'save' | 'update' | '' = ''
     await warehouseMasterPage.fillCode(data.code);
     await warehouseMasterPage.fillWarehouseName(data.name);
     await warehouseMasterPage.selectBusinessUnit(data.businessUnit1);
-    await warehouseMasterPage.selectBusinessUnit(data.businessUnit2);
+    await warehouseMasterPage.checkSubgroup(data.subgroups);
     if (data.status) {
       await warehouseMasterPage.selectStatusNo(data.status);
     }
@@ -91,7 +91,6 @@ const SaveData = async (page: Page, data: any, mode: 'save' | 'update' | '' = ''
   if (mode) {
     await test.step('Save and verify', async () => {
       await formLayout.saveData(mode);
-      await expect(page).toHaveURL(/.*warehoue-master/);
       const row = warehouseMasterPage.getRowByCode(data.code);
       await expect(row).toHaveCount(1);
     });

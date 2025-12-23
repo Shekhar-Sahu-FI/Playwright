@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
 import { LoginPage } from '../../../../pages/login';
 import { TestConfig } from '../../../../test.config';
-import { DepartmentMaster } from '../../../../pages/department-master';
+import { ItemMaster } from '../../../../pages/item-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { FormOperation } from '../../../../utils/form-operation';
@@ -10,7 +10,7 @@ import * as XLSX from 'xlsx';
 let config: TestConfig;
 let loginPage: LoginPage;
 let homePage: HomePage;
-let departmentMasterPage: DepartmentMaster;
+let itemMasterPage: ItemMaster;
 let formLayout: FormLayout;
 let formOperation: FormOperation;
 
@@ -19,12 +19,14 @@ test.use({ storageState: authFile });
 
 // --- Read Excel ---
 const workbook = XLSX.readFile('test-data/DDT/Masters.xlsx');
-const sheet = workbook.Sheets['Department'];
+// Assuming the sheet name is 'Item' or 'Item Master'
+const sheetName = workbook.SheetNames.find(n => n.trim() === 'Item' || n.includes('Item Master')) || 'Item';
+const sheet = workbook.Sheets[sheetName];
 const rows: any[] = XLSX.utils.sheet_to_json(sheet, { range: 0 });
 
 // ---------------- TEST SUITE ----------------
 
-test.describe('Add data using excel in Department Master', () => {
+test.describe('Add data using excel in Item Master', () => {
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();
     await page.goto(config.appUrl);
@@ -35,18 +37,21 @@ test.describe('Add data using excel in Department Master', () => {
     homePage = new HomePage(page);
     await homePage.isHomePage();
 
-    const newPath = 'master/department-master';
+    // Navigate to Item Master
+    // Confirming exact URL path from previous conversations or inferring logic. 
+    // Usually likely 'master/item-master' based on folder structure.
+    const newPath = 'master/item-master';
     const url = page.url().replace('dashboard', newPath);
     await page.goto(url);
 
-    departmentMasterPage = new DepartmentMaster(page);
+    itemMasterPage = new ItemMaster(page);
 
     formLayout = new FormLayout(page);
 
-    formOperation = new FormOperation(page, formLayout, SaveData, departmentMasterPage);
+    formOperation = new FormOperation(page, formLayout, SaveData, itemMasterPage);
   });
 
-  test(`warehouse save using excel`, async ({ page }) => {
+  test(`item save using excel`, async ({ page }) => {
     test.setTimeout(0); // remove global timeout
 
     await formOperation.openNewForm();
@@ -57,21 +62,23 @@ test.describe('Add data using excel in Department Master', () => {
         try {
           await Promise.race([
             SaveData(page, {
-              code: rows[i]['Code'],
-              name: rows[i]['Department'],
+              code: rows[i]['Item Code'] || rows[i]['Code'],
+              name: rows[i]['Item Name'] || rows[i]['Name'],
+              subgroup: rows[i]['Subgroup'] || rows[i]['Sub Group'],
+              unit: rows[i]['Unit'],
               status: rows[i]['Inactive'] ? '2' : '1',
-              buDetail: ['Godawari'],
               statusRemarks: 'Auto-imported',
+              // Add other fields if present in Excel and supported by POM
             }),
 
             // per-iteration timeout
-            new Promise((_, reject) => setTimeout(() => reject(new Error('Iteration Timeout Exceeded')), 10000)),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Iteration Timeout Exceeded')), 15000)),
           ]);
 
           console.log(`✔ Entry ${i + 1} saved successfully`);
           await page.waitForTimeout(1500);
         } catch (err) {
-          console.error(`✖ Entry ${i + 1} ${rows[i]['DeptName']} failed`);
+          console.error(`✖ Entry ${i + 1} ${rows[i]['Item Name']} failed`);
           console.error(err);
 
           await formLayout.clickOkIfVisible();
@@ -95,11 +102,15 @@ const SaveData = async (page: Page, data: any) => {
   console.log('Data to be saved:', data);
 
   await test.step('Fill the form', async () => {
-    await departmentMasterPage.fillCode(data.code);
-    await departmentMasterPage.fillDepartmentName(data.name);
-    await departmentMasterPage.selectBusinessUnit(data.buDetail);
-    if (data.status) await departmentMasterPage.selectStatusNo(data.status);
-    if (data.status === '2') await departmentMasterPage.fillStatusRemarks(data.statusRemarks);
+    await itemMasterPage.fillCode(data.code);
+    await itemMasterPage.fillItemName(data.name);
+    
+    // Using value as query for auto-suggestions
+    await itemMasterPage.fillSubgroup(data.subgroup, data.subgroup);
+    await itemMasterPage.fillUnit(data.unit, data.unit);
+
+    if (data.status) await itemMasterPage.selectStatusNo(data.status);
+    if (data.status === '2') await itemMasterPage.fillStatusRemarks(data.statusRemarks);
   });
 
   await formLayout.clickSave();

@@ -36,8 +36,8 @@ test.describe('Item Master Tests', () => {
     formOperation = new FormOperation(page, formLayout, SaveData, itemMasterPage);
   });
 
-  test('New Item creation 1 @saveNewItem', async ({ page }) => {
-    await formOperation.saveAndVerify(testData.save);
+  test('New Item creation 1 @saveWithAllData', async ({ page }) => {
+    await formOperation.saveAndVerify(testData.saveWithAllData);
   });
 
   test('Item with mandatory only', async ({ page }) => {
