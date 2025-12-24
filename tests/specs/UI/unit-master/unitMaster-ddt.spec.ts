@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { UnitMaster } from '../../../../pages/unit-master';
+import { UnitMaster } from '../../../../pages/master/unit-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';

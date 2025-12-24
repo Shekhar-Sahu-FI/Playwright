@@ -1,12 +1,12 @@
 import { Page, test, expect } from '@playwright/test';
-import { StateMaster } from '../../../../pages/state-master';
+import { StateMaster } from '../../../../pages/master/state-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
 import { FormOperation } from '../../../../utils/form-operation';
 
 const authFile = 'playwright/.auth/state.json';
-const testData = loadTestData('test-data/ui/state-master-valid-save.json');
+const testData = loadTestData('test-data/ui/master/state-master-valid-save.json');
 
 test.use({ storageState: authFile }); // ✅ Reuse login
 

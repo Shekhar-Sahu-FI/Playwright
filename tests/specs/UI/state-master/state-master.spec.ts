@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { StateMaster } from '../../../../pages/state-master';
+import { StateMaster } from '../../../../pages/master/state-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -18,7 +18,7 @@ let formOperation: FormOperation;
 const authFile = 'playwright/.auth/state.json';
 test.use({ storageState: authFile });
 
-const testData = loadTestData('test-data/ui/state-master-data.json');
+const testData = loadTestData('test-data/ui/master/state-master-data.json');
 
 test.describe('State Master Full UI Tests @TestStateMaster', () => {
   test.beforeEach(async ({ page }) => {

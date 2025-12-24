@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 import { TestConfig } from '../../test.config';
-import { LoginPage } from '../../pages/login';
+import { LoginPage } from '../../pages/admin/login';
 import { FormLayout } from '../../utils/form-layout';
 import { HomePage } from '../../pages/home';
 import { FormOperation } from '../../utils/form-operation';

@@ -1,7 +1,7 @@
 import { test, Page, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { CostCenterMaster } from '../../../../pages/cost-center-master';
+import { CostCenterMaster } from '../../../../pages/master/cost-center-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe('Cost Center Master Tests', () => {
-  const testData = loadTestData('test-data/ui/cost-center-master-data.json');
+  const testData = loadTestData('test-data/ui/master/cost-center-master-data.json');
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();

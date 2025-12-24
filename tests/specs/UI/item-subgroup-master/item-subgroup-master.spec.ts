@@ -1,5 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
-import { ItemSubgroupMaster, ItemSubgroupMasterFormData } from '../../../../pages/item-subgroup-master';
+import { ItemSubgroupMaster, ItemSubgroupMasterFormData } from '../../../../pages/master/item-subgroup-master';
 import { loadTestData } from '../../../../utils/data-provider';
 import { setupMasterForm } from '../../../../utils/playwright-utility';
 import { FormOperation } from '../../../../utils/form-operation';
@@ -18,9 +18,12 @@ const SaveData = async (page: Page, data: ItemSubgroupMasterFormData, mode: 'sav
   });
   if (mode) {
     await test.step('Save and verify', async () => {
+      console.log('1 =====================>');
       await formLayout.saveData(mode);
+      console.log('2 =====================>');
       await expect(page).toHaveURL(/.*item-subgroup-master/);
-      const row = itemSubgroupMasterPage.getRowByCode(data.itemSubgroupName);
+      console.log('3 ========================>');
+      const row = itemSubgroupMasterPage.getRowByCodeAcrossPages(data.itemSubgroupName);
       await expect(row).toHaveCount(1);
     });
   }
@@ -28,7 +31,7 @@ const SaveData = async (page: Page, data: ItemSubgroupMasterFormData, mode: 'sav
 
 test.describe('Item Subgroup Master UI Tests', () => {
   const testData: Record<string, ItemSubgroupMasterFormData | any> = loadTestData(
-    'test-data/ui/item-subgroup-master-data.json',
+    'test-data/ui/master/item-subgroup-master-data.json',
   );
 
   test.beforeEach(async ({ page }) => {
@@ -56,6 +59,10 @@ test.describe('Item Subgroup Master UI Tests', () => {
 
   test('Subgroup Save And Update', async ({ page }) => {
     await formOperation.updateData(testData.saveAndUpdate, testData.saveAndUpdate.firstSave.itemSubgroupName);
+  });
+
+  test('Item Subgroup Save', async ({ page }) => {
+    await formOperation.saveAndVerify(testData.saveAndUpdate);
   });
 
   test('Check Subgroup Tab Indexing', async ({ page }) => {

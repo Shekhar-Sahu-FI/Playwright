@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { ItemSubgroupMaster } from '../../../../pages/item-subgroup-master';
+import { ItemSubgroupMaster } from '../../../../pages/master/item-subgroup-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,9 +15,9 @@ let itemSubroupMasterPage: ItemSubgroupMaster;
 let formLayout: FormLayout;
 let formOperation: FormOperation;
 
-const workbook = XLSX.readFile('test-data/DDT/Group_Master(Vakrangee).xlsx');
-const sheet = workbook.Sheets['Sheet1'];
-const rows: any[] = XLSX.utils.sheet_to_json(sheet, { range: 3 });
+const workbook = XLSX.readFile('test-data/DDT/Subgroup.xlsx');
+const sheet = workbook.Sheets['Sheet2'];
+const rows: any[] = XLSX.utils.sheet_to_json(sheet);
 
 test.describe('Item subgroup Master save with excel', () => {
   test.beforeEach(async ({ page }) => {
@@ -37,24 +37,26 @@ test.describe('Item subgroup Master save with excel', () => {
     await page.goto(url);
 
     itemSubroupMasterPage = new ItemSubgroupMaster(page);
-    await expect(page).toHaveURL(/.*item-group-master/);
+    await expect(page).toHaveURL(/.*item-subgroup-master/);
 
     formOperation = new FormOperation(page, formLayout, SaveData, itemSubroupMasterPage);
   });
 
-  test(`group save using excel`, async ({ page }) => {
+  test(`Subgroup save using excel`, async ({ page }) => {
     test.setTimeout(0); // prevent global test timeout
 
     await formOperation.openNewForm();
 
     for (let i = 0; i < rows.length; i++) {
-      await test.step(`Row Index : ${i + 1} ${rows[i]['Group Name']}`, async () => {
+      await test.step(`Row Index : ${i + 1} ${rows[i]['Sub Group Name']}`, async () => {
         try {
+          console.log('rows===>', rows[i]);
           // Apply per-iteration timeout protection
           await Promise.race([
             SaveData(page, {
               name: rows[i]['Sub Group Name'].trim(),
-              categoryName: rows[i]['Category Name'],
+              unit: rows[i]['Unit'],
+              groupName: rows[i]['Group Name'],
               status: rows[i]['Inactive'] ? '2' : '1',
               statusRemarks: 'inactive',
             }),
@@ -82,11 +84,13 @@ test.describe('Item subgroup Master save with excel', () => {
 });
 
 const SaveData = async (page: Page, data: any) => {
+  console.log('Data===>', data);
   await test.step('Fill the form', async () => {
     await itemSubroupMasterPage.selectGroup(data.groupName);
     // await itemSubroupMasterPage.fillCode(data.code);
 
     await itemSubroupMasterPage.fillSubgroupName(data.name);
+    await itemSubroupMasterPage.selectUnit(data.unit);
 
     if (data.status) {
       await itemSubroupMasterPage.selectStatusNo(data.status);

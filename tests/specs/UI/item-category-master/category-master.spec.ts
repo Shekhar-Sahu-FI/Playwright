@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { CategoryMaster } from '../../../../pages/category-master';
+import { CategoryMaster } from '../../../../pages/master/category-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe('Category Master Full UI Tests', () => {
-  const testData = loadTestData('test-data/ui/category-master-data.json');
+  const testData = loadTestData('test-data/ui/master/category-master-data.json');
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();
@@ -76,7 +76,7 @@ test.describe('Category Master Full UI Tests', () => {
 });
 
 // test.describe('Add data using excel in Category Master', () => {
-//   const testData = loadTestData('test-data/ui/category-master-data.json');
+//   const testData = loadTestData('test-data/ui/master/category-master-data.json');
 //   test.beforeEach(async ({ page }) => {
 //     config = new TestConfig();
 //     await page.goto(config.appUrl);

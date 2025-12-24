@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout';
-import { selectFromAutoSuggestion } from '../utils/field-utillity';
+import { FormLayout } from '../../utils/form-layout';
+import { selectFromAutoSuggestion } from '../../utils/field-utillity';
 
 export class AuthGroupMaster {
   private readonly page: Page;

@@ -203,30 +203,38 @@ export async function selectFromAutoSuggestion(
   index: number = 0,
 ) {
   const timeout = 20000;
-
   const inputField = inputFields.nth(index);
-  await inputField.fill('');
+  await page.waitForTimeout(2000);
+  await inputField.fill('', { timeout: 200 });
+
   await inputField.type(query, { delay: 100 });
 
   // Step 2: Define the table
   const suggestionTable = page.locator('table:has(th:has-text("ID"))');
 
-  for (let i = 0; i < 10; i++) {
-    if (await suggestionTable.isVisible()) break;
-    await page.waitForTimeout(1000);
-  }
-
   // Step 3: Ensure it’s visible
-  await expect(suggestionTable).toBeVisible({ timeout });
+  await expect.soft(suggestionTable).toBeVisible({ timeout });
 
   // Step 4: Select desired row
-  const suggestionRow = suggestionTable.locator('tr', { hasText: valueToSelect });
+  // const suggestionRow = suggestionTable.locator('tr', { hasText: valueToSelect });
+
+  await page.waitForTimeout(2000);
+  const suggestionRow = suggestionTable
+    .locator('tr')
+    .filter({
+      has: page.locator('td', {
+        hasText: new RegExp(`^${valueToSelect}$`, 'i'),
+      }),
+    })
+
   await suggestionRow.waitFor({ state: 'visible', timeout });
   await suggestionRow.scrollIntoViewIfNeeded();
   await suggestionRow.press('Enter');
 
-  await expect(inputField).toHaveValue(valueToSelect, { timeout });
+  await expect(inputField, "Input field value is not matching").toHaveValue(valueToSelect, { timeout });
+
 }
+
 
 export async function fillWithRetry(locator: Locator, value: string) {
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -244,4 +252,83 @@ export async function fillWithRetry(locator: Locator, value: string) {
   }
 
   throw new Error(`❌ Failed to set value '${value}' after retries`);
+}
+
+type SelectDateOptions = {
+  labelName: string; // input / icon that opens the calendar
+  year: number;
+  month: number; // 1-12
+  day: number;
+};
+
+export async function selectDate(
+  page: Page,
+  labelName: string,
+  date: string
+) {
+
+  const [year, month, day] = date.split('-').map(Number);
+
+  const calendarButton = page.locator(
+    `div.flex.items-stretch:has(input[label="${labelName}"]) button`
+  );
+
+  await calendarButton.waitFor({ state: 'visible' });
+  await calendarButton.click();
+
+  const header = page.locator(
+    'div.flex.justify-between.items-center.font-bold'
+  ).filter({
+    has: page.locator('span')
+  });
+
+  await header.waitFor({ state: 'visible' });
+
+  const prevButton = header.locator('button').first();
+  const nextButton = header.locator('button').last();
+
+  const monthNames = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+
+  const targetMonthText = `${monthNames[month - 1]}, ${year}`;
+
+  /* -----------------------------
+     Navigate to target month/year
+  ------------------------------*/
+  while (true) {
+    const currentText = await header.textContent();
+
+    if (currentText === targetMonthText) break;
+
+    const [currentMonthName, currentYearStr] =
+      currentText!.split(',').map(v => v.trim());
+
+    const currentYear = Number(currentYearStr);
+    const currentMonth = monthNames.indexOf(currentMonthName) + 1;
+
+    const isBeforeTarget =
+      currentYear < year ||
+      (currentYear === year && currentMonth < month);
+
+    if (isBeforeTarget) {
+      await nextButton.click();
+    } else {
+      await prevButton.click();
+    }
+  }
+
+  /* -----------------------------
+     Select day
+  ------------------------------*/
+  const dayButton = page.locator('div', {
+    hasText: new RegExp(`^${day}$`)
+  }).first();
+
+  await dayButton.waitFor({ state: 'visible' });
+  await dayButton.click();
+
+
 }

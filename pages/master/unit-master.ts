@@ -1,42 +1,47 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout';
-import { fillWithRetry } from '../utils/field-utillity';
+import { FormLayout } from '../../utils/form-layout';
 
-export class CategoryMaster {
-  private readonly page: Page;
-  private readonly formLayout: FormLayout;
+export interface UnitMasterFormData {
+  unitName: string;
+  code: string;
+  status: string;
+  statusRemarks?: string;
+}
+export class UnitMaster {
+  readonly page: Page;
+  readonly formLayout: FormLayout;
 
-  private readonly code: Locator;
-  private readonly categoryName: Locator;
-  private readonly statusNo: Locator;
-  private readonly statusRemarks: Locator;
-  private readonly codeError: Locator;
-  private readonly categoryNameError: Locator;
-  private readonly confirmation: Locator;
+  readonly code: Locator;
+  readonly unitName: Locator;
+  readonly statusNo: Locator;
+  readonly statusRemarks: Locator;
+  readonly codeError: Locator;
+  readonly unitNameError: Locator;
+  readonly confirmation: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.formLayout = new FormLayout(page);
 
     this.code = page.locator('[name="code"]');
-    this.categoryName = page.locator('[name="itemCategoryName"]');
+    this.unitName = page.locator('[name="unitName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
     this.statusRemarks = page.locator('[name="statusRemarks"]');
     this.confirmation = page.getByRole('heading', { name: 'Confirmation' });
-    this.codeError = page.getByText('Duplicate Code is not allowed');
-    this.categoryNameError = page.getByText('Duplicate Item Category Name is not allowed.');
+    this.codeError = page.getByText('Duplicate code is not allowed.');
+    this.unitNameError = page.getByText('Duplicate Unit Name is not allowed.');
   }
 
-  async isCategoryMasterPage() {
-    await this.page.getByText('category-master').isVisible();
+  async isUnitMasterPage() {
+    await this.page.getByText('unit-master').isVisible();
   }
 
   async fillCode(code: string) {
-    await fillWithRetry(this.code, code);
+    await this.code.fill(code);
   }
 
-  async fillCategoryName(categoryName: string) {
-    await fillWithRetry(this.categoryName, categoryName);
+  async fillUnitName(unitName: string) {
+    await this.unitName.fill(unitName);
   }
 
   async selectStatusNo(status: string) {
@@ -47,9 +52,9 @@ export class CategoryMaster {
     await this.statusRemarks.fill(statusRemarks);
   }
 
-  async fillCategoryMasterForm(data: any) {
+  async fillUnitMasterForm(data: any) {
     await this.fillCode(data.code);
-    await this.fillCategoryName(data.name);
+    await this.fillUnitName(data.name);
     await this.selectStatusNo(data.status);
     if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
@@ -60,11 +65,13 @@ export class CategoryMaster {
   async getErrorStates() {
     return {
       codeErrorVisible: await this.codeError.isVisible(),
-      nameErrorVisible: await this.categoryNameError.isVisible(),
+      nameErrorVisible: await this.unitNameError.isVisible(),
     };
   }
 
   getRowByCode(code: string) {
+    const dropdown = this.page.locator('select');
+    dropdown.selectOption('100');
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`),
     });
@@ -72,7 +79,7 @@ export class CategoryMaster {
 
   async verifyFormData(data: any) {
     await expect(this.code).toHaveValue(data.code);
-    await expect(this.categoryName).toHaveValue(data.name);
+    await expect(this.unitName).toHaveValue(data.name);
     if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }

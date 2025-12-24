@@ -1,7 +1,7 @@
 // tests/setup/login.setup.ts
 import { test as setup, expect } from '@playwright/test';
 import { TestConfig } from '../../test.config';
-import { LoginPage } from '../../pages/login';
+import { LoginPage } from '../../pages/admin/login';
 
 const authFile = 'playwright/.auth/state.json';
 

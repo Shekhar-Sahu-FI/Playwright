@@ -1,17 +1,17 @@
 import { Page, test, expect } from "@playwright/test";
-import { UnitMaster } from "../../pages/unit-master";
-import { UserMaster } from "../../pages/user-master";
-import { DepartmentMaster } from "../../pages/department-master";
-import { CategoryMaster } from "../../pages/category-master";
-import { CostCenterMaster } from "../../pages/cost-center-master";
-import { WarehouseMaster } from "../../pages/warehouse-master";
-import { MakeMaster } from "../../pages/make-master";
-import { BusinessUnitMaster } from "../../pages/business-unit";
-import { ItemGroupMaster } from "../../pages/item-group-master";
+import { UnitMaster } from "../../pages/master/unit-master";
+import { UserMaster } from "../../pages/admin/user-master";
+import { DepartmentMaster } from "../../pages/master/department-master";
+import { CategoryMaster } from "../../pages/master/category-master";
+import { CostCenterMaster } from "../../pages/master/cost-center-master";
+import { WarehouseMaster } from "../../pages/master/warehouse-master";
+import { MakeMaster } from "../../pages/master/make-master";
+import { BusinessUnitMaster } from "../../pages/admin/business-unit";
+import { ItemGroupMaster } from "../../pages/master/item-group-master";
 import { HomePage } from "../../pages/home";
 import { FormLayout } from "../../utils/form-layout";
 import { loadTestData } from "../../utils/data-provider";
-import { LoginPage } from "../../pages/login";
+import { LoginPage } from "../../pages/admin/login";
 import { TestConfig } from "../../test.config";
 import { group } from "console";
 

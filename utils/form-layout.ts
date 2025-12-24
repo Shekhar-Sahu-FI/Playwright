@@ -102,10 +102,10 @@ export class FormLayout {
     } else {
       await this.clickUpdate();
     }
-
+    
     try {
       // Wait for confirmation to appear
-      await expect(this.confirmationHeader).toBeVisible({ timeout: 5000 });
+      await expect(this.confirmationHeader, "Confirmation Header is not visible").toBeVisible({ timeout: 5000 });
       await this.clickYes();
 
       // Use regex to be robust against spacing issues (e.g. 'Successfully  created.')
@@ -113,6 +113,7 @@ export class FormLayout {
       await expect(this.page.getByText(messageRegex)).toBeVisible();
 
       await this.clickCancelIfVisible();
+      await this.page.waitForTimeout(700);
     } catch (error) {
       console.error(`Error in saveData (${mode}):`, error);
       throw error; // Re-throw to fail the test if the flow is broken

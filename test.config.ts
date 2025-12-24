@@ -9,3 +9,5 @@ export class TestConfig {
   registrationPassword = 'QWer12!@';
   contactPersonName = 'Sam Willson';
 }
+
+export const testConfig = new TestConfig();

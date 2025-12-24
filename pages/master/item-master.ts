@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout';
+import { FormLayout } from '../../utils/form-layout';
+import { selectFromAutoSuggestion } from '../../utils/field-utillity';
 
 export class ItemMaster {
   private readonly page: Page;
@@ -51,7 +52,7 @@ export class ItemMaster {
     this.isMaintainDimension = page.getByLabel('Maintain Item Dimension');
     this.dimensionIn = page.locator('[name="dimensionIn"]');
 
-    this.dimensionUnit = page.getByPlaceholder('Search Dimension Unit');
+    this.dimensionUnit = page.getByPlaceholder('Select Dimension Unit');
     this.isMaintainBatchAndExpiry = page.locator('[name="isMaintainBatchAndExpiry"]');
     this.stockValuationMethodNo = page.locator('[name="stockValuationMethodNo"]');
     this.makeManagementTypeNo = page.locator('[name="makeManagementTypeNo"]');
@@ -62,7 +63,7 @@ export class ItemMaster {
     this.reorderLevel = page.getByPlaceholder('Enter Reorder Level');
     this.reorderQty = page.getByPlaceholder('Enter Reorder Qty.');
 
-    this.unit = page.getByPlaceholder('Ex - Kilogram');
+    this.unit = page.getByPlaceholder('Select Unit of Measurement');
 
     this.isUnitConversion = page.locator('[name="isUnitConversion"]');
     this.unitType = page.getByPlaceholder('Select Unit Type Name');
@@ -91,14 +92,11 @@ export class ItemMaster {
   }
 
   async fillSubgroup(query: string, subgroup: string) {
-    await this.subgroup.fill(query);
-    await this.selectSuggestion(subgroup);
+    await selectFromAutoSuggestion(this.page,this.subgroup,query,subgroup)
   }
 
   async fillUnit(query: string, unit: string) {
-    await this.unit.clear();
-    await this.unit.fill(query);
-    await this.selectSuggestion(unit);
+    await selectFromAutoSuggestion(this.page,this.unit,query,unit)
   }
 
   async fillLeadTime(leadTime: string) {
@@ -114,12 +112,13 @@ export class ItemMaster {
   }
 
   async fillDimensionUnit(query: string, dimensionUnit: string) {
-    await this.dimensionUnit.fill(query);
-    await this.selectSuggestion(dimensionUnit);
+     await selectFromAutoSuggestion(this.page,this.dimensionUnit,query,dimensionUnit)
   }
+
   async fillStandardWt(standardWt: string) {
     await this.standardWt.fill(standardWt);
   }
+
   async selectDimensionIn(dimensionIn: string) {
     await this.dimensionIn.selectOption(dimensionIn);
   }
@@ -233,9 +232,9 @@ export class ItemMaster {
   }
 
   async fillItemMasterForm(data: any) {
+    await this.fillSubgroup(data.query, data.subgroup);
     await this.fillCode(data.code);
     await this.fillItemName(data.name);
-    await this.fillSubgroup(data.query, data.subgroup);
     await this.fillUnit(data.query, data.unit);
     await this.fillLeadTime(data.leadTime);
     await this.fillRemarks(data.remarks || '');
@@ -265,7 +264,7 @@ export class ItemMaster {
   }
 
   async getRowByCode(code: string) {
-    await this.noOfData.selectOption('100');
+     await this.page.locator('select:has(option[value="100"])').selectOption('100');
 
     return this.page.locator('tr', {
       has: this.page.locator(`td >> text=${code}`),

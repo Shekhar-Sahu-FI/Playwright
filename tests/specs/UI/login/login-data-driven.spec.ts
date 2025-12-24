@@ -1,5 +1,5 @@
 // import { test, expect } from '@playwright/test'
-// import { LoginPage } from '../../pages/login'
+// import { LoginPage } from '../../pages/admin/login'
 // import { DataProvider } from '../utils/data-provider';
 // import { TestConfig } from '../../test.config'
 

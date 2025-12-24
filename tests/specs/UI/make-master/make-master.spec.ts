@@ -1,7 +1,7 @@
 import { Page, test, expect } from "@playwright/test";
-import { LoginPage } from "../../../../pages/login";
+import { LoginPage } from "../../../../pages/admin/login";
 import { TestConfig } from "../../../../test.config";
-import { MakeMaster } from "../../../../pages/make-master";
+import { MakeMaster } from "../../../../pages/master/make-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe("Make Master Tests UI @MakeUiFunctionality", () => {
-  const testData = loadTestData("test-data/ui/make-master-data.json");
+  const testData = loadTestData("test-data/ui/master/make-master-data.json");
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();

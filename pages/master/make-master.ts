@@ -1,31 +1,39 @@
 import { expect, Page, Locator } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout';
+import { FormLayout } from '../../utils/form-layout';
 
-export class TnCMaster {
+export class MakeMaster {
   private readonly page: Page;
   private readonly formLayout: FormLayout;
 
-  private readonly tncHeadName: Locator;
+  private readonly code: Locator;
+  private readonly makeName: Locator;
   private readonly statusNo: Locator;
   private readonly statusRemarks: Locator;
-  private readonly tncHeadNameError: Locator;
+  private readonly codeError: Locator;
+  private readonly makeNameError: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.formLayout = new FormLayout(page);
 
-    this.tncHeadName = page.locator('[name="headName"]');
+    this.code = page.locator('[name="code"]');
+    this.makeName = page.locator('[name="makeName"]');
     this.statusNo = page.locator('select[name="statusNo"]');
-    this.statusRemarks = page.locator('[name="statusRemark"]');
-    this.tncHeadNameError = page.getByText('Duplicate Make Name is not allowed.');
+    this.statusRemarks = page.locator('[name="statusRemarks"]');
+    this.codeError = page.getByText('Duplicate code is not allowed.');
+    this.makeNameError = page.getByText('Duplicate Make Name is not allowed.');
   }
 
   async isMakeMasterPage() {
     await this.page.getByText('make-master').isVisible();
   }
 
-  async fillTncHeadName(tncHeadName: string) {
-    await this.tncHeadName.fill(tncHeadName);
+  async fillCode(code: string) {
+    await this.code.fill(code);
+  }
+
+  async fillMakeName(makeName: string) {
+    await this.makeName.fill(makeName);
   }
 
   async selectStatusNo(status: string) {
@@ -36,8 +44,9 @@ export class TnCMaster {
     await this.statusRemarks.fill(statusRemarks);
   }
 
-  async fillTnCMasterForm(data: any) {
-    await this.fillTncHeadName(data.name);
+  async fillMakeMasterForm(data: any) {
+    await this.fillCode(data.code);
+    await this.fillMakeName(data.name);
     await this.selectStatusNo(data.status);
     if (data.statusRemarks) {
       await this.fillStatusRemarks(data.statusRemarks);
@@ -47,7 +56,8 @@ export class TnCMaster {
 
   async getErrorStates() {
     return {
-      nameErrorVisible: await this.tncHeadNameError.isVisible(),
+      codeErrorVisible: await this.codeError.isVisible(),
+      nameErrorVisible: await this.makeNameError.isVisible(),
     };
   }
 
@@ -60,7 +70,8 @@ export class TnCMaster {
   }
 
   async verifyFormData(data: any) {
-    await expect(this.tncHeadName).toHaveValue(data.name);
+    await expect(this.code).toHaveValue(data.code);
+    await expect(this.makeName).toHaveValue(data.name);
     if (data.status) {
       await expect(this.statusNo).toHaveValue(data.status);
     }

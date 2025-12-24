@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { BusinessUnitMaster } from '../../../../pages/business-unit';
+import { BusinessUnitMaster } from '../../../../pages/admin/business-unit';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe('Business Unit Master Tests', () => {
-  const testData = loadTestData('test-data/ui/business-unit-data.json');
+  const testData = loadTestData('test-data/ui/admin/business-unit-data.json');
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();

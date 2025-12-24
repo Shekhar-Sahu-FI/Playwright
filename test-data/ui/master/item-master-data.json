@@ -61,10 +61,11 @@
   "saveWithMandatoryData": {
     "itemCode": "SSS9",
     "itemName": "MS Plate 3X5M",
-    "itemSubgroupQuery": "Plat",
-    "itemSubgroupName": "Plate",
-    "unitQuery": "Kilo",
-    "unitName": "Kilogram",
+    "itemSubgroupQuery": "Anchor Fastner",
+    "itemSubgroupName": "Anchor Fastner Bolt",
+    "unitQuery": "KG",
+    "unitName": "KG",
+    "unitCode" : "KG",
     "leadTime": "5",
     "stockValuationMethodNo": "2",
     "makeManagementTypeNo": "1",
@@ -73,36 +74,30 @@
   },
   "saveAndUpdate": {
     "firstSave": {
-      "itemCode": "ITMS",
-      "itemName": "Mild Steel Angle",
-      "itemSubgroupQuery": "itemsub",
-      "itemSubgroupName": "ItemSubgroup 04",
-      "unitQuery": "unit",
-      "unitName": "Unit 02",
-      "unitCode": "UN02",
+      "itemCode": "0215",
+      "itemName": "Mild Steel Angle 12X12",
+      "itemSubgroupQuery": "Angle",
+      "itemSubgroupName": "Angle",
+      "unitQuery": "KG",
+      "unitName": "KG",
+      "unitCode": "KG",
       "leadTime": "5",
       "stockValuationMethodNo": "2",
       "remarks": "This is for Quality.",
       "isMaintainDimension": true,
       "dimensionIn": "1",
-      "dimensionUnitQuery": "unit",
-      "dimensionUnitName": "unit 04",
-      "dimensionUnitCode": "UN04",
+      "dimensionUnitQuery": "mtr",
+      "dimensionUnitName": "MTR",
+      "dimensionUnitCode": "MTR",
       "standardWt": "152.4",
       "isMaintainBatchAndExpiry": false,
       "makeManagementTypeNo": "2",
       "itemMasterWarehouseDetail": [
         {
-          "query": "warehouse",
-          "warehouseName": "Warehouse 03",
+          "query": "LPD ( RM STEEL)",
+          "warehouseName": "LPD ( RM STEEL)",
           "reorderLevel": "500",
           "reorderQty": "100"
-        },
-        {
-          "query": "warehouse",
-          "warehouseName": "Warehouse 02",
-          "reorderLevel": "751",
-          "reorderQty": "987"
         }
       ],
       "isUnitConversion": true,
@@ -111,9 +106,9 @@
           "unitType": "1",
           "unitConvertionType": "1",
           "baseUnitValue": "4521.5",
-          "unitConvertionNameQuery": "unit",
-          "unitConvertionName": "Unit 03",
-          "unitConvertionCode": "UN03",
+          "unitConvertionNameQuery": "rol",
+          "unitConvertionName": "ROL",
+          "unitConvertionCode": "ROL",
           "unitConvertionValue": "845.32"
         }
       ],
@@ -123,11 +118,11 @@
     "updateCase": {
       "itemCode": "ITMD",
       "itemName": "Mild Steel Beam",
-      "itemSubgroupQuery": "itemsub",
-      "itemSubgroupName": "ItemSubgroup 08",
-      "unitQuery": "unit",
-      "unitName": "Unit 03",
-      "unitCode": "UN03",
+      "itemSubgroupQuery": "MS ANGLE",
+      "itemSubgroupName": "MS ANGLE",
+      "unitQuery": "KG",
+      "unitName": "KG",
+      "unitCode": "KG",
       "leadTime": "8",
       "stockValuationMethodNo": "1",
       "remarks": "This is for updated Quality.",
@@ -141,28 +136,28 @@
       "makeManagementTypeNo": "3",
       "itemMasterMakeDetail": [
         {
-          "query": "make",
-          "makeName": "Make 03"
+          "query": "BIRLA",
+          "makeName": "BIRLA"
         },
         {
-          "query": "make",
-          "makeName": "Make 05"
+          "query": "SAIL",
+          "makeName": "SAIL"
         },
         {
-          "query": "make",
-          "makeName": "Make 06"
+          "query": "TATA",
+          "makeName": "TATA"
         }
       ],
       "itemMasterWarehouseDetail": [
         {
-          "query": "warehouse",
-          "warehouseName": "Warehouse 05",
+          "query": "LPD ( RM STEEL)",
+          "warehouseName": "LPD ( RM STEEL)",
           "reorderLevel": "500",
           "reorderQty": "100"
         },
         {
-          "query": "warehouse",
-          "warehouseName": "Warehouse 01",
+          "query": "MAIN STORE (LPD)",
+          "warehouseName": "MAIN STORE (LPD)",
           "reorderLevel": "751",
           "reorderQty": "987"
         }
@@ -173,18 +168,18 @@
           "unitType": "1",
           "unitConvertionType": "1",
           "baseUnitValue": "4521.5",
-          "unitConvertionNameQuery": "unit",
-          "unitConvertionName": "Unit 03",
-          "unitConvertionCode": "UN03",
+          "unitConvertionNameQuery": "PCS",
+          "unitConvertionName": "PCS",
+          "unitConvertionCode": "PCS",
           "unitConvertionValue": "845.32"
         },
         {
           "unitType": "2",
           "unitConvertionType": "3",
           "baseUnitValue": "7855",
-          "unitConvertionNameQuery": "unit",
-          "unitConvertionName": "Unit 05",
-          "unitConvertionCode": "UN05",
+          "unitConvertionNameQuery": "bag",
+          "unitConvertionName": "BAG",
+          "unitConvertionCode": "BAG",
           "unitConvertionValue": "1252"
         }
       ],

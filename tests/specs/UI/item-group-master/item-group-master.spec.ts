@@ -1,7 +1,7 @@
 import { Page, test, expect } from "@playwright/test";
-import { LoginPage } from "../../../../pages/login";
+import { LoginPage } from "../../../../pages/admin/login";
 import { TestConfig } from "../../../../test.config";
-import { ItemGroupMaster } from "../../../../pages/item-group-master";
+import { ItemGroupMaster } from "../../../../pages/master/item-group-master";
 import { HomePage } from "../../../../pages/home";
 import { FormLayout } from "../../../../utils/form-layout";
 import { loadTestData } from "../../../../utils/data-provider";
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe("Item group Master Tests", () => {
-  const testData = loadTestData("test-data/ui/item-group-master-data.json");
+  const testData = loadTestData("test-data/ui/master/item-group-master-data.json");
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();

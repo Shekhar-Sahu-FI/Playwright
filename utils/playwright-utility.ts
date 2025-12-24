@@ -1,7 +1,7 @@
 // utils/form-test-setup.ts
 import { Page, expect } from '@playwright/test';
 import { TestConfig } from '../test.config';
-import { LoginPage } from '../pages/login';
+import { LoginPage } from '../pages/admin/login';
 import { HomePage } from '../pages/home';
 import { FormLayout } from './form-layout';
 import { FormOperation } from './form-operation';

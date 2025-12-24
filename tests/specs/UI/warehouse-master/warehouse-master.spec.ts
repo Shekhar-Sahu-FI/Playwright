@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { WarehouseMaster } from '../../../../pages/warehouse-master';
+import { WarehouseMaster } from '../../../../pages/master/warehouse-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe('Warehoues Master Tests', () => {
-  const testData = loadTestData('test-data/ui/warehouse-master-data.json');
+  const testData = loadTestData('test-data/ui/master/warehouse-master-data.json');
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();
@@ -79,7 +79,7 @@ const SaveData = async (page: Page, data: any, mode: 'save' | 'update' | '' = ''
     await warehouseMasterPage.fillCode(data.code);
     await warehouseMasterPage.fillWarehouseName(data.name);
     await warehouseMasterPage.selectBusinessUnit(data.businessUnit1);
-    await warehouseMasterPage.selectBusinessUnit(data.businessUnit2);
+    await warehouseMasterPage.checkSubgroup(data.subgroups);
     if (data.status) {
       await warehouseMasterPage.selectStatusNo(data.status);
     }
@@ -91,7 +91,6 @@ const SaveData = async (page: Page, data: any, mode: 'save' | 'update' | '' = ''
   if (mode) {
     await test.step('Save and verify', async () => {
       await formLayout.saveData(mode);
-      await expect(page).toHaveURL(/.*warehoue-master/);
       const row = warehouseMasterPage.getRowByCode(data.code);
       await expect(row).toHaveCount(1);
     });

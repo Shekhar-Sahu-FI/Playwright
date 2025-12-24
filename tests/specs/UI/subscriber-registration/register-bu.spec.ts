@@ -1,7 +1,7 @@
 import { Page, test, expect } from "@playwright/test";
 import { TestConfig } from "../../../../test.config";
-import { LoginPage } from "../../../../pages/login";
-import { BusinessUnitMaster } from "../../../../pages/business-unit";
+import { LoginPage } from "../../../../pages/admin/login";
+import { BusinessUnitMaster } from "../../../../pages/admin/business-unit";
 import { loadTestData } from "../../../../utils/data-provider";
 
 let config: TestConfig;
@@ -9,7 +9,7 @@ let businessUnit: BusinessUnitMaster;
 let loginPage: LoginPage;
 
 test("Business Unit Registration @BURedistration", async ({ page }) => {
-  const testData = loadTestData("test-data/ui/bu-registration-data.json");
+  const testData = loadTestData("test-data/ui/admin/bu-registration-data.json");
   config = new TestConfig();
   businessUnit = new BusinessUnitMaster(page);
 
@@ -17,7 +17,7 @@ test("Business Unit Registration @BURedistration", async ({ page }) => {
   //   loginPage = new LoginPage(page);
   //   await loginPage.login(config.email, config.password);
 
-  await page.goto(config.verifyLink);
+  // await page.goto(config.verifyLink);
   await expect(page).toHaveURL(/.*verify-email/);
   await expect(page.getByText("Email Verified !!")).toBeVisible();
   await page.waitForURL(/.*dashboard/);

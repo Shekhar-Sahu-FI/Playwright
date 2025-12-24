@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { FormLayout } from '../utils/form-layout';
+import { FormLayout } from '../../utils/form-layout';
 import { compileSchema } from 'ajv/dist/compile';
 
 export class CostCenterMaster {

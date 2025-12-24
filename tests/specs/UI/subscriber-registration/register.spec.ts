@@ -1,5 +1,5 @@
 import {  test, expect } from '@playwright/test'
-import { SubsrcriberRegistrationPage } from '../../../../pages/subscriber-registeration'
+import { SubsrcriberRegistrationPage } from '../../../../pages/admin/subscriber-registeration'
 import { TestConfig } from '../../../../test.config'
 
 

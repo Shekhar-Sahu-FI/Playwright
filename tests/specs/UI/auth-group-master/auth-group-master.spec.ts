@@ -1,7 +1,7 @@
 import { Page, test, expect } from '@playwright/test';
-import { LoginPage } from '../../../../pages/login';
+import { LoginPage } from '../../../../pages/admin/login';
 import { TestConfig } from '../../../../test.config';
-import { AuthGroupMaster } from '../../../../pages/auth-group-master';
+import { AuthGroupMaster } from '../../../../pages/master/auth-group-master';
 import { HomePage } from '../../../../pages/home';
 import { FormLayout } from '../../../../utils/form-layout';
 import { loadTestData } from '../../../../utils/data-provider';
@@ -15,7 +15,7 @@ let formLayout: FormLayout;
 let formOperation: FormOperation;
 
 test.describe('Auth Group Master Tests UI @AuthGroupUiFunctionality', () => {
-  const testData = loadTestData('test-data/ui/auth-group-master-data.json');
+  const testData = loadTestData('test-data/ui/master/auth-group-master-data.json');
 
   test.beforeEach(async ({ page }) => {
     config = new TestConfig();
