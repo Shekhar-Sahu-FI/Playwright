@@ -71,7 +71,6 @@ export async function textFieldParameter(field: FieldSpec, page: Page) {
 
   // 4️⃣ Readonly field check
   if (field.readonly) {
-    console.log('Checking readonly for', field.label);
     await expect.soft(field.field, `${field.label} should be readonly`).toHaveAttribute('readonly', '');
   }
 
@@ -135,7 +134,6 @@ export async function dropdownFieldParameter(ele: FieldSpec, page: Page) {
 
   //  Check available options (for native <select> dropdowns)
   const tag = await field.evaluate((el) => {
-    console.log('Tag name:', el.tagName);
     return el.tagName.toLowerCase();
   });
 
@@ -202,11 +200,10 @@ export async function selectFromAutoSuggestion(
   valueToSelect: string,
   index: number = 0,
 ) {
-  const timeout = 20000;
+  const timeout = 10000;
   const inputField = inputFields.nth(index);
-  await page.waitForTimeout(2000);
-  await inputField.fill('', { timeout: 200 });
-
+  // await page.waitForTimeout(2000);
+  // await inputField.fill('', { timeout: 200 });
   await inputField.type(query, { delay: 100 });
 
   // Step 2: Define the table
@@ -254,24 +251,20 @@ export async function fillWithRetry(locator: Locator, value: string) {
   throw new Error(`❌ Failed to set value '${value}' after retries`);
 }
 
-type SelectDateOptions = {
-  labelName: string; // input / icon that opens the calendar
-  year: number;
-  month: number; // 1-12
-  day: number;
-};
 
 export async function selectDate(
   page: Page,
-  labelName: string,
-  date: string
+  dateInput: Locator,
+  date: string // format: DD-MM-YYYY
 ) {
 
   const [year, month, day] = date.split('-').map(Number);
 
-  const calendarButton = page.locator(
-    `div.flex.items-stretch:has(input[label="${labelName}"]) button`
-  );
+
+  const calendarButton = dateInput
+    .locator('xpath=ancestor::div[contains(@class,"flex") and contains(@class,"items-stretch")]')
+    .locator('button')
+    .first();
 
   await calendarButton.waitFor({ state: 'visible' });
   await calendarButton.click();
@@ -282,8 +275,7 @@ export async function selectDate(
     has: page.locator('span')
   });
 
-  await header.waitFor({ state: 'visible' });
-
+  // const monthLabel = header.locator('span');
   const prevButton = header.locator('button').first();
   const nextButton = header.locator('button').last();
 
@@ -295,40 +287,29 @@ export async function selectDate(
 
   const targetMonthText = `${monthNames[month - 1]}, ${year}`;
 
-  /* -----------------------------
-     Navigate to target month/year
-  ------------------------------*/
   while (true) {
-    const currentText = await header.textContent();
+    const currentText = (await header.textContent())?.trim();
+    if (!currentText) throw new Error('Month header not found');
 
     if (currentText === targetMonthText) break;
 
     const [currentMonthName, currentYearStr] =
-      currentText!.split(',').map(v => v.trim());
+      currentText.split(',').map(v => v.trim());
 
     const currentYear = Number(currentYearStr);
     const currentMonth = monthNames.indexOf(currentMonthName) + 1;
 
-    const isBeforeTarget =
+
+    const goNext =
       currentYear < year ||
       (currentYear === year && currentMonth < month);
 
-    if (isBeforeTarget) {
-      await nextButton.click();
-    } else {
-      await prevButton.click();
-    }
+    await (goNext ? nextButton : prevButton).click();
   }
 
-  /* -----------------------------
-     Select day
-  ------------------------------*/
-  const dayButton = page.locator('div', {
-    hasText: new RegExp(`^${day}$`)
-  }).first();
+  const dayButton = page.locator(`div:text-is("${Number(day)}")`).first();
 
   await dayButton.waitFor({ state: 'visible' });
   await dayButton.click();
-
-
 }
+

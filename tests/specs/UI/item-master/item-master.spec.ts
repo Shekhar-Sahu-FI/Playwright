@@ -74,13 +74,14 @@ test.describe('Item Master Tests', () => {
   });
 
   test('Test Purchase Request', async ({ page }) => {
-    const newPath = 'inventory/purchase-request/new';
-    const url = page.url().replace('master/item-master', newPath);
-    await page.goto(url);
+
+    await page.waitForTimeout(5000);
+
+    await homePage.goToForm("Inventory", "Inventory Transaction", "Purchase Request", page);
+    await formOperation.openNewForm();
     const PR = new PurchaseRequest(page);
-    await PR.selectDocDate("2025-12-24");
-    await PR.fillDocNo("PR-00001");
-    await PR.selectRefDate("2025-12-24");
+    // await PR.selectDocDate("2025-06-26")
+    await PR.fillSchedule();
   });
 
   // test("Check Item Subgroup Field Parameters", async ({ page }) => {
